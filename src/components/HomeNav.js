@@ -2,9 +2,11 @@ import React from 'react'
 
 const HomeNav = () => {
   return (
-    <div>
-      
-    </div>
+    <nav>
+      <div className="nav-container">
+        
+      </div>
+    </nav>
   )
 }
 

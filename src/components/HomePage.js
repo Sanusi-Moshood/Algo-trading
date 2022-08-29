@@ -5,7 +5,7 @@ import LoginSignup from './LoginSignup'
 const HomePage = () => {
   return (
     <>
-
+      <HomeNav />
       <LoginSignup />
     </>
   )
