@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* colors */
+    --dark-blue: #0a1e2a;
+    --light-blue: #08b6e6;
+
+    --transition: all 400ms ease;
+}
+

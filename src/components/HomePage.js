@@ -1,12 +1,16 @@
 import React from 'react'
 import HomeNav from './HomeNav'
 import LoginSignup from './LoginSignup'
+import SignUp from './signup/SignUp'
+
 
 const HomePage = () => {
   return (
     <>
-
-      <LoginSignup />
+      <div>
+        <SignUp />
+      </div>
+      {/* <LoginSignup /> */}
     </>
   )
 }
