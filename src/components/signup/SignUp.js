@@ -16,8 +16,8 @@ export default function SignUp() {
                 <div className="form_box">
                     <div className="form_wrapper">
                         <div className="auth_btn">
-                            <button >Sign up</button>
-                            <button >Login</button>
+                            <button>Sign up</button>
+                            <button>Login</button>
                         </div>
                         <h1>Create Account</h1>
                         <form action="">
