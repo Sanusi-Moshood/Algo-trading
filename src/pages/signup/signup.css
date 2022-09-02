@@ -56,19 +56,19 @@ a {
     background: var(--dark-blue);
     text-transform: uppercase;
 }
-.btn-dark:hover {
+/* .btn-dark:hover {
     background: transparent;
     border: 1px solid var(--dark-blue);
     color: var(--dark-blue);
-}
+} */
 .btn-light {
     background: transparent;
     border: 1px solid var(--dark-blue);
 }
-.btn-light:hover {
+/* .btn-light:hover {
     color: #fff;
     background: var(--dark-blue);
-}
+} */
 .form_box h1 {
     padding: 0 0 10px;
     font-size: 1.9rem;

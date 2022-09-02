@@ -86,7 +86,7 @@ export default function SignUp() {
                         <form action="" onSubmit={handleLogSubmit}>
                         <input 
                             type="text"
-                            placeholder='E-mail'
+                            placeholder='Username or E-mail'
                             onChange={handleChange}
                             name="email"
                             value={LoginData.email}
@@ -108,7 +108,7 @@ export default function SignUp() {
                          <form action="" onSubmit={handleSignSubmit}>
                          <input 
                              type="text"
-                             placeholder='E-mail'
+                             placeholder='Username or E-mail'
                              onChange={handleChange}
                              name="email"
                              value={LoginData.email}
