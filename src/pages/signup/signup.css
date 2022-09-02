@@ -41,7 +41,7 @@ a {
 /*
 -------Call to action (Button)
 */
-.form_box button {
+.toggle_btn {
     margin: 0 5px 25px;
     padding: 6px 38px;
     border-radius: .3rem;
@@ -49,22 +49,23 @@ a {
     font-weight: 500;
     font-family: 'Jura', sans-serif;
     transition: var(--transition);
+    cursor: pointer;
 }
-.form_box button:nth-child(1) {
+.btn-dark {
     color: #fff;
     background: var(--dark-blue);
     text-transform: uppercase;
 }
-.form_box button:nth-child(1):hover {
+.btn-dark:hover {
     background: transparent;
     border: 1px solid var(--dark-blue);
     color: var(--dark-blue);
 }
-.form_box button:nth-child(2) {
+.btn-light {
     background: transparent;
     border: 1px solid var(--dark-blue);
 }
-.form_box button:nth-child(2):hover {
+.btn-light:hover {
     color: #fff;
     background: var(--dark-blue);
 }
