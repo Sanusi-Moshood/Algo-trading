@@ -1,4 +1,4 @@
-import {useState} from 'react' 
+import {useRef, useState} from 'react' 
 import './signup.css'
 import signImg from '../../images/logbg.png'
 import { HiOutlineMail } from 'react-icons/hi'
@@ -15,6 +15,13 @@ export default function SignUp() {
     const [LoginData, setLoginData] = useState(
         {email: "", password: "", ConfirmPassword: ""}
       )
+      const name_check = useRef()
+      const log_name_check = useRef()
+      const password_check = useRef()
+      const log_password_check = useRef()
+      const conf_password_check = useRef()
+
+
 
       const handleForgot = () => {
         setIsForgot((prev) => !prev)
@@ -42,6 +49,7 @@ export default function SignUp() {
         UserPool.signUp(LoginData.email, LoginData.password, [], null, (err, data) => {
             if (err) {
                 console.error(err);
+                signErrorCheck()
             }
             console.log(data);
         });
@@ -71,15 +79,44 @@ export default function SignUp() {
         })
     }
 
+    
+    const signErrorCheck = () => {
+
+
+        var password_exp = new RegExp(/^[\S]+.*[\S]+$/) 
+        var email_exp = new RegExp(/[\p{L}\p{M}\p{S}\p{N}\p{P}]+/)
+        if (email_exp.test(LoginData.email) ){
+            console.log('valid')
+            
+            
+        }else {
+            console.log('invalid');
+
+            name_check.current.style.display = 'block'
+        }
+
+        if(password_exp.test(LoginData.password) ) {
+            console.log('valid')
+        } else {
+            console.log('invalid');
+            password_check.current.style.display = 'block'
+
+        }
+        if (LoginData.ConfirmPassword !== LoginData.password) {
+            conf_password_check.current.style.display = 'block'
+        }
+      }
+
 
   return (
     <section>
-        <div className="container">
-            <div className="user">{
 
-            !isForgot ?
-            
-<div>
+        {
+            isForgot ? <Forgotpass isForgot={isForgot} setIsForgot={setIsForgot}/> :
+
+
+            <div className="container">
+            <div className="user">
                 <div className="sign_img">
                     <img src={signImg} alt="" />
                 </div>
@@ -101,6 +138,7 @@ export default function SignUp() {
                             name="email"
                             value={LoginData.email}
                         />
+                        <p className='auth' ref={log_name_check}>Please enter a valid Username or Email</p>
                         <input 
                             type="password"
                             placeholder='Password'
@@ -108,6 +146,7 @@ export default function SignUp() {
                             name="password"
                             value={LoginData.password}
                         />
+                        <p className='auth' ref={log_password_check}>Please enter a valid password</p>
                         <p className='forgot' onClick={handleForgot}>Forgot password?</p>
                         <input type="submit" value="Login" />
                         
@@ -129,6 +168,7 @@ export default function SignUp() {
                              name="email"
                              value={LoginData.email}
                          />
+                         <p className='auth' ref={name_check}>Please enter a valid Username or Email</p>
                          <input 
                              type="password"
                              placeholder='Password'
@@ -136,6 +176,7 @@ export default function SignUp() {
                              name="password"
                              value={LoginData.password}
                          />
+                         <p className='auth' ref={password_check}>Please enter a valid Password</p>
                          <input 
                              type="password"
                              placeholder='Confirm password'
@@ -143,6 +184,7 @@ export default function SignUp() {
                              name="ConfirmPassword"
                              value={LoginData.ConfirmPassword}
                          />
+                         <p className='auth' ref={conf_password_check}>Password do not match</p>
                          
                          <input type="submit" value="Sign Up" />
 
@@ -180,26 +222,12 @@ export default function SignUp() {
                             </div>
                         </div>
                     </div>
-                </div>    
-</div>
-            
-            :
-            <Forgotpass isForgot={isForgot}/>
-            }
-
-
-
-    
-
-            
-
-            
-
-            </div> 
-        
-            
-
+                </div>
+            </div>
         </div>
+
+
+        }
     </section>
   )
 }
