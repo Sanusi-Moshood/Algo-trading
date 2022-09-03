@@ -93,7 +93,7 @@ a {
 }
 .form_box input[type=submit]
 {
-    margin: 3px 50px;
+    margin: 10px 50px;
     padding: 8px;
     border: none;
     border-radius: .3rem;
@@ -103,9 +103,10 @@ a {
     width: 150px;
     text-transform: uppercase;
     font-family: 'Jura', sans-serif;
+    cursor: pointer;
 }
 .form_box .log_in {
-    font-size: 10px;
+    font-size: 13px;
     padding: 10px 50px;
     font-weight: 900;
 }
@@ -117,6 +118,22 @@ a {
    color: var(--dark-blue);
    
 }
+
+
+/* 
+--------Forgot password
+*/
+.forgot{
+    width: 250px;
+    text-align: right;
+    margin: 3px auto;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--light-blue);
+    cursor: pointer;
+}
+
+
 /* 
 --------Contact links
 */

@@ -6,13 +6,19 @@ import { FaYoutube } from 'react-icons/fa'
 import { SiTelegram } from 'react-icons/si'
 import UserPool from '../../UserPool'
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js'
+import Forgotpass from './Forgotpass'
 
 
 export default function SignUp() {
     const [signUp, setSignUp] = useState(false)
+    const [isForgot, setIsForgot] = useState(false)
     const [LoginData, setLoginData] = useState(
         {email: "", password: "", ConfirmPassword: ""}
       )
+
+      const handleForgot = () => {
+        setIsForgot((prev) => !prev)
+      }
 
       const handleChange =(event) => {
         setLoginData(prevLoginData => {
@@ -69,7 +75,11 @@ export default function SignUp() {
   return (
     <section>
         <div className="container">
-            <div className="user">
+            <div className="user">{
+
+            !isForgot ?
+            
+<div>
                 <div className="sign_img">
                     <img src={signImg} alt="" />
                 </div>
@@ -98,13 +108,19 @@ export default function SignUp() {
                             name="password"
                             value={LoginData.password}
                         />
+                        <p className='forgot' onClick={handleForgot}>Forgot password?</p>
+                        <input type="submit" value="Login" />
+                        
                         <p className='log_in'>
                             Don't have Account? 
                             <a href="#" onClick={toggleForm}>Sign up</a>
                         </p>
-                        <input type="submit" value="Login" />
                         </form>
+
+
                          :
+
+
                          <form action="" onSubmit={handleSignSubmit}>
                          <input 
                              type="text"
@@ -127,11 +143,13 @@ export default function SignUp() {
                              name="ConfirmPassword"
                              value={LoginData.ConfirmPassword}
                          />
+                         
+                         <input type="submit" value="Sign Up" />
+
                          <p className='log_in'>
                              Already have an account?
                              <a href="#" onClick={toggleForm}>sign in</a>
                          </p>
-                         <input type="submit" value="Sign Up" />
                      </form>
                          
                          }
@@ -162,8 +180,25 @@ export default function SignUp() {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>    
+</div>
+            
+            :
+            <Forgotpass isForgot={isForgot}/>
+            }
+
+
+
+    
+
+            
+
+            
+
+            </div> 
+        
+            
+
         </div>
     </section>
   )
