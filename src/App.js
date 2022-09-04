@@ -1,14 +1,15 @@
 import SignUp from './pages/signup/SignUp'
-import HomePage from './pages/HomePage';
+import Dashboard from './pages/Dashboard';
+import { ContextProvider } from './context/ContextProvider';
 import './index.css'
 
 
 function App() {
   return (
-    <>
+    <ContextProvider>
       <SignUp />
-      <HomePage/>
-    </>
+      <Dashboard />
+    </ContextProvider>
   );
 }
 

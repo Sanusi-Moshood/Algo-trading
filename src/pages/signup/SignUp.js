@@ -1,5 +1,5 @@
 import {useRef, useState} from 'react' 
-import './signup.css'
+import styles from './signup.module.css'
 import signImg from '../../images/logbg.png'
 import { HiOutlineMail } from 'react-icons/hi'
 import { FaYoutube } from 'react-icons/fa'
@@ -115,17 +115,17 @@ export default function SignUp() {
             isForgot ? <Forgotpass isForgot={isForgot} setIsForgot={setIsForgot}/> :
 
 
-            <div className="container">
-            <div className="user">
-                <div className="sign_img">
+            <div className={styles.container}>
+            <div className={styles.user}>
+                <div className={styles.sign_img}>
                     <img src={signImg} alt="" />
                 </div>
-                <div className="form_box">
-                    <div className="form_wrapper">
-                        <div className="auth_btn">
-                            <button onClick={toggleForm} className={`toggle_btn ${signUp ? 'btn-light' : 'btn-dark' }`}>Sign up</button>
-                            <button onClick={toggleForm} className={`toggle_btn ${!signUp ? 'btn-light' : 'btn-dark' }`}>Login</button>
-                        </div>
+                <div className={styles.form_box}>
+                    <div className={styles.form_wrapper}>
+                        <div className={styles.auth_btn}>
+                            <button onClick={toggleForm} className={ `${styles.toggle_btn} ${signUp ? styles.btn_light  : styles.btn_dark}`}>Sign up</button>
+                            <button onClick={toggleForm} className={`${styles.toggle_btn}  ${!signUp ? styles.btn_light : styles.btn_dark }`}>Login</button>
+                        </div>                        
                         <h1>{!signUp ? 'Create Account' : 'Login Account'}</h1>
 
                     {/*------------------ Toggle Sign Up Or Login Form-------------------- */}
@@ -138,7 +138,7 @@ export default function SignUp() {
                             name="email"
                             value={LoginData.email}
                         />
-                        <p className='auth' ref={log_name_check}>Please enter a valid Username or Email</p>
+                        <p className={styles.auth} ref={log_name_check}>Please enter a valid Username or Email</p>
                         <input 
                             type="password"
                             placeholder='Password'
@@ -146,11 +146,11 @@ export default function SignUp() {
                             name="password"
                             value={LoginData.password}
                         />
-                        <p className='auth' ref={log_password_check}>Please enter a valid password</p>
-                        <p className='forgot' onClick={handleForgot}>Forgot password?</p>
+                        <p className={styles.auth} ref={log_password_check}>Please enter a valid password</p>
+                        <p className={styles.forgot} onClick={handleForgot}>Forgot password?</p>
                         <input type="submit" value="Login" />
                         
-                        <p className='log_in'>
+                        <p className={styles.log_in}>
                             Don't have Account? 
                             <a href="#" onClick={toggleForm}>Sign up</a>
                         </p>
@@ -168,7 +168,7 @@ export default function SignUp() {
                              name="email"
                              value={LoginData.email}
                          />
-                         <p className='auth' ref={name_check}>Please enter a valid Username or Email</p>
+                         <p className={styles.auth} ref={name_check}>Please enter a valid Username or Email</p>
                          <input 
                              type="password"
                              placeholder='Password'
@@ -176,7 +176,7 @@ export default function SignUp() {
                              name="password"
                              value={LoginData.password}
                          />
-                         <p className='auth' ref={password_check}>Please enter a valid Password</p>
+                         <p className={styles.auth} ref={password_check}>Please enter a valid Password</p>
                          <input 
                              type="password"
                              placeholder='Confirm password'
@@ -184,11 +184,11 @@ export default function SignUp() {
                              name="ConfirmPassword"
                              value={LoginData.ConfirmPassword}
                          />
-                         <p className='auth' ref={conf_password_check}>Password do not match</p>
+                         <p className={styles.auth} ref={conf_password_check}>Password do not match</p>
                          
                          <input type="submit" value="Sign Up" />
 
-                         <p className='log_in'>
+                         <p className={styles.log_in}>
                              Already have an account?
                              <a href="#" onClick={toggleForm}>sign in</a>
                          </p>
@@ -198,7 +198,7 @@ export default function SignUp() {
 
 
                         {/*------------------ Contact Links-------------------- */}
-                        <div className="sign_link">
+                        <div className={styles.sign_link}>
                             <div>
                                 <HiOutlineMail />
                                 <a href="#">

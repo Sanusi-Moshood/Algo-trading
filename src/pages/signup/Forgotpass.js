@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import './signup.css'
+import styles from './signup.module.css'
 
 const Forgotpass = (props) => {
 
@@ -28,10 +28,10 @@ const Forgotpass = (props) => {
   }
   
   return (
-    <div className='container'>
-      <div className="user">
-        <div className="forgot-box">
-            <p className='reset-link-msg' ref={resetMsg}>A reset link has been sent to your email address </p>
+    <div className={styles.container}>
+      <div className={styles.user}>
+        <div className={styles['forgot-box']}>
+            <p className={styles['reset-link-msg']} ref={resetMsg}>A reset link has been sent to your email address </p>
             <h1>Enter your E-mail address to reset password</h1>
 
             <form action="" onSubmit={handlesbmit}>
@@ -41,12 +41,12 @@ const Forgotpass = (props) => {
                onChange={change}
                name="email"
                value={ResetData.email}
-               className='forgot-mail'
+               className={styles['forgot-mail']}
                         /> <br />
-            <input type="submit" placeholder='Reset Password' className='forgot-btn'/>
+            <input type="submit" placeholder='Reset Password' className={styles['forgot-btn']}/>
             </form>
 
-          <p onClick={toggle_forgot} className='b-t-lp'>back to <span>Login</span></p>
+          <p onClick={toggle_forgot} className={styles['b-t-lp']}>back to <span>Login</span></p>
         </div>
       </div>
     </div>

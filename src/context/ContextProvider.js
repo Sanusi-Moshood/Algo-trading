@@ -4,13 +4,13 @@ const StateContext = createContext();
 
 
 
-export const AccountContext = ({ children }) => {
-    const [isForgot, setIsForgot] = useState(false)
+export const ContextProvider = ({ children }) => {
+  const [activeMenu, setActiveMenu] = useState(false)
 
     return (
     <StateContext.Provider value={{
-        isForgot,
-        setIsForgot
+        activeMenu,
+        setActiveMenu
     }}>
 
         {children}
