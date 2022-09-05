@@ -7,7 +7,7 @@ import './index.css'
 function App() {
   return (
     <ContextProvider>
-      <SignUp />
+      {/* <SignUp /> */}
       <Dashboard />
     </ContextProvider>
   );

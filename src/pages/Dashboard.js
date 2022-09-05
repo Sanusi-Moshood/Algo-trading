@@ -1,29 +1,33 @@
 import React from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import { useState } from 'react'
 import { useStateContext } from '../context/ContextProvider'
 import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
-import '../index.css'
+import styles from './dashboard.module.css'  
 
 
-const HomePage = () => {
-
-  const {activeMenu} = useStateContext()
+const Dashboard  = () => {
+   const {activeMenu,} = useStateContext()
 
   return (
     <BrowserRouter>
-      <div className="container">
-        <div className="sidebar">
 
-        </div>
-        <div className="main_page">
-          <div className="nav">
+      <div className={styles.container}>
+        {  activeMenu && 
+               <div className={styles.sidebar}>
+                <Sidebar />
+              </div>
+        }
+
+        <div className={styles.main_page}>
+          <div className={styles.nav}>
             <Navbar />
           </div>
 
           <Routes>
-            <Route path='/' element='DASHBOARD' />
+            <Route path='/dashboard' element='DASHBOARD' />
+            <Route path='/accounts' element='Accounts' />
+            <Route path='/license' element='License' />
           </Routes>
         </div>
       </div>
@@ -31,4 +35,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default Dashboard 

@@ -93,6 +93,10 @@ export default function SignUp() {
             console.log('invalid');
 
             name_check.current.style.display = 'block'
+
+            setTimeout(() => {
+                name_check.current.style.display = 'none'   
+            }, 5000);
         }
 
         if(password_exp.test(LoginData.password) ) {
@@ -101,9 +105,17 @@ export default function SignUp() {
             console.log('invalid');
             password_check.current.style.display = 'block'
 
+            setTimeout(() => {
+                password_check.current.style.display = 'none'  
+            }, 5000);
+
         }
         if (LoginData.ConfirmPassword !== LoginData.password) {
             conf_password_check.current.style.display = 'block'
+
+            setTimeout(() => {
+                conf_password_check.current.style.display = 'none'
+            }, 5000);
         }
       }
 

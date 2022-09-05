@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -7,8 +9,11 @@
 :root {
     /* colors */
     --dark-blue: #0a1e2a;
-    --light-blue: #08b6e6;
-
+    --light-blue: #004dd3;
+    font-family: 'Jura', sans-serif;
     --transition: all 400ms ease;
 }
 
+a {
+    text-decoration: none;
+}
