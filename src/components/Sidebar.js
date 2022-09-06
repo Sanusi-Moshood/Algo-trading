@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../pages/dashboard.module.css'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import {MdDashboard, MdSwitchAccount, MdCancel} from 'react-icons/md'
 import {TbLicense} from 'react-icons/tb'
 import { useStateContext } from '../context/ContextProvider'
@@ -28,20 +28,11 @@ const Sidebar = () => {
       </div>
 
       <div className={styles.side_links}>
-
-        <div className={styles.side_link} >
-          <MdDashboard />
-          <Link to={'/dashboard'} onClick={handleCloseSideBar}>Dashboard</Link>
-        </div>
-        <div className={styles.side_link} >
-          <MdSwitchAccount />
-          <Link to={'/accounts'} onClick={handleCloseSideBar}>Accounts</Link>
-        </div>
-        <div className={styles.side_link} >
-          <TbLicense />
-          <Link to={'/license'} onClick={handleCloseSideBar}>License</Link>
-        </div>
-
+          <NavLink to={'/dashboard'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <MdDashboard /> Dashboard</NavLink>
+          
+          <NavLink to={'/accounts'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <MdSwitchAccount /> Accounts</NavLink>
+          
+          <NavLink to={'/license'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <TbLicense /> License</NavLink>
       </div>
     </div>
   )

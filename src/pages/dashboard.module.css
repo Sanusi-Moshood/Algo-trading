@@ -9,9 +9,12 @@
 }
 .main_page{
     width: 100%;
-    background: #fafafa;
-    padding-top: 30px;
+    background: #fafafac0;
+    padding: 30px 25px 0 25px;
 }
+
+/* ************* SIDEBAR **************** */
+
 .sidebar{
     display: flex;
     flex-direction: column;
@@ -41,20 +44,30 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
+    width: 70%;
 }
 
 .side_link{
     font-size: 18px;
     display: flex;
-    border-left: 3px solid var(--light-blue);
-    padding: 5px 0 5px 15%;
-    color: var(--dark-blue);
+    color: var(--light-blue);
+    padding: 5px 0 5px 25%;
     font-weight: 500;
-    width: 100%;
+ 
+    align-items: center;
+    gap: 5px;
+    border-left: 3px solid var(--light-blue);
+}
+
+.side_link_active{
+    font-size: 18px;
+    display: flex;
+    color: var(--dark-blue);
+    padding: 5px 0 5px 25%;
+    font-weight: 500;
     align-items: center;
     gap: 5px;
 }
-
 .close_sidebar{
     font-size: 30px;
     position: absolute;
@@ -63,6 +76,20 @@
     color: var(--light-blue);
 }
 .close_sidebar:hover{
+    scale: 1.1;
+    color: #003ca5;
+}
+
+
+/* ************* NAVBAR **************** */
+.open_sidebar{
+    font-size: 30px;
+    position: absolute;
+    top: 30px;
+    left: 10px;
+    color: var(--light-blue);
+}
+.open_sidebar:hover{
     scale: 1.1;
     color: #003ca5;
 }
