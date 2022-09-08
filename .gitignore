@@ -11,8 +11,6 @@
 # production
 /build
 
-/pages/signup
-
 # misc
 .DS_Store
 .env.local

@@ -69,7 +69,7 @@ function Login() {
                                 onChange={(e) => setPassword(e.target.value)}
                               />
                                <Link to={'/forgot_password'} className={styles.forgot}>Forgot password?</Link>
-                              <input type="submit" value="LOGIN" />
+                               <button className={styles['Submit']}>Login</button>
                             </form>
                             <p className={styles.log_in}>
                                          Don't have Account?

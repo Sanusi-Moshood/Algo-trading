@@ -16,61 +16,84 @@ function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [ConfirmPassword, setConfirmPassword] = useState('');
+    const [ConfirmPasswordCheck, setConfirmPasswordCheck] = useState('');
     const [name_check, setNameCheck] = useState('')
     const [email_check, setEmailCheck] = useState('')
     const [password_check, setpasswordCheck] = useState('')
   
-    const onSubmit = (e) => {
-      e.preventDefault();
-      if(username === ''){
-        setNameCheck('username cannot be blank')
-      }else if (username < 5) {
-        setNameCheck('username too short')
-      }
 
-      if(email === ''){
-        setEmailCheck('Email cannot be blank')
-      }
-      if(password === ''){
-        setpasswordCheck('Password cannot be blank')
-      }else if (password < 8) {
-        setpasswordCheck('password too short')
-      }else if (password.search(/[A-Z]/g) < 0) {
-        setpasswordCheck('Password must contain Uppercase')
-      }else if (password.search(/^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?_₹]).*$/) < 0) {
-        setpasswordCheck('Password must contain a special character')
-      }else if (password.search(/[0-9]/) < 0) {
-        setpasswordCheck('Password must contain a digit')
-      }else if (password !== ConfirmPassword) {
-        setConfirmPassword('Password does not match')
-      }
-      
-      const attributeList = [];
-      attributeList.push(
-        new CognitoUserAttribute({
-          Name: 'email',
-          Value: email,
-        })
-      );
-      UserPool.signUp(username, password, attributeList, null, (err, data) => {
-        if (err) {
-          console.log(err);
-          const code = err.code;
-          console.log(err);
-          switch (code) {
-              case 'UserLambdaValidationException':
-                setEmailCheck('Email is already exist.')
-              case 'UsernameExistsException':
-                setNameCheck('username already exist')
-              default:
-                  return false;
-          }
-        } else {
-          console.log(data);
-          alert('User Added Successfully');
-          setStatus(true)
+    const validation = () => {
+      return new Promise((resolve, reject) => {
+        if( username === ''){
+          setNameCheck('username can not be blank') 
+        } 
+        if( username.length < 5){
+          setNameCheck('username too short') 
+        } 
+
+        if(email === ''){
+          setEmailCheck('Email cannot be blank')
+        }
+        if(email.search(/[@]/g) < 0){
+          setEmailCheck('Email not valid')
+        }
+
+
+        if(password === ''){
+          setpasswordCheck('Password cannot be blank')
+        }else if (password < 8) {
+          setpasswordCheck('password too short')
+        }else if (password.search(/[A-Z]/g) < 0) {
+          setpasswordCheck('Password must contain Uppercase')
+        }else if (password.search(/^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?_₹]).*$/) < 0) {
+          setpasswordCheck('Password must contain a special character')
+        }else if (password.search(/[0-9]/) < 0) {
+          setpasswordCheck('Password must contain a digit')
+        }else if (password !== ConfirmPassword) {
+          setConfirmPasswordCheck('Password does not match')
+        }else if (password === ConfirmPassword) {
+          setConfirmPasswordCheck('')
         }
       });
+    };
+
+
+    const onSubmit = (e) => {
+      e.preventDefault();
+      setEmailCheck('')
+      setNameCheck('')
+      setpasswordCheck('')
+      validation()
+
+      if (ConfirmPassword === password  && password !== ''){
+        const attributeList = [];
+        attributeList.push(
+          new CognitoUserAttribute({
+            Name: 'email',
+            Value: email,
+          })
+        );
+        UserPool.signUp(username, password, attributeList, null, (err, data) => {
+          if (err) {
+            console.log(err);
+            const code = err.code;
+            console.log(err);
+            switch (code) {
+                case 'UsernameExistsException':
+                  setNameCheck('username already exist')
+                case 'Network error':
+                  alert('please connect to internet')
+                default:
+                    return false;
+            }
+          } else {
+            console.log(data);
+            alert('User Added Successfully');
+            setStatus(true)
+          }
+        });
+      }
+
     };
   
 
@@ -98,7 +121,7 @@ function Register() {
                                      />
                                      <p className={styles.auth}>{name_check}</p>
                                      <input
-                                       type="email"
+                                       type="text"
                                        placeholder='Email:'
                                        value={email}
                                        onChange={(e) => setEmail(e.target.value)}
@@ -117,8 +140,9 @@ function Register() {
                                        value={ConfirmPassword}
                                        onChange={(e) => setConfirmPassword(e.target.value)}
                                      />
-                                     <p className={styles.auth} ></p>
-                                     <input type="submit" value="SignUp" />
+                                     <p className={styles.auth} >{ConfirmPasswordCheck}</p>
+                                     <button className={styles.Submit}>SignUp</button>
+                                     
                             </form>
                             <p className={styles.log_in}>
                                          Already have an account?

@@ -115,7 +115,7 @@ a {
     font-family: 'Jura', sans-serif;
     color: var(--dark-blue);
 }
-.form_box input[type=submit], .forgot-btn
+.Submit, .forgot-btn
 {
     margin: 10px 50px;
     padding: 8px;
@@ -129,7 +129,7 @@ a {
     font-family: 'Jura', sans-serif;
     cursor: pointer;
 }
-.form_box input[type=submit]:hover, .forgot-btn:hover
+.Submit:hover, .forgot-btn:hover
 {
 background: var(--light-blue);
 color: var(--dark-blue);
@@ -187,7 +187,6 @@ font-weight: 700;
     padding: 10px;
     font-size: 17px;
     color: var(--dark-blue);
-    display: none;
     top: -100%;
     transition: all 2s ease-in;
 }
