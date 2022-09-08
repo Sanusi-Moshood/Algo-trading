@@ -28,7 +28,7 @@ const Sidebar = () => {
       </div>
 
       <div className={styles.side_links}>
-          <NavLink to={'/dashboard'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <MdDashboard /> Dashboard</NavLink>
+          <NavLink to={'/'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <MdDashboard /> Dashboard</NavLink>
           
           <NavLink to={'/accounts'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <MdSwitchAccount /> Accounts</NavLink>
           

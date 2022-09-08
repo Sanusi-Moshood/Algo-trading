@@ -3,15 +3,17 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import { useStateContext } from '../context/ContextProvider'
 import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
-import styles from './dashboard.module.css'  
+import styles from './dashboard.module.css' 
+import { AccountContext } from '../context/Account' 
+import { useContext } from 'react'
 
 
 const Dashboard  = () => {
    const {activeMenu,} = useStateContext()
+   const { logout } = useContext(AccountContext);
 
   return (
     <BrowserRouter>
-
       <div className={styles.container}>
         {  activeMenu && 
                <div className={styles.sidebar}>
@@ -22,10 +24,11 @@ const Dashboard  = () => {
         <div className={styles.main_page}>
           <div className={styles.nav}>
             <Navbar />
+            <button onClick={logout}>Logout</button>
           </div>
 
           <Routes>
-            <Route path='/dashboard' element='DASHBOARD' />
+            <Route path='/' element='DASHBOARD' />
             <Route path='/accounts' element='Accounts' />
             <Route path='/license' element='License' />
           </Routes>

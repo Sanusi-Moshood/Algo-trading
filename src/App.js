@@ -1,15 +1,37 @@
-import SignUp from './pages/signup/SignUp'
-import Dashboard from './pages/Dashboard';
-import { ContextProvider } from './context/ContextProvider';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import Login from './pages/Account/Login'
+import Register from './pages/Account/Register';
+import Forgotpass from './pages/Account/Forgotpass';
 import './index.css'
+import Dashboard from './pages/Dashboard'
+import { AccountContext } from './context/Account';
+import { useContext } from 'react';
+import { ContextProvider } from './context/ContextProvider';
+
 
 
 function App() {
+  const { status } = useContext(AccountContext);
   return (
-    <ContextProvider>
-      <SignUp />
-      <Dashboard />
-    </ContextProvider>
+    <>
+         {
+      status ? (
+        <ContextProvider>
+        <Dashboard />
+        </ContextProvider>
+      ) : 
+      (
+        <BrowserRouter>
+        <Routes>
+          <Route path='/register'  element={<Register />}/>
+          <Route path='/' element={<Login/>}/>
+          <Route path='/forgot_password'  element={<Forgotpass />}/>      
+        </Routes>
+        </BrowserRouter>
+      )
+    }
+    </>
   );
 }
 

@@ -13,7 +13,7 @@ export default function SignUp() {
     const [signUp, setSignUp] = useState(false)
     const [isForgot, setIsForgot] = useState(false)
     const [LoginData, setLoginData] = useState(
-        {email: "", password: "", ConfirmPassword: ""}
+        {username: "",email: "", password: "", ConfirmPassword: ""}
       )
       const name_check = useRef()
       const log_name_check = useRef()
@@ -45,8 +45,14 @@ export default function SignUp() {
 
     const handleSignSubmit = (e) => {
         e.preventDefault();
-
-        UserPool.signUp(LoginData.email, LoginData.password, [], null, (err, data) => {
+        const attributeList = [];
+        attributeList.push(
+            new CognitoUserAttribute({
+              Name: 'email',
+              Value: LoginData.email,
+            })
+          );
+        UserPool.signUp(LoginData.username, LoginData.password, attributeList, null, (err, data) => {
             if (err) {
                 console.error(err);
                 signErrorCheck()
