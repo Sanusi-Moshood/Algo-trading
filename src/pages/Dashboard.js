@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar'
 import styles from './dashboard.module.css' 
 import { AccountContext } from '../context/Account' 
 import { useContext } from 'react'
-
+import DashboardPage from './DashboardPage'
 
 const Dashboard  = () => {
    const {activeMenu,} = useStateContext()
@@ -24,11 +24,11 @@ const Dashboard  = () => {
         <div className={styles.main_page}>
           <div className={styles.nav}>
             <Navbar />
-            <button onClick={logout}>Logout</button>
+            <button onClick={logout} className={styles.Submit}>Logout</button>
           </div>
 
           <Routes>
-            <Route path='/' element='DASHBOARD' />
+            <Route path='/' element= {< DashboardPage />} />
             <Route path='/accounts' element='Accounts' />
             <Route path='/license' element='License' />
           </Routes>

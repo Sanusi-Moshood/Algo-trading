@@ -10,13 +10,14 @@ a {
     font-family: 'Jura', sans-serif;
     color: var(--dark-blue);
     background: #f5f6ff;
+    margin-top: 90px;
 }
 .user {
     display: flex;
     grid-template-columns: repeat(2, 1fr);
     justify-content: center;
     /* align-items: center; */
-    margin: 90px 0;
+    
     box-shadow: 0 15px 50px rgba(0, 0, 0, .1); 
     outline: none;
 }
@@ -131,8 +132,8 @@ a {
 }
 .Submit:hover, .forgot-btn:hover
 {
-background: var(--light-blue);
-color: var(--dark-blue);
+background: #021724;
+color: #fff;
 font-weight: 700;
 
 }
@@ -189,6 +190,7 @@ font-weight: 700;
     color: var(--dark-blue);
     top: -100%;
     transition: all 2s ease-in;
+    text-align: center;
 }
 
 .auth{

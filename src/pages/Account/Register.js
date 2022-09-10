@@ -1,17 +1,15 @@
 import styles from './signup.module.css'
-import signImg from '../../images/logbg.png'
 import { HiOutlineMail } from 'react-icons/hi'
 import { FaYoutube } from 'react-icons/fa'
 import { SiTelegram } from 'react-icons/si'
-import { CognitoUser, CognitoUserAttribute } from 'amazon-cognito-identity-js';
-import { useState, useContext } from 'react';
+import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
+import { useState, } from 'react';
 import UserPool from '../../UserPool';
 import { Link } from 'react-router-dom'
-import { AccountContext } from '../../context/Account';
  
 
 function Register() {
-  const { setStatus } = useContext(AccountContext);
+  const [successMsg, setSuccessMsg] = useState(false)
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -41,13 +39,13 @@ function Register() {
 
         if(password === ''){
           setpasswordCheck('Password cannot be blank')
-        }else if (password < 8) {
+        }else if (password.length < 8) {
           setpasswordCheck('password too short')
         }else if (password.search(/[A-Z]/g) < 0) {
           setpasswordCheck('Password must contain Uppercase')
-        }else if (password.search(/^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?_₹]).*$/) < 0) {
+        }else if (password.search(/^(?=.*[~`!@#$%^&*()--+={}[\]|\\:;"'<>,.?_₹]).*$/) < 0) {
           setpasswordCheck('Password must contain a special character')
-        }else if (password.search(/[0-9]/) < 0) {
+        }else if (password.search(/[0-9]/g) < 0) {
           setpasswordCheck('Password must contain a digit')
         }else if (password !== ConfirmPassword) {
           setConfirmPasswordCheck('Password does not match')
@@ -65,7 +63,7 @@ function Register() {
       setpasswordCheck('')
       validation()
 
-      if (ConfirmPassword === password  && password !== ''){
+      if (ConfirmPassword === password  && password !== '' ){
         const attributeList = [];
         attributeList.push(
           new CognitoUserAttribute({
@@ -81,15 +79,23 @@ function Register() {
             switch (code) {
                 case 'UsernameExistsException':
                   setNameCheck('username already exist')
+                  break
+                case 'UserLambdaValidationException':
+                  setNameCheck('Email is already taken.')
+                  break
                 case 'Network error':
                   alert('please connect to internet')
+                  break
                 default:
                     return false;
             }
           } else {
-            console.log(data);
-            alert('User Added Successfully');
-            setStatus(true)
+
+            setSuccessMsg(true);
+
+            setTimeout(() => {
+              setSuccessMsg(true);
+            }, 15000);
           }
         });
       }
@@ -101,6 +107,9 @@ function Register() {
   
     return (
         <div className={styles.container}>
+          {
+          successMsg &&  <p className={styles['reset-link-msg']} >Registration successful, please login to continue</p>
+        }
             <div className={styles.user}>
                 <div className={styles.sign_img}>
                 </div>

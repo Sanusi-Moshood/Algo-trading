@@ -1,7 +1,6 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useState } from 'react';
 import  { AccountContext } from '../../context/Account'
 import styles from './signup.module.css'
-import signImg from '../../images/logbg.png'
 import { HiOutlineMail } from 'react-icons/hi'
 import { FaYoutube } from 'react-icons/fa'
 import { SiTelegram } from 'react-icons/si'
@@ -16,13 +15,10 @@ function Login() {
     const { authenticate } = useContext(AccountContext);
   
     const onSubmit = (e) => {
-
-
       e.preventDefault();
       authenticate(username, password)
-        .then((data) => {
-          console.log(data);
-          alert('login success');
+        .then((result) => {
+         
           window.location.reload();
         })
         .catch((err) => {
@@ -33,6 +29,7 @@ function Login() {
                 setEmailCheck('Please enter a valid Username or Email')
               case 'NotAuthorizedException':
                 setEmailCheck(' Incorrect username or password.')
+                break;
               default:
                   return false;
           }

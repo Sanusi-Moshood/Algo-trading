@@ -1,10 +1,11 @@
 import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 import UserPool from '../UserPool';
-import { useEffect, useState, createContext,} from 'react';
+import {  useState, createContext,} from 'react';
 
 const AccountContext = createContext();
 
 const Account = (props) => {
+
   const getSession = async () => {
     await new Promise((resolve, reject) => {
       const user = UserPool.getCurrentUser();
@@ -13,14 +14,19 @@ const Account = (props) => {
           if (err) {
             reject(err);
           } else {
-            resolve(session);
+            resolve(session)
           }
         });
       } else {
         reject();
       }
+      
+      const x = user.getUsername()
+      setUserData(x)
     });
   };
+
+  const [userData, setUserData] = useState()
 
   const authenticate = async (Username, Password) => {
     await new Promise((resolve, reject) => {
@@ -51,18 +57,6 @@ const Account = (props) => {
     });
   };
 
-    const [status, setStatus] = useState(false);
-    useEffect(() => {
-      getSession()
-        .then((session) => {
-          console.log('Session: ', session);
-          setStatus(true);
-        })
-        .catch((err) => {
-          console.log('Session: ', err);
-          setStatus(false);
-        });
-    }, [status])
 
   const logout = () => {
     const user = UserPool.getCurrentUser();
@@ -72,7 +66,7 @@ const Account = (props) => {
 
 
   return (
-    <AccountContext.Provider value={{ authenticate, getSession, logout, status, setStatus}}>
+    <AccountContext.Provider value={{ authenticate, getSession, logout,  userData}}>
       {props.children}
     </AccountContext.Provider>
   );

@@ -93,3 +93,28 @@
     scale: 1.1;
     color: #003ca5;
 }
+
+.Submit
+{
+    margin: 10px 50px;
+    padding: 8px;
+    border: none;
+    border-radius: .3rem;
+    outline: 0;
+    color: #fff;
+    background: var(--dark-blue);
+    width: 150px;
+    text-transform: uppercase;
+    font-family: 'Jura', sans-serif;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 20px;
+}
+.Submit:hover
+{
+background: #021724;
+color: #fff;
+font-weight: 700;
+
+}

@@ -6,13 +6,27 @@ import Forgotpass from './pages/Account/Forgotpass';
 import './index.css'
 import Dashboard from './pages/Dashboard'
 import { AccountContext } from './context/Account';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { ContextProvider } from './context/ContextProvider';
 
 
 
 function App() {
-  const { status } = useContext(AccountContext);
+  const {getSession} = useContext(AccountContext)
+  const [status, setStatus] = useState(false);
+
+  useEffect(() => {
+    getSession()
+      .then(session => {
+        console.log('Session: ', session);
+        setStatus(true);
+      
+      })
+      .catch((err) => {
+        console.log('Session: ', err);
+        setStatus(false);
+      });
+  }, [status])
   return (
     <>
          {

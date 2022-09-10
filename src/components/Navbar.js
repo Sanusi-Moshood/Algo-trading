@@ -14,8 +14,8 @@ const {activeMenu, toggleSidebar, screenSize} = useStateContext();
       {
          screenSize <= 900 && !activeMenu &&
         <MdMenu onClick={toggleSidebar} className={styles.open_sidebar}/>
+        
       }
-      Navbar
     </div>
   )
 }
