@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard'
 import { AccountContext } from './context/Account';
 import { useContext, useState, useEffect } from 'react';
 import { ContextProvider } from './context/ContextProvider';
+import PageNotFound from './pages/PageNotFound';
 
 
 
@@ -41,6 +42,7 @@ function App() {
           <Route path='/register'  element={<Register />}/>
           <Route path='/' element={<Login/>}/>
           <Route path='/forgot_password'  element={<Forgotpass />}/>      
+          <Route path='*' element={<PageNotFound />}/>
         </Routes>
         </BrowserRouter>
       )

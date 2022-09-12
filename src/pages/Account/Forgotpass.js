@@ -9,6 +9,7 @@ const Forgotpass = (props) => {
   const [Linksent, setLinkSent] = useState(1)
   const [passwordReset, setPasswordReset] = useState(1)
   const [password_check, setpasswordCheck] = useState('')
+  const [OTP_check, setOTPCheck] = useState('')
   const [ConfirmPasswordCheck, setConfirmPasswordCheck] = useState('');
   const [Username, setUsername] = useState('');
   const [code, setCode] = useState('');
@@ -43,6 +44,10 @@ const getUser = () => {
 
   const validation = () => {
     return new Promise((resolve, reject) => {
+      if(code === ''){
+        setOTPCheck('OTP cannot be blank')
+      }
+
       if(password === ''){
         setpasswordCheck('Password cannot be blank')
       }else if (password.length < 8) {
@@ -72,11 +77,20 @@ const getUser = () => {
           setPasswordReset(2)
         },
         onFailure : err => {
-          console.log('onsuccess', err)
+          const code = err.code;
+          console.log(err);
+          switch (code) {
+              case 'ExpiredCodeException':
+                setOTPCheck('Expired code provided, please request a code again.')
+                break
+              case 'CodeMismatchException':
+                setOTPCheck('Invalid verification code provided, please try again..')
+                break
+              default:
+                  return false;
+          }
         },
       })
-    }else {
-      setConfirmPasswordCheck('Password does not match')
     }
 
   }
@@ -125,6 +139,7 @@ const getUser = () => {
                    value={code}
                    className={styles['forgot-mail']}
                             /> 
+                            <p className={styles.auth}>{OTP_check}</p>
                 <input 
                    type="password"
                    placeholder='New Password'

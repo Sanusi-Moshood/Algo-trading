@@ -7,6 +7,7 @@ import styles from './dashboard.module.css'
 import { AccountContext } from '../context/Account' 
 import { useContext } from 'react'
 import DashboardPage from './DashboardPage'
+import PageNotFound from './PageNotFound'
 
 const Dashboard  = () => {
    const {activeMenu,} = useStateContext()
@@ -31,6 +32,7 @@ const Dashboard  = () => {
             <Route path='/' element= {< DashboardPage />} />
             <Route path='/accounts' element='Accounts' />
             <Route path='/license' element='License' />
+            <Route path='*' element={<PageNotFound />}/>
           </Routes>
         </div>
       </div>
