@@ -4,14 +4,11 @@ import { useStateContext } from '../context/ContextProvider'
 import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
 import styles from './dashboard.module.css' 
-import { AccountContext } from '../context/Account' 
-import { useContext } from 'react'
 import DashboardPage from './DashboardPage'
 import PageNotFound from './PageNotFound'
 
 const Dashboard  = () => {
    const {activeMenu,} = useStateContext()
-   const { logout } = useContext(AccountContext);
 
   return (
     <BrowserRouter>
@@ -25,7 +22,6 @@ const Dashboard  = () => {
         <div className={styles.main_page}>
           <div className={styles.nav}>
             <Navbar />
-            <button onClick={logout} className={styles.Submit}>Logout</button>
           </div>
 
           <Routes>

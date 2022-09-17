@@ -13,9 +13,12 @@ import PageNotFound from './pages/PageNotFound';
 
 
 function App() {
+  //importing the user status from accountContext
   const {getSession} = useContext(AccountContext)
-  const [status, setStatus] = useState(false);
 
+  const [status, setStatus] = useState(true);
+
+  //using useEffect to set the status to true when login is successful
   useEffect(() => {
     getSession()
       .then(session => {
@@ -25,17 +28,19 @@ function App() {
       })
       .catch((err) => {
         console.log('Session: ', err);
-        setStatus(false);
+        setStatus(true);
       });
   }, [status])
   return (
     <>
          {
+          //if status is true display the dashboard
       status ? (
         <ContextProvider>
         <Dashboard />
         </ContextProvider>
-      ) : 
+      ) : //else display the login and signup page
+
       (
         <BrowserRouter>
         <Routes>
