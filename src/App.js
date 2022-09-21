@@ -28,7 +28,7 @@ function App() {
       })
       .catch((err) => {
         console.log('Session: ', err);
-        setStatus(true);
+        setStatus(false);
       });
   }, [status])
   return (

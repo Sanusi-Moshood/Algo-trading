@@ -1,6 +1,8 @@
 import React from 'react'
+// Here is where the user data is from
 import { AccountContext } from '../context/Account'
 import styles from './dashboard.module.css'
+import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 import { useContext,useState, useEffect } from 'react'
 import axios from 'axios'
 import { 
@@ -11,19 +13,47 @@ import {
 
 
 const DashboardPage = () => {
+  //==============================================================
+  // the user data is an object ({
+  //   accessToken:'',
+  //   userId:'',
+  //   userName:'',
+  //   Email:''
+  // })
     const {userData} = useContext(AccountContext)
+    //==============================================================
+
     const [sort, setSort]=useState('All')
     const [data, setData] = useState([]);
+    const [url, setUrl] = useState('')
+
+//=============================================
+switch (sort) {
+  case "Group":
+    setUrl("https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all")
+    break;
+  case "Account":
+    setUrl("")
+    break;
+  case "Order Id":
+    setUrl("")
+    break;
+
+  default:
+    break;
+}
+//=========================================
 
     //-----------------------------------------
+    // This useEffect should run every time url changes but we can leave that for now
     useEffect(() => {
       getAllData();
-    }, []);
+    }, [url]);
 
     //------------------------------------------
     const getAllData = async () => {
       return await axios
-      .get(" https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all")
+      .get(url)
       .then(res => setData(res.data))
       .catch(err => console.log(err));
     };
@@ -68,18 +98,19 @@ const DashboardPage = () => {
             </tr>
           </MDBTableBody>
         ) : (
-          data.map((item, index) => (
-            <MDBTableBody key={index}>
-              <tr>
-                <th scope='row'>{index+1}</th>
-                <td> {item.name} </td>
-                <td> {item.email} </td>
-                <td> {item.phone} </td>
-                <td> {item.address} </td>
-                <td> {item.status} </td>
-              </tr>
-            </MDBTableBody>
-          ))
+          // data.map((item, index) => (
+          //   <MDBTableBody key={index}>
+          //     <tr>
+          //       <th scope='row'>{index+1}</th>
+          //       <td> {item.name} </td>
+          //       <td> {item.email} </td>
+          //       <td> {item.phone} </td>
+          //       <td> {item.address} </td>
+          //       <td> {item.status} </td>
+          //     </tr>
+          //   </MDBTableBody>
+          // ))
+          <tbody></tbody>
         )
       }
     </MDBTable>

@@ -15,19 +15,28 @@ const Account = (props) => {
             reject(err);
           } else {
             resolve(session)
+            setUserData(() => ({
+              accessToken: session.accessToken.jwtToken,
+              userId: session.idToken.payload['custom:userid'],
+              userName: session.idToken.payload['cognito:username'],
+              Email: session.idToken.payload.email
+            }))
           }
         });
       } else {
         reject();
       }
-      
-      const x = user.getUsername()
-      setUserData(x)
+
     });
   };
-
-  const [userData, setUserData] = useState()
-
+//-----------------------USER DATA  INFORMATION
+  const [userData, setUserData] = useState({
+    accessToken:'',
+    userId:'',
+    userName:'',
+    Email:''
+  }) 
+console.log(userData.userName)
   const authenticate = async (Username, Password) => {
     await new Promise((resolve, reject) => {
       const user = new CognitoUser({
