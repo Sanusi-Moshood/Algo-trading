@@ -58,8 +58,8 @@ const DashboardPage = () => {
         {
           headers: {
             "Access-Control-Allow-Origin": "*",
-            "accessToken": userData.accessToken,
-            "userId": userData.userId,
+            "AccessToken": userData.accessToken,
+            "Userid": userData.userId,
           }
         }
       )
