@@ -28,20 +28,20 @@ const DashboardPage = () => {
     const [url, setUrl] = useState('')
 
 //=============================================
-switch (sort) {
-  case "Group":
-    setUrl("https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all")
-    break;
-  case "Account":
-    setUrl("")
-    break;
-  case "Order Id":
-    setUrl("")
-    break;
+// switch (sort) {
+//   case "Group":
+//     setUrl("https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all")
+//     break;
+//   case "Account":
+//     setUrl("")
+//     break;
+//   case "Order Id":
+//     setUrl("")
+//     break;
 
-  default:
-    break;
-}
+//   default:
+//     break;
+// }
 //=========================================
 
     //-----------------------------------------
@@ -53,11 +53,20 @@ switch (sort) {
     //------------------------------------------
     const getAllData = async () => {
       return await axios
-      .get(url)
+      .get(
+        "https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all",
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "accessToken": userData.accessToken,
+            "userId": userData.userId,
+          }
+        }
+      )
       .then(res => setData(res.data))
-      .catch(err => console.log(err));
-    };
-    console.log(data);
+      .catch(err => console.log(err))
+    }
+    console.log(data)
     
   return (
     // <div className={styles.dashPage}>
@@ -98,19 +107,9 @@ switch (sort) {
             </tr>
           </MDBTableBody>
         ) : (
-          // data.map((item, index) => (
-          //   <MDBTableBody key={index}>
-          //     <tr>
-          //       <th scope='row'>{index+1}</th>
-          //       <td> {item.name} </td>
-          //       <td> {item.email} </td>
-          //       <td> {item.phone} </td>
-          //       <td> {item.address} </td>
-          //       <td> {item.status} </td>
-          //     </tr>
-          //   </MDBTableBody>
-          // ))
-          <tbody></tbody>
+          <MDBTableBody>
+
+          </MDBTableBody>
         )
       }
     </MDBTable>
