@@ -13,24 +13,23 @@ import PageNotFound from './pages/PageNotFound';
 
 
 function App() {
+  const { status} = useContext(AccountContext)
   //importing the user status from accountContext
-  const {getSession} = useContext(AccountContext)
+  // const {getSession,} = useContext(AccountContext)
 
-  const [status, setStatus] = useState(true);
+  // const [status, setStatus] = useState(true);
 
-  //using useEffect to set the status to true when login is successful
-  useEffect(() => {
-    getSession()
-      .then(session => {
-        console.log('Session: ', session);
-        setStatus(true);
+  // //using useEffect to set the status to true when login is successful
+  // useEffect(() => {
+  //   getSession()
+  //     .then(session => {
+  //       setStatus(true);
       
-      })
-      .catch((err) => {
-        console.log('Session: ', err);
-        setStatus(false);
-      });
-  }, [status])
+  //     })
+  //     .catch((err) => {
+  //       setStatus(false);
+  //     });
+  // }, [status])
   return (
     <>
          {
