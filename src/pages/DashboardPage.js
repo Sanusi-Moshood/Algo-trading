@@ -20,7 +20,7 @@ const DashboardPage = () => {
   //   userName:'',
   //   Email:''
   // })
-    const {userData} = useContext(AccountContext)
+    const {userData, status} = useContext(AccountContext)
     //==============================================================
 
     const [sort, setSort]=useState('All')
@@ -47,8 +47,13 @@ const DashboardPage = () => {
     //-----------------------------------------
     // This useEffect should run every time url changes but we can leave that for now
     useEffect(() => {
-      getAllData();
+      console.log(status)
+      if (status){
+        getAllData();
+      }
+      
     }, [url]);
+
 
     //------------------------------------------
     const getAllData = async () => {
@@ -58,6 +63,9 @@ const DashboardPage = () => {
         {
           headers: {
             "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Credentials": "true",
+            "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
+            "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization",
             "AccessToken": userData.accessToken,
             "Userid": userData.userId,
           }

@@ -1,6 +1,6 @@
 import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 import UserPool from '../UserPool';
-import {  useState, createContext,} from 'react';
+import {  useState, createContext, useEffect} from 'react';
 
 const AccountContext = createContext();
 
@@ -36,7 +36,22 @@ const Account = (props) => {
     userName:'',
     Email:''
   }) 
-console.log(userData.userName)
+  const [status, setStatus] = useState()
+  useEffect(() => {
+    getSession()
+      .then(session => {
+        console.log('Session: ', session);
+        setStatus(true);
+      
+      })
+      .catch((err) => {
+        console.log('Session: ', err);
+        setStatus(false);
+      });
+  }, [status])
+
+
+
   const authenticate = async (Username, Password) => {
     await new Promise((resolve, reject) => {
       const user = new CognitoUser({
@@ -75,7 +90,7 @@ console.log(userData.userName)
 
 
   return (
-    <AccountContext.Provider value={{ authenticate, getSession, logout,  userData}}>
+    <AccountContext.Provider value={{ authenticate, getSession, logout,  userData, status}}>
       {props.children}
     </AccountContext.Provider>
   );
