@@ -7,7 +7,7 @@ import { useContext,useState, useEffect } from 'react'
 import axios from 'axios'
 import { 
   MDBTable, MDBTableHead,
-  MDBTableBody, MDBContainer,
+  MDBTableBody,
   MDBRow, MDBCol
  } from 'mdb-react-ui-kit'
 
@@ -47,7 +47,6 @@ const DashboardPage = () => {
     //-----------------------------------------
     // This useEffect should run every time url changes but we can leave that for now
     useEffect(() => {
-      console.log(status)
       if (status){
         getAllData();
       }
@@ -57,22 +56,17 @@ const DashboardPage = () => {
 
     //------------------------------------------
     const getAllData = async () => {
-      return await axios
-      .get(
-        "https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all",
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Credentials": "true",
-            "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
-            "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization",
-            "AccessToken": userData.accessToken,
-            "Userid": userData.userId,
-          }
-        }
-      )
-      .then(res => setData(res.data))
-      .catch(err => console.log(err))
+      try {
+        const res =  await axios
+        .get(
+          "https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all"
+        )
+        const products = res.data;
+        setData(products.orders)
+    } catch(err) {
+      console.log(`An error has occured: ${err}`)
+    }
+
     }
     console.log(data)
     
@@ -100,7 +94,7 @@ const DashboardPage = () => {
       <MDBTableHead dark>
         <tr>
           <th scope="col">No.</th>
-          <th scope="col">Name</th>
+          <th scope="col">placed_by:</th>
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
           <th scope="col">Address</th>
@@ -115,9 +109,24 @@ const DashboardPage = () => {
             </tr>
           </MDBTableBody>
         ) : (
-          <MDBTableBody>
+          data.map((item) => (
+            <MDBTableBody key={item.order_id} >
+              <tr>
+                <th scope='row'>{item.order_id}</th>
+                <td >{item.placed_by}</td>
+                <td >{item.order_id}</td>
+                <td >{item.order_id}</td>
+                <td >{item.order_id}</td>
+                <td >{item.order_id}</td>
+                <td >{item.order_id}</td>
+                <td >{item.order_id}</td>
+                <td >{item.order_id}</td>
+                <td >{item.order_id}</td>
+                <td >{item.order_id}</td>
+              </tr>
+            </MDBTableBody>
+          ))
 
-          </MDBTableBody>
         )
       }
     </MDBTable>
