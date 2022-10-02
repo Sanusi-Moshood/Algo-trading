@@ -93,11 +93,15 @@ const DashboardPage = () => {
     <MDBTable>
       <MDBTableHead dark>
         <tr>
-          <th scope="col">No.</th>
-          <th scope="col">placed_by:</th>
-          <th scope="col">Email</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Address</th>
+          <th scope="col">Order Id</th>
+          <th scope="col">Time</th>
+          <th scope="col">Account</th>
+          <th scope="col">Group</th>
+          <th scope="col">Instrument</th>
+          <th scope="col">Type</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">Transactions</th>
           <th scope="col">Status</th>
         </tr>
       </MDBTableHead>
@@ -112,17 +116,16 @@ const DashboardPage = () => {
           data.map((item) => (
             <MDBTableBody key={item.order_id} >
               <tr>
-                <th scope='row'>{item.order_id}</th>
-                <td >{item.placed_by}</td>
-                <td >{item.order_id}</td>
-                <td >{item.order_id}</td>
-                <td >{item.order_id}</td>
-                <td >{item.order_id}</td>
-                <td >{item.order_id}</td>
-                <td >{item.order_id}</td>
-                <td >{item.order_id}</td>
-                <td >{item.order_id}</td>
-                <td >{item.order_id}</td>
+                <td>{item.order_id}</td>
+                <td>{item.order_timestamp}</td>
+                <td >{item.account}</td>
+                <td >{item.group}</td>
+                <td >{item.tradingsymbol}</td>
+                <td >{item.product}</td>
+                <td >{item.quantity}</td>
+                <td >{item.price}</td>
+                <td >{item.transaction_type}</td>
+                <td >{item.status}</td>
               </tr>
             </MDBTableBody>
           ))
