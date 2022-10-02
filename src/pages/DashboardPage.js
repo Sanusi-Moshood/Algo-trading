@@ -57,22 +57,12 @@ const DashboardPage = () => {
 
     //------------------------------------------
     const getAllData = async () => {
-      return await axios
+      const res = await axios
       .get(
-        "https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all",
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Credentials": "true",
-            "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
-            "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization",
-            "AccessToken": userData.accessToken,
-            "Userid": userData.userId,
-          }
-        }
+        "https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all"
       )
-      .then(res => setData(res.data))
-      .catch(err => console.log(err))
+      const products = res.data
+      setData({products})
     }
     console.log(data)
     
@@ -115,9 +105,14 @@ const DashboardPage = () => {
             </tr>
           </MDBTableBody>
         ) : (
-          <MDBTableBody>
-
-          </MDBTableBody>
+          Object.keys(data).map((item, index) => (
+            <MDBTableBody key={index}>
+              <tr>
+                <th scope='row'>{data[item].order_id}</th>
+                <td>{data[item].order_id}</td>
+              </tr>
+            </MDBTableBody>
+          ))
         )
       }
     </MDBTable>
