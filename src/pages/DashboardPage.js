@@ -66,6 +66,7 @@ const DashboardPage = () => {
     } catch(err) {
       console.log(`An error has occured: ${err}`)
     }
+
     }
     console.log(data)
     
@@ -89,11 +90,10 @@ const DashboardPage = () => {
 
   <MDBRow>
   <MDBCol size="12">
-    <MDBTable responsive="xxl" striped bordered>
+    <MDBTable>
       <MDBTableHead dark>
         <tr>
-          <th scope="col">OrderId</th>
-          <th scope="col">Master OrderId</th>
+          <th scope="col">Order Id</th>
           <th scope="col">Time</th>
           <th scope="col">Account</th>
           <th scope="col">Group</th>
@@ -101,7 +101,7 @@ const DashboardPage = () => {
           <th scope="col">Type</th>
           <th scope="col">Quantity</th>
           <th scope="col">Price</th>
-          <th scope="col">Transaction</th>
+          <th scope="col">Transactions</th>
           <th scope="col">Status</th>
         </tr>
       </MDBTableHead>
@@ -109,27 +109,27 @@ const DashboardPage = () => {
         (
           <MDBTableBody className='align-center mb-0'>
             <tr>
-              <td className="text-center mb-0" colSpan={12}>No Data Found</td>
+              <td className="text-center mb-0" colSpan={8}>No Data Found</td>
             </tr>
           </MDBTableBody>
         ) : (
           data.map((item) => (
             <MDBTableBody key={item.order_id} >
               <tr>
-                <th scope='row'>{item.order_id}</th>
-                <td >{item.placed_by}</td>
-                <td >{item.order_id}</td>
-                <td >{item.order_id}</td>
-                <td >{item.order_id}</td>
-                <td >{item.order_id}</td>
-                <td >{item.order_id}</td>
-                <td >{item.order_id}</td>
-                <td >{item.order_id}</td>
-                <td >{item.order_id}</td>
-                <td >{item.order_id}</td>
+                <td>{item.order_id}</td>
+                <td>{item.order_timestamp}</td>
+                <td >{item.account}</td>
+                <td >{item.group}</td>
+                <td >{item.tradingsymbol}</td>
+                <td >{item.product}</td>
+                <td >{item.quantity}</td>
+                <td >{item.price}</td>
+                <td >{item.transaction_type}</td>
+                <td >{item.status}</td>
               </tr>
             </MDBTableBody>
           ))
+
         )
       }
     </MDBTable>
