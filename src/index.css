@@ -48,12 +48,12 @@ ul.pagination {
 }
 
 ul.pagination li {
-    border: 1px solid #59abde;
+    border: 1px solid #70a4ff;
     margin-right: 5px;
     margin-bottom: 10px;
 }
 
 .table-color {
-    background: #0a1e2a;
+    background: var(--light-blue);
     color: white;
 }

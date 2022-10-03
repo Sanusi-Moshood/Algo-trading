@@ -4,12 +4,14 @@ import { AccountContext } from '../context/Account'
 import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 import { useContext,useState, useEffect } from 'react'
 import axios from 'axios'
+import styles from './dashboard.module.css'
 import { 
   MDBTable, MDBTableHead,
   MDBTableBody,
   MDBRow, MDBCol, MDBContainer, MDBBtn,
   MDBPagination, MDBPaginationLink, MDBPaginationItem
  } from 'mdb-react-ui-kit'
+import { useMemo } from 'react'
 
 
 const DashboardPage = () => {
@@ -25,37 +27,32 @@ const DashboardPage = () => {
 
     const [sort, setSort]=useState('All')
     const [data, setData] = useState([]);
-    const [url, setUrl] = useState('');
     const [value, setValue] = useState('')
     const [loading, setLoading] = useState(false)
     const [currentPage, setcurrentPage] = useState(1);
-    const [dataPerPage] = useState(4)
+    const [dataPerPage] = useState(10)
 
 //=============================================
-// switch (sort) {
-//   case "Group":
-//     setUrl("https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all")
-//     break;
-//   case "Account":
-//     setUrl("")
-//     break;
-//   case "Order Id":
-//     setUrl("")
-//     break;
 
-//   default:
-//     break;
-// }
+
 //=========================================
 
     //-----------------------------------------
     // This useEffect should run every time url changes but we can leave that for now
     useEffect(() => {
       if (status){
-        getAllData();
+        if (sort === 'Group') {
+          getGroupData()
+        }else if (sort === 'Account') {
+          getAccountData()
+        }else if (sort === 'Order Id'){
+          getOrderIdData()
+        }else {
+          getAllData()
+        }
       }
       
-    }, []);
+    }, [sort]);
 
     
     //------------------------------------------
@@ -64,16 +61,64 @@ const DashboardPage = () => {
       try {
         const res =  await axios
         .get(
-          `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all?_start=0&_end=5`
+          "https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all"
         )
         const products = res.data;
         setData(products.orders)
+        console.log(products)
         setLoading(false)
       } catch(err) {
         console.log(`An error has occured: ${err}`)
       }
     }
-    console.log(data)
+    const getAccountData = async () => {
+      setLoading(true)
+      try {
+        const res =  await axios
+        .get(
+          `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/account/Grp_2_Account_1`
+        )
+        const products = res.data;
+        setData(products)
+        console.log(products)
+        setLoading(false)
+      } catch(err) {
+        console.log(`An error has occured: ${err}`)
+      }
+    }
+    const getGroupData = async () => {
+      setLoading(true)
+      try {
+        const res =  await axios
+        .get(
+          `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/group/GroupID2`
+        )
+        const products = res.data;
+        setData(products)
+        console.log(products)
+        setLoading(false)
+      } catch(err) {
+        console.log(`An error has occured: ${err}`)
+      }
+    }
+    const getOrderIdData = async () => {
+      setLoading(true)
+      try {
+        const res =  await axios
+        .get(
+          `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/220303000308278/all`
+        )
+        const products = res.data;
+        setData(products)
+        setLoading(false)
+        console.log(products)
+      } catch(err) {
+        console.log(`An error has occured: ${err}`)
+      }
+    }
+
+
+    
     //-------------------------------------------------Pagination
     const indexOfLastPost = currentPage * dataPerPage
     const indexOfFirstPost = indexOfLastPost - dataPerPage
@@ -84,27 +129,26 @@ const DashboardPage = () => {
     }
     const paginate = (pageNumber) => setcurrentPage(pageNumber)
   return (
-    // <div className={styles.dashPage}>
-    //   <h1>Orders Status</h1>
-    //   <div className={styles.sort}>
-    //   <p>Sort by {sort}</p> 
-    //   <select  value={sort} onChange={e=>setSort(e.target.value)}>
-    //   <option>All</option>
-    //   <option>Group</option>
-    //   <option>Account</option>
-    //   <option>Order Id</option>
-    //   </select>
-    //   </div>
-    // </div>
 
-// ********************** AZEEZ CREATE A TABLE COMPONENT HERE 
-//*********************** AND INSIDE IT YOU SHOULD CREATE A DUMMY TABLE WITH ALL INFO 
-//*********************** I'LL ADD PAGINATION, MAKE API CALL AND MAP OVER THE DATA */
+
     <>
+    <div className={styles.dashPage}>
+      <h1>Orders Status </h1>
+      <div className={styles.sort}>
+      <p>Sort by {sort}</p> 
+      <select  value={sort} onChange={e=>setSort(e.target.value)}>
+      <option>All</option>
+      <option>Group</option>
+      <option>Account</option>
+      <option>Order Id</option>
+      </select>
+      </div>
+    </div>
+
       <MDBRow>
       <MDBCol size="12">
         <MDBTable bordered responsive striped>
-          <MDBTableHead className='table-color'>
+          <MDBTableHead className={styles.table_color}>
             <tr>
               <th scope="col">Order Id</th>
               <th scope="col">Time</th>
@@ -126,22 +170,34 @@ const DashboardPage = () => {
                 </tr>
               </MDBTableBody>
             ) : (
-              currentPosts.map((item) => (
-                <MDBTableBody key={item.order_id} >
-                  <tr>
-                    <td>{item.order_id}</td>
-                    <td>{item.order_timestamp}</td>
-                    <td >{item.account}</td>
-                    <td >{item.group}</td>
-                    <td >{item.tradingsymbol}</td>
-                    <td >{item.product}</td>
-                    <td >{item.quantity}</td>
-                    <td >{item.price}</td>
-                    <td >{item.transaction_type}</td>
-                    <td >{item.status}</td>
-                  </tr>
-                </MDBTableBody>
-              ))
+              loading ?  
+              (
+                <MDBTableBody className='align-center mb-0'>
+                <tr>
+                  <td className="text-center mb-0" colSpan={12}>Loading.......</td>
+                </tr>
+              </MDBTableBody>
+              )
+              :
+              (
+                currentPosts.map((item) => (
+                  <MDBTableBody key={item.order_id} >
+                    <tr className={styles.t_row}>
+                      <td>{item.order_id}</td>
+                      <td>{item.order_timestamp}</td>
+                      <td >{item.account}</td>
+                      <td >{item.group}</td>
+                      <td >{item.tradingsymbol}</td>
+                      <td >{item.product}</td>
+                      <td >{item.quantity}</td>
+                      <td >{item.price}</td>
+                      <td >{item.transaction_type}</td>
+                      <td >{item.status}</td>
+                    </tr>
+                  </MDBTableBody>
+                ))
+              )
+
 
             )
           }
