@@ -89,14 +89,19 @@ const DashboardPage = () => {
 
   <MDBRow>
   <MDBCol size="12">
-    <MDBTable>
+    <MDBTable responsive="xxl" striped bordered>
       <MDBTableHead dark>
         <tr>
-          <th scope="col">No.</th>
-          <th scope="col">placed_by:</th>
-          <th scope="col">Email</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Address</th>
+          <th scope="col">OrderId</th>
+          <th scope="col">Master OrderId</th>
+          <th scope="col">Time</th>
+          <th scope="col">Account</th>
+          <th scope="col">Group</th>
+          <th scope="col">Instrument</th>
+          <th scope="col">Type</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">Transaction</th>
           <th scope="col">Status</th>
         </tr>
       </MDBTableHead>
@@ -104,7 +109,7 @@ const DashboardPage = () => {
         (
           <MDBTableBody className='align-center mb-0'>
             <tr>
-              <td className="text-center mb-0" colSpan={8}>No Data Found</td>
+              <td className="text-center mb-0" colSpan={12}>No Data Found</td>
             </tr>
           </MDBTableBody>
         ) : (
