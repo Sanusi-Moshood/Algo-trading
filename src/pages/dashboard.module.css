@@ -160,6 +160,14 @@ padding-top: 20px;
 .sort p{
     font-size: 23px;
 }
+.all_btn{
+    border-radius: 3px;
+    border-width: 1px;
+    padding:3px 10px 3px 10px ;
+    background-color: #e8f0ffe4;
+    color: var(--dark-blue);
+    border-color: var(--dark-blue);
+}
 .sort select{
     height: 30px;
     border-radius: 3px;
@@ -169,6 +177,7 @@ padding-top: 20px;
     color: var(--dark-blue);
     outline: none;
     border-color: var(--dark-blue);
+    width: 20px;
 }
 .sort option{
     background-color: #fff;
@@ -199,6 +208,10 @@ ul.pagination li {
 .table_color {
     background: var(--light-blue);
     color: white;
+    font-weight: 700;
+}
+thead {
+    font-size: 20px;
 }
 .t_row{
     background: transparent;

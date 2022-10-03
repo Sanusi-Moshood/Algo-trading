@@ -56,4 +56,6 @@ ul.pagination li {
 .table-color {
     background: var(--light-blue);
     color: white;
+    font-size: x-large;
+    font-weight: 700!important;
 }

@@ -30,12 +30,9 @@ const DashboardPage = () => {
     const [value, setValue] = useState('')
     const [loading, setLoading] = useState(false)
     const [currentPage, setcurrentPage] = useState(1);
-    const [dataPerPage] = useState(10)
-
-//=============================================
+    const [dataPerPage] = useState(15)
 
 
-//=========================================
 
     //-----------------------------------------
     // This useEffect should run every time url changes but we can leave that for now
@@ -54,7 +51,10 @@ const DashboardPage = () => {
       
     }, [sort]);
 
-    
+    const sortAll = (e) => {
+      e.preventDefault()
+      setSort('All')
+    }
     //------------------------------------------
     const getAllData = async () => {
       setLoading(true)
@@ -135,13 +135,28 @@ const DashboardPage = () => {
     <div className={styles.dashPage}>
       <h1>Orders Status </h1>
       <div className={styles.sort}>
-      <p>Sort by {sort}</p> 
+      <p>Sort by:  </p> 
+      <button className={styles.all_btn} onClick={sortAll}>All</button>
+      <div>
+      <label>By Group: </label>
       <select  value={sort} onChange={e=>setSort(e.target.value)}>
-      <option>All</option>
+      <option disabled selected >By Group</option>
       <option>Group</option>
-      <option>Account</option>
-      <option>Order Id</option>
+      <option>Group 2</option>
+      <option>Group 3</option>
       </select>
+      </div>
+      <div>
+      <label>By Account: </label>
+      <select  value={sort} onChange={e=>setSort(e.target.value)}>
+      <option disabled selected >By Account</option>
+      <option>Account</option>
+      <option>Account 2</option>
+      <option>Account 3</option>
+      </select>
+      </div>
+
+
       </div>
     </div>
 
