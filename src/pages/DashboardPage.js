@@ -183,16 +183,16 @@ const DashboardPage = () => {
                 currentPosts.map((item) => (
                   <MDBTableBody key={item.order_id} >
                     <tr className={styles.t_row}>
-                      <td>{item.order_id}</td>
-                      <td>{item.order_timestamp}</td>
-                      <td >{item.account}</td>
-                      <td >{item.group}</td>
-                      <td >{item.tradingsymbol}</td>
-                      <td >{item.product}</td>
-                      <td >{item.quantity}</td>
-                      <td >{item.price}</td>
-                      <td >{item.transaction_type}</td>
-                      <td >{item.status}</td>
+                      <td className={styles.t_td}>{item.order_id}</td>
+                      <td className={styles.t_td}>{item.order_timestamp}</td>
+                      <td className={styles.t_td} >{item.account}</td>
+                      <td className={styles.t_td} >{item.group}</td>
+                      <td className={styles.t_td} >{item.tradingsymbol}</td>
+                      <td className={styles.t_td} >{item.product}</td>
+                      <td className={styles.t_td} >{item.quantity}</td>
+                      <td className={styles.t_td} >{item.price}</td>
+                      <td className={styles.t_td} >{item.transaction_type}</td>
+                      <td className={styles.t_td} >{item.status}</td>
                     </tr>
                   </MDBTableBody>
                 ))

@@ -17,7 +17,14 @@ p{
 
 @media screen and (max-width: 600px) {
     .main_page{
+        
         padding: 30px 10px 0 10px !important;
+    }
+}
+@media screen and (max-width: 900px) {
+    .main_page{
+        margin-left: 0%!important;
+        
     }
 }
 .main_page{
@@ -194,12 +201,12 @@ ul.pagination li {
     color: white;
 }
 .t_row{
-    background-color: #f5f5f5c0;
+    background: transparent;
     color: #021724;
 }
-.t_row td{
+.t_td{
     color: #021724 !important;
-    background-color: #f5f5f5c0 !important;
+    background: transparent;
 }
 
 
