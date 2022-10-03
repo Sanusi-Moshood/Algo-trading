@@ -7,7 +7,7 @@ import { useContext,useState, useEffect } from 'react'
 import axios from 'axios'
 import { 
   MDBTable, MDBTableHead,
-  MDBTableBody, MDBContainer,
+  MDBTableBody,
   MDBRow, MDBCol
  } from 'mdb-react-ui-kit'
 
@@ -47,7 +47,6 @@ const DashboardPage = () => {
     //-----------------------------------------
     // This useEffect should run every time url changes but we can leave that for now
     useEffect(() => {
-      console.log(status)
       if (status){
         getAllData();
       }
@@ -57,12 +56,16 @@ const DashboardPage = () => {
 
     //------------------------------------------
     const getAllData = async () => {
-      const res = await axios
-      .get(
-        "https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all"
-      )
-      const products = res.data
-      setData({products})
+      try {
+        const res =  await axios
+        .get(
+          "https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all"
+        )
+        const products = res.data;
+        setData(products.orders)
+    } catch(err) {
+      console.log(`An error has occured: ${err}`)
+    }
     }
     console.log(data)
     
@@ -90,7 +93,7 @@ const DashboardPage = () => {
       <MDBTableHead dark>
         <tr>
           <th scope="col">No.</th>
-          <th scope="col">Name</th>
+          <th scope="col">placed_by:</th>
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
           <th scope="col">Address</th>
@@ -105,11 +108,20 @@ const DashboardPage = () => {
             </tr>
           </MDBTableBody>
         ) : (
-          Object.keys(data).map((item, index) => (
-            <MDBTableBody key={index}>
+          data.map((item) => (
+            <MDBTableBody key={item.order_id} >
               <tr>
-                <th scope='row'>{data[item].order_id}</th>
-                <td>{data[item].order_id}</td>
+                <th scope='row'>{item.order_id}</th>
+                <td >{item.placed_by}</td>
+                <td >{item.order_id}</td>
+                <td >{item.order_id}</td>
+                <td >{item.order_id}</td>
+                <td >{item.order_id}</td>
+                <td >{item.order_id}</td>
+                <td >{item.order_id}</td>
+                <td >{item.order_id}</td>
+                <td >{item.order_id}</td>
+                <td >{item.order_id}</td>
               </tr>
             </MDBTableBody>
           ))
