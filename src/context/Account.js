@@ -32,7 +32,7 @@ const Account = (props) => {
 //-----------------------USER DATA  INFORMATION
   const [userData, setUserData] = useState({
     accessToken:'',
-    userId:'',
+    userid:'',
     userName:'',
     Email:''
   }) 

@@ -31,12 +31,14 @@ const DashboardPage = () => {
     const [loading, setLoading] = useState(false)
     const [currentPage, setcurrentPage] = useState(1);
     const [dataPerPage] = useState(15)
+    const [masterOrderId, setMasterOrderId] = useState('')
 
 
 
     //-----------------------------------------
     // This useEffect should run every time url changes but we can leave that for now
     useEffect(() => {
+      getUserId()
       if (status){
         if (sort === 'Group') {
           getGroupData()
@@ -61,7 +63,34 @@ const DashboardPage = () => {
       try {
         const res =  await axios
         .get(
-          "https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all"
+          "https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all",
+          {
+            // headers:{
+            //   "AccessToken":userData.AccessToken,
+            //   "Userid": userData.Userid
+            // }
+          }
+        )
+        const products = res.data;
+        setData(products.orders)
+        console.log(products)
+        setLoading(false)
+      } catch(err) {
+        console.log(`An error has occured: ${err}`)
+      }
+    }
+    const getUserId = async () => {
+      setLoading(true)
+      try {
+        const res =  await axios
+        .get(
+          "https://copytraderapi.fnoalgo.com/accounts/accounts/1434/account/ids",
+          {
+            headers:{
+              "AccessToken":userData.AccessToken,
+              "Userid": userData.Userid
+            }
+          }
         )
         const products = res.data;
         setData(products.orders)
@@ -136,6 +165,7 @@ const DashboardPage = () => {
       <h1>Orders Status </h1>
       <div className={styles.sort}>
       <p>Sort by:  </p> 
+      <div className={styles.sort_list}>
       <button className={styles.all_btn} onClick={sortAll}>All</button>
       <div>
       <label>By Group: </label>
@@ -155,6 +185,18 @@ const DashboardPage = () => {
       <option>Account 3</option>
       </select>
       </div>
+      <div>
+      <label>By Order Id: </label>
+      <input type="text" name="masterOrderId" value={masterOrderId} placeholder='masterOrderId' onChange={e=>setMasterOrderId(e.target.value)}/>
+      <button className={styles.all_btn} onClick={() => {setSort(masterOrderId)}}>Go</button>
+      {/* <select  value={sort} onChange={e=>setSort(e.target.value)}>
+      <option disabled selected >By Order Id</option>
+      <option>Order History by OrderId</option>
+      <option>Last Order by OrderId</option>
+      </select> */}
+      </div>
+      </div>
+
 
 
       </div>
