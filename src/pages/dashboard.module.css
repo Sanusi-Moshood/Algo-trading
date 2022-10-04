@@ -206,7 +206,7 @@ ul.pagination li {
 }
 
 .table_color {
-    background: var(--light-blue);
+    background: #0059ffe1;
     color: white;
     font-weight: 700;
 }
