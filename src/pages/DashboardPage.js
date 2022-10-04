@@ -170,7 +170,7 @@ const DashboardPage = () => {
       <div>
       <label>By Group: </label>
       <select  value={sort} onChange={e=>setSort(e.target.value)}>
-      <option disabled selected >By Group</option>
+      <option disabled  >By Group</option>
       <option>Group</option>
       <option>Group 2</option>
       <option>Group 3</option>
@@ -179,7 +179,7 @@ const DashboardPage = () => {
       <div>
       <label>By Account: </label>
       <select  value={sort} onChange={e=>setSort(e.target.value)}>
-      <option disabled selected >By Account</option>
+      <option disabled  >By Account</option>
       <option>Account</option>
       <option>Account 2</option>
       <option>Account 3</option>
