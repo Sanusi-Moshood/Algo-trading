@@ -26,38 +26,88 @@ const DashboardPage = () => {
     //==============================================================
 
     const [sort, setSort]=useState('All')
+    const [sortOption, setSortOption]=useState('')
     const [data, setData] = useState([]);
-    const [value, setValue] = useState('')
+    console.log(data)
     const [loading, setLoading] = useState(false)
     const [currentPage, setcurrentPage] = useState(1);
     const [dataPerPage] = useState(15)
     const [masterOrderId, setMasterOrderId] = useState('')
+    const [GroupId, setGroupId] = useState([])
+    const [AccountId, setAccountId] = useState([])
 
 
 
     //-----------------------------------------
-    // This useEffect should run every time url changes but we can leave that for now
     useEffect(() => {
-      getUserId()
+            getGroupId()
+            getAccountId()
       if (status){
         if (sort === 'Group') {
           getGroupData()
         }else if (sort === 'Account') {
           getAccountData()
-        }else if (sort === 'Order Id'){
-          getOrderIdData()
-        }else {
+        }else if (sort === 'Master'){
+          getMasterData()
+        }else if (sort === 'Order History by OrderId'){
+          getOrderHistory()
+        }else if (sort === 'Last Order by OrderId'){
+          getLastOrder()
+        }
+        else {
           getAllData()
         }
       }
-      
-    }, [sort]);
+
+    }, [sort, sortOption]);
 
     const sortAll = (e) => {
       e.preventDefault()
       setSort('All')
     }
     //------------------------------------------
+    const getGroupId =  async () => {
+    setLoading(true)
+    try {
+      const res =  await axios
+      .get(
+        "https://copytraderapi.fnoalgo.com/accounts/accounts/1434/groups/ids",
+        {
+          headers:{
+            AccessToken:userData.AccessToken,
+            Userid: userData.Userid
+          }
+        }
+      )
+      const GroupIds = res.data;
+      setGroupId(GroupIds.groups)
+      console.log(GroupIds)
+    } catch(err) {
+      console.log(`An error has occured: ${err}`)
+    }
+  }
+    const getAccountId =  async () => {
+    setLoading(true)
+    try {
+      const res =  await axios
+      .get(
+        "https://copytraderapi.fnoalgo.com/accounts/accounts/1434/accounts/ids",
+        {
+          headers:{
+            AccessToken:userData.AccessToken,
+            Userid: userData.Userid
+          }
+        }
+      )
+      const AccountIds = res.data;
+      setAccountId(AccountIds.accounts)
+      console.log(AccountIds)
+    } catch(err) {
+      console.log(`An error has occured: ${err}`)
+    }
+  }
+
+
     const getAllData = async () => {
       setLoading(true)
       try {
@@ -65,30 +115,9 @@ const DashboardPage = () => {
         .get(
           "https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all",
           {
-            // headers:{
-            //   "AccessToken":userData.AccessToken,
-            //   "Userid": userData.Userid
-            // }
-          }
-        )
-        const products = res.data;
-        setData(products.orders)
-        console.log(products)
-        setLoading(false)
-      } catch(err) {
-        console.log(`An error has occured: ${err}`)
-      }
-    }
-    const getUserId = async () => {
-      setLoading(true)
-      try {
-        const res =  await axios
-        .get(
-          "https://copytraderapi.fnoalgo.com/accounts/accounts/1434/account/ids",
-          {
             headers:{
-              "AccessToken":userData.AccessToken,
-              "Userid": userData.Userid
+              AccessToken:userData.AccessToken,
+              Userid: userData.Userid
             }
           }
         )
@@ -100,27 +129,19 @@ const DashboardPage = () => {
         console.log(`An error has occured: ${err}`)
       }
     }
-    const getAccountData = async () => {
-      setLoading(true)
-      try {
-        const res =  await axios
-        .get(
-          `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/account/Grp_2_Account_1`
-        )
-        const products = res.data;
-        setData(products)
-        console.log(products)
-        setLoading(false)
-      } catch(err) {
-        console.log(`An error has occured: ${err}`)
-      }
-    }
+
     const getGroupData = async () => {
       setLoading(true)
       try {
         const res =  await axios
         .get(
-          `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/group/GroupID2`
+          `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/group/${sortOption}`,
+          {
+            headers:{
+              AccessToken:userData.AccessToken,
+              Userid: userData.Userid
+            }
+          }
         )
         const products = res.data;
         setData(products)
@@ -130,12 +151,83 @@ const DashboardPage = () => {
         console.log(`An error has occured: ${err}`)
       }
     }
-    const getOrderIdData = async () => {
+
+    const getAccountData = async () => {
       setLoading(true)
       try {
         const res =  await axios
         .get(
-          `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/220303000308278/all`
+          `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/account/${sortOption}`,
+          {
+            headers:{
+              AccessToken:userData.AccessToken,
+              Userid: userData.Userid
+            }
+          }
+        )
+        const products = res.data;
+        setData(products)
+        console.log(products)
+        setLoading(false)
+      } catch(err) {
+        console.log(`An error has occured: ${err}`)
+      }
+    }
+
+    const getOrderHistory = async () => {
+      setLoading(true)
+      try {
+        const res =  await axios
+        .get(
+          `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/${sortOption}/all`,
+          {
+            headers:{
+              AccessToken:userData.AccessToken,
+              Userid: userData.Userid
+            }
+          }
+        )
+        const products = res.data;
+        setData(products)
+        console.log(products)
+        setLoading(false)
+      } catch(err) {
+        console.log(`An error has occured: ${err}`)
+      }
+    }
+    const getLastOrder = async () => {
+      setLoading(true)
+      try {
+        const res =  await axios
+        .get(
+          `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/${sortOption}/latest`,
+          {
+            headers:{
+              AccessToken:userData.AccessToken,
+              Userid: userData.Userid
+            }
+          }
+        )
+        const products = res.data;
+        setData([products])
+        console.log(products)
+        setLoading(false)
+      } catch(err) {
+        console.log(`An error has occured: ${err}`)
+      }
+    }
+    const getMasterData = async () => {
+      setLoading(true)
+      try {
+        const res =  await axios
+        .get(
+          `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/master/${sortOption}`,
+          {
+            headers:{
+              AccessToken:userData.AccessToken,
+              Userid: userData.Userid
+            }
+          }
         )
         const products = res.data;
         setData(products)
@@ -169,31 +261,43 @@ const DashboardPage = () => {
       <button className={styles.all_btn} onClick={sortAll}>All</button>
       <div>
       <label>By Group: </label>
-      <select  value={sort} onChange={e=>setSort(e.target.value)}>
-      <option disabled  >By Group</option>
-      <option>Group</option>
-      <option>Group 2</option>
-      <option>Group 3</option>
+      <select  value={sort} onChange={e=> {
+        setSortOption(e.target.value) 
+        setSort('Group')
+        } }>
+      <option   >By Group</option>
+      {
+        GroupId.map((Id) => (<option key={Id}>{Id}</option>))
+      }
       </select>
       </div>
       <div>
       <label>By Account: </label>
-      <select  value={sort} onChange={e=>setSort(e.target.value)}>
-      <option disabled  >By Account</option>
-      <option>Account</option>
-      <option>Account 2</option>
-      <option>Account 3</option>
+      <select  value={sortOption} onChange={e=> {
+        setSortOption(e.target.value) 
+        setSort('Account')
+        } }>
+      <option   >By Account</option>
+      {
+        AccountId.map((Id) => (<option key={Id}>{Id}</option>))
+      }
       </select>
       </div>
       <div>
       <label>By Order Id: </label>
-      <input type="text" name="masterOrderId" value={masterOrderId} placeholder='masterOrderId' onChange={e=>setMasterOrderId(e.target.value)}/>
-      <button className={styles.all_btn} onClick={() => {setSort(masterOrderId)}}>Go</button>
-      {/* <select  value={sort} onChange={e=>setSort(e.target.value)}>
-      <option disabled selected >By Order Id</option>
+      <input type="text" name="masterOrderId" value={masterOrderId} placeholder='OrderId' onChange={e=>setMasterOrderId(e.target.value)}/>
+      <button className={styles.all_btn} onClick={() => {
+        setSortOption(masterOrderId)
+        setSort('Master')
+        }}>Go</button>
+      <select  value={sort} onChange={e=> {
+        setSort(e.target.value)
+        setSortOption(masterOrderId)
+      }}>
+      <option >By Order Id</option>
       <option>Order History by OrderId</option>
       <option>Last Order by OrderId</option>
-      </select> */}
+      </select>
       </div>
       </div>
 
