@@ -11,8 +11,8 @@ import {
   MDBRow, MDBCol, MDBContainer, MDBBtn,
   MDBPagination, MDBPaginationLink, MDBPaginationItem
  } from 'mdb-react-ui-kit'
-import { useMemo } from 'react'
-import { arrow } from '@popperjs/core'
+
+
 
 
 const DashboardPage = () => {
@@ -24,7 +24,6 @@ const DashboardPage = () => {
   //   Email:''
   // })
     const {userData, status} = useContext(AccountContext)
-    console.log(userData.accessToken)
     //==============================================================
 
     const [sort, setSort]=useState('All')
@@ -36,9 +35,35 @@ const DashboardPage = () => {
     const [masterOrderId, setMasterOrderId] = useState('')
     const [GroupId, setGroupId] = useState([])
     const [AccountId, setAccountId] = useState([])
+    const [websocket, setWebsocket] =useState()
 
+    var ws = null
+    function start() {
+      
+    
+     ws = new WebSocket(`wss://7k22ipxsrk.execute-api.ap-south-1.amazonaws.com/dev?accesstoken=${userData.accessToken}&userid=${userData.userId}`);
+      ws.onopen = (event) => {
+        console.log('connected')
+      };
 
+        ws.onmessage = evt => {
+        // listen to data sent from the websocket server
+        const message = JSON.parse(evt.data)
+        setWebsocket({dataFromServer: message})
+        console.log(message)
+        }
 
+        ws.onclose = () => {
+        console.log('disconnected')
+        // automatically try to reconnect on connection loss
+        check();
+        }
+      }
+        function check(){
+          if(!ws || ws.readyState === WebSocket.CLOSED) start();
+        }
+      start();
+      setInterval(check, 5000);
     //-----------------------------------------
     useEffect(() => {
       getGroupId()
