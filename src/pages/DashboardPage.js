@@ -24,12 +24,12 @@ const DashboardPage = () => {
   //   Email:''
   // })
     const {userData, status} = useContext(AccountContext)
+    console.log(userData.accessToken)
     //==============================================================
 
     const [sort, setSort]=useState('All')
     const [sortOption, setSortOption]=useState('')
     const [data, setData] = useState([]);
-    console.log(data)
     const [loading, setLoading] = useState(false)
     const [currentPage, setcurrentPage] = useState(1);
     const [dataPerPage] = useState(15)
@@ -41,12 +41,14 @@ const DashboardPage = () => {
 
     //-----------------------------------------
     useEffect(() => {
-            getGroupId()
-            getAccountId()
+            
+            
       if (status){
         if (sort === 'Group') {
+          getGroupId()
           getGroupData()
         }else if (sort === 'Account') {
+          getAccountId()
           getAccountData()
         }else if (sort === 'Master'){
           getMasterData()
@@ -75,8 +77,8 @@ const DashboardPage = () => {
         "https://copytraderapi.fnoalgo.com/accounts/accounts/1434/groups/ids",
         {
           headers:{
-            AccessToken:userData.AccessToken,
-            Userid: userData.Userid
+            AccessToken:userData.accessToken,
+            Userid: userData.userId
           }
         }
       )
@@ -95,8 +97,8 @@ const DashboardPage = () => {
         "https://copytraderapi.fnoalgo.com/accounts/accounts/1434/accounts/ids",
         {
           headers:{
-            AccessToken:userData.AccessToken,
-            Userid: userData.Userid
+            AccessToken:userData.accessToken,
+            Userid: userData.userId
           }
         }
       )
@@ -117,8 +119,8 @@ const DashboardPage = () => {
           "https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all",
           {
             headers:{
-              AccessToken:userData.AccessToken,
-              Userid: userData.Userid
+              AccessToken:userData.accessToken,
+              Userid: userData.userId
             }
           }
         )
@@ -139,8 +141,8 @@ const DashboardPage = () => {
           `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/group/${sortOption}`,
           {
             headers:{
-              AccessToken:userData.AccessToken,
-              Userid: userData.Userid
+              AccessToken:userData.accessToken,
+              Userid: userData.userId
             }
           }
         )
@@ -161,8 +163,8 @@ const DashboardPage = () => {
           `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/account/${sortOption}`,
           {
             headers:{
-              AccessToken:userData.AccessToken,
-              Userid: userData.Userid
+              AccessToken:userData.accessToken,
+              Userid: userData.userId
             }
           }
         )
@@ -183,8 +185,8 @@ const DashboardPage = () => {
           `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/${sortOption}/all`,
           {
             headers:{
-              AccessToken:userData.AccessToken,
-              Userid: userData.Userid
+              AccessToken:userData.accessToken,
+              Userid: userData.userId
             }
           }
         )
@@ -205,8 +207,8 @@ const DashboardPage = () => {
           `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/${sortOption}/latest`,
           {
             headers:{
-              AccessToken:userData.AccessToken,
-              Userid: userData.Userid
+              AccessToken:userData.accessToken,
+              Userid: userData.userId
             }
           }
         )
@@ -226,8 +228,8 @@ const DashboardPage = () => {
           `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/master/${sortOption}`,
           {
             headers:{
-              AccessToken:userData.AccessToken,
-              Userid: userData.Userid
+              AccessToken:userData.accessToken,
+              Userid: userData.userId
             }
           }
         )
