@@ -41,8 +41,11 @@ const DashboardPage = () => {
 
     //-----------------------------------------
     useEffect(() => {
-            getGroupId()
-            getAccountId()
+      getGroupId()
+      getAccountId()
+    }, [])
+    useEffect(() => {
+
       if (status){
         if (sort === 'Group') {
           getGroupData()
