@@ -12,6 +12,7 @@ import {
   MDBPagination, MDBPaginationLink, MDBPaginationItem
  } from 'mdb-react-ui-kit'
 import { useMemo } from 'react'
+import { arrow } from '@popperjs/core'
 
 
 const DashboardPage = () => {
@@ -81,7 +82,7 @@ const DashboardPage = () => {
       )
       const GroupIds = res.data;
       setGroupId(GroupIds.groups)
-      console.log(GroupIds)
+      // console.log(GroupIds)
     } catch(err) {
       console.log(`An error has occured: ${err}`)
     }
@@ -101,7 +102,7 @@ const DashboardPage = () => {
       )
       const AccountIds = res.data;
       setAccountId(AccountIds.accounts)
-      console.log(AccountIds)
+      // console.log(AccountIds)
     } catch(err) {
       console.log(`An error has occured: ${err}`)
     }
@@ -123,7 +124,7 @@ const DashboardPage = () => {
         )
         const products = res.data;
         setData(products.orders)
-        console.log(products)
+        // console.log(products)
         setLoading(false)
       } catch(err) {
         console.log(`An error has occured: ${err}`)
@@ -145,7 +146,7 @@ const DashboardPage = () => {
         )
         const products = res.data;
         setData(products)
-        console.log(products)
+        // console.log(products)
         setLoading(false)
       } catch(err) {
         console.log(`An error has occured: ${err}`)
@@ -167,7 +168,7 @@ const DashboardPage = () => {
         )
         const products = res.data;
         setData(products)
-        console.log(products)
+        // console.log(products)
         setLoading(false)
       } catch(err) {
         console.log(`An error has occured: ${err}`)
@@ -188,8 +189,9 @@ const DashboardPage = () => {
           }
         )
         const products = res.data;
-        setData(products)
-        console.log(products)
+        const filter = products.filter((element) => typeof element != 'string')
+        setData(filter)
+        // console.log(filter)
         setLoading(false)
       } catch(err) {
         console.log(`An error has occured: ${err}`)
@@ -210,7 +212,7 @@ const DashboardPage = () => {
         )
         const products = res.data;
         setData([products])
-        console.log(products)
+        // console.log(products)
         setLoading(false)
       } catch(err) {
         console.log(`An error has occured: ${err}`)
@@ -232,7 +234,7 @@ const DashboardPage = () => {
         const products = res.data;
         setData(products)
         setLoading(false)
-        console.log(products)
+        // console.log(products)
       } catch(err) {
         console.log(`An error has occured: ${err}`)
       }
@@ -287,12 +289,16 @@ const DashboardPage = () => {
       <label>By Order Id: </label>
       <input type="text" name="masterOrderId" value={masterOrderId} placeholder='OrderId' onChange={e=>setMasterOrderId(e.target.value)}/>
       <button className={styles.all_btn} onClick={() => {
-        setSortOption(masterOrderId)
-        setSort('Master')
+        if(masterOrderId != ''){
+          setSortOption(masterOrderId)
+          setSort('Master')
+        }
         }}>Go</button>
       <select  value={sort} onChange={e=> {
+        if(masterOrderId != ''){
         setSort(e.target.value)
         setSortOption(masterOrderId)
+        }
       }}>
       <option >By Order Id</option>
       <option>Order History by OrderId</option>
@@ -323,7 +329,7 @@ const DashboardPage = () => {
               <th scope="col">Status</th>
             </tr>
           </MDBTableHead>
-          {data.length === 0 ?
+          {!loading && data.length === 0 ?
             (
               <MDBTableBody className='align-center mb-0'>
                 <tr>
