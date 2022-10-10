@@ -23,7 +23,8 @@ const Account = (props) => {
        ws.onclose = () => {
        console.log('disconnected')
        setTimeout(function () {
-         connect();
+        //websocket function
+        //  connect();
        }, 1000);
 
        }
@@ -69,7 +70,7 @@ const Account = (props) => {
     getSession()
       .then(session => {
         setStatus(true);
-        connect();
+        // connect();
       })
       .catch((err) => {
         console.log('Session: ', err);
