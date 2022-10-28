@@ -34,7 +34,7 @@ p{
 }
 .main_page{
     background: #f5f5f5c0;
-   overflow-y: auto;
+    height: 300vh;
 }
 
 .dashPageCont{
