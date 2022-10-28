@@ -1,0 +1,132 @@
+/* @media screen and (max-width: 600px) {
+    .Container{
+        
+        padding: 30px 10px 0 10px !important;
+    }
+} */
+
+@media screen and (max-width: 900px) {
+    .Container{
+        
+        padding: 30px 10px 0 10px !important;
+    }
+}
+h2{
+    color: #000000;
+    font-weight: bold;
+}
+.Container{
+    padding: 30px 10px 0 280px;
+    width: 100vw;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;   
+}
+
+.form .label{
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+.form input[type=text] {
+    width: 75%;
+    border-radius: 5px;
+    border-width: 0.5px;
+    border-color: #0059ffe1;
+    outline: none;
+    padding: 5px 10px;
+}
+.form input[type=time] {
+    border-radius: 5px;
+    border-width: 0.5px;
+    border-color: #0059ffe1;
+    outline: none;
+    padding: 5px 10px;
+}
+
+
+input[type=checkbox].toggle {
+    opacity: 0;
+    position: absolute;
+    left: -9000000000px;
+    top: -90000000000px;
+}
+input[type=checkbox].toggle:focus +label::before{
+    outline: 0.7px solid black;
+}
+input[type=checkbox].toggle + label {
+    display:flex;
+    align-items: center;
+    position: relative;
+    font-size: 25px;
+    width: fit-content;
+}
+input[type=checkbox].toggle + label::before {
+    content: '';
+    width: 2em;
+    height: 1em;
+    background-color: #ffe6e6e1;
+    border: 0.5px solid #0059ffe1;
+    border-radius: 1em;
+    position: absolute;
+    right: -2.5em;
+    transition: background-color 0.3s ease-in-out;
+}
+input[type=checkbox].toggle + label::after {
+    content: '';
+    width: .9em;
+    height: .9em;
+    background-color: #f81313;
+    border-radius: 1em;
+    position: absolute;
+    right: -1.5em;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;;
+
+}
+input[type=checkbox].toggle:checked +label::before {
+    background-color: rgba(169, 255, 169, 0.816);
+}
+input[type=checkbox].toggle:checked +label::after {
+    background-color: rgba(28, 202, 28, 0.931);
+    transform: translateX(100%);
+}
+
+
+.box_container{
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 25px 20px 25px;
+    border: 0.5px solid #0059ffe1;
+    background-color: rgb(250, 250, 250);
+    border-radius: 10px;
+}
+.box h2{
+    text-align: center;
+    margin-bottom: 15px;
+    color: #151515;
+    font-weight: 500;
+}
+.submit {
+    display: flex;
+    gap: 15px;
+}
+.form button, span {
+    width: 150px;
+    border: 0.5px solid #0059ffe1;
+    text-align: center;
+    background-color: rgb(252, 252, 252);
+    color: #000000;
+    font-size: 20px;
+    border-radius: 3px;
+
+}

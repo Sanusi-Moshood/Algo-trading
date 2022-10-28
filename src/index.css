@@ -5,9 +5,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-/* body{
-    overflow: hidden;
-} */
+
 
 :root {
     /* colors */
@@ -17,6 +15,9 @@
     --transition: all 400ms ease;
 }
 ::-webkit-scrollbar {
+    position: absolute;
+    top: 0;
+    bottom: 0%;
     width: 5px;
 }
 

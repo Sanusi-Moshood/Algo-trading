@@ -31,11 +31,22 @@ const Sidebar = () => {
       </div>
 
       <div className={styles.side_links}>
-          <NavLink to={'/'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <MdDashboard /> Dashboard</NavLink>
-          
+        <div className={styles.UserSettings}>
+        <h4>Dashboard</h4>
+        <NavLink to={'/'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <MdDashboard /> Dashboard</NavLink>
+        </div>
+
+          <div className={styles.UserSettings}>
+            <h4>Accounts</h4>
+          <NavLink to={'/userlevel'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <MdSwitchAccount /> User Level</NavLink>
           <NavLink to={'/accounts'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <MdSwitchAccount /> Accounts</NavLink>
-          
-          <NavLink to={'/license'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <TbLicense /> License</NavLink>
+          <NavLink to={'/groups'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <MdSwitchAccount /> Groups</NavLink>
+          </div>          
+
+          <div className={styles.UserSettings}>
+        <h4>License</h4>
+        <NavLink to={'/license'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <TbLicense /> License</NavLink>
+        </div>
       </div>
       <div className="logout">
       <button onClick={logout} className={styles.Logout_btn}>Logout</button>

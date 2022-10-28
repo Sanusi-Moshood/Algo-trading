@@ -1,0 +1,202 @@
+.container{
+    width: max-content;
+    overflow-x: auto;
+}
+@media screen and (max-width: 600px) {
+    .container{
+        padding: 30px 10px 0 10px !important;
+    }
+}
+
+.container{
+    padding: 30px 10px 0 280px;
+}
+table{
+    color: #4f4f4f;
+    border-color: #e0e0e0;
+    font-size: 1rem;
+}
+thead, tbody, tfoot, tr, td, th {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 1px;
+}
+
+thead{
+    background: #0059ffe1;
+    color: white;
+    font-weight: 700;
+}
+
+
+th, td{
+    padding: 1rem 1.4rem;
+}
+
+.add_account{
+    margin: 10px;
+    padding: 5px 15px 5px 15px;
+    border: 0.5px solid #0059ffe1;
+ 
+}
+.add_account a {
+    color: #000000;
+    font-size: 17px;
+}
+
+
+/* *************Add Account */
+@media screen and (max-width: 600px) {
+    .addContainer{
+        padding: 30px 10px 0 10px !important;
+    }
+}
+
+.addContainer{
+    padding: 30px 10px 0 280px;
+    width: 100vw;
+}
+
+
+
+.addContainer{
+  
+    margin-top: 25px;
+}
+
+.back{
+    position: absolute;
+    right: 20px;
+    top: 30px;
+}
+
+.body{
+    margin-top: 10px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;   
+}
+
+.form .label{
+    font-size: 25px;
+    margin-right: 10px;
+    color: #000000;
+}
+
+.form input[type=text] {
+    width: 75%;
+    border-radius: 5px;
+    border-width: 0.5px;
+    border-color: #0059ffe1;
+    outline: none;
+    padding: 5px 10px;
+}
+.form input[type=time] {
+    border-radius: 5px;
+    border-width: 0.5px;
+    border-color: #0059ffe1;
+    outline: none;
+    padding: 5px 10px;
+}
+
+
+input[type=checkbox].toggle {
+    opacity: 0;
+    position: absolute;
+    left: -9000000000px;
+    top: -90000000000px;
+}
+input[type=checkbox].toggle:focus +label::before{
+    outline: 0.7px solid black;
+}
+input[type=checkbox].toggle + label {
+    display:flex;
+    align-items: center;
+    position: relative;
+    font-size: 25px;
+    width: fit-content;
+}
+input[type=checkbox].toggle + label::before {
+    content: '';
+    width: 2em;
+    height: 1em;
+    background-color: #ffe6e6e1;
+    border: 0.5px solid #0059ffe1;
+    border-radius: 1em;
+    position: absolute;
+    right: -2.5em;
+    transition: background-color 0.3s ease-in-out;
+}
+input[type=checkbox].toggle + label::after {
+    content: '';
+    width: .9em;
+    height: .9em;
+    background-color: #f81313;
+    border-radius: 1em;
+    position: absolute;
+    right: -1.5em;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;;
+
+}
+input[type=checkbox].toggle:checked +label::before {
+    background-color: rgba(169, 255, 169, 0.816);
+}
+input[type=checkbox].toggle:checked +label::after {
+    background-color: rgba(28, 202, 28, 0.931);
+    transform: translateX(100%);
+}
+
+
+
+
+
+
+
+
+
+
+
+/* .switch{
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #666666;
+    transition: 0.4s;
+}
+
+.slider::before{
+    position: absolute;
+    content: '';
+    width: 26px;
+    height: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+input:checked + .slider {
+    background-color: aqua;
+}
+
+input:checked + .slider::before {
+    transform: translateX(26px);
+} */

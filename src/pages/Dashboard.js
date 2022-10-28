@@ -5,7 +5,10 @@ import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
 import styles from './dashboard.module.css' 
 import DashboardPage from './DashboardPage'
+import AccountPage from './AccountPage'
 import PageNotFound from './PageNotFound'
+import AddAccount from '../components/AddAccount'
+import Userlevel from '../components/Userlevel'
 
 const Dashboard  = () => {
    const {activeMenu,} = useStateContext()
@@ -26,7 +29,11 @@ const Dashboard  = () => {
 
           <Routes>
             <Route path='/' element= {< DashboardPage />} />
-            <Route path='/accounts' element='Accounts' />
+
+            <Route path='/userlevel' element={< Userlevel />}/>
+            <Route path='/accounts' element={< AccountPage />}/>
+            <Route path='/accounts/add' element={< AddAccount/>}/>
+            <Route path='/groups' element='Groups' />
             <Route path='/license' element='License' />
             <Route path='*' element={<PageNotFound />}/>
           </Routes>

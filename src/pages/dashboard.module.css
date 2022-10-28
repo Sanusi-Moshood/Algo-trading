@@ -8,15 +8,17 @@ p{
     margin: 0%!important;
 }
 
+
 .container {
     display: flex;
     position: relative;
     justify-content: space-between;
     font-family: 'Jura', sans-serif;
+
 }
 
 @media screen and (max-width: 600px) {
-    .main_page{
+    .dashPageCont{
         
         padding: 30px 10px 0 10px !important;
     }
@@ -24,15 +26,19 @@ p{
 @media screen and (max-width: 900px) {
     .main_page{
         margin-left: 0%!important;
+    }
+    .dashPageCont{
         
+        padding: 30px 10px 0 10px !important;
     }
 }
 .main_page{
-    width: 100%;
     background: #f5f5f5c0;
-    padding: 30px 20px 0 20px;
     min-height: 100vh;
-    margin-left: 250px;
+}
+
+.dashPageCont{
+    padding: 30px 10px 0 280px;
 }
 
 /* ************* SIDEBAR **************** */
@@ -66,10 +72,19 @@ p{
 .side_links{
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 20px;
     width: 70%;
 }
 
+.UserSettings{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.UserSettings h4{
+    padding-left: 10%;
+    color: #70a4ff;
+}
 .side_link{
     font-size: 18px;
     display: flex;
@@ -126,6 +141,8 @@ color: #fff;
 font-weight: 700;
 
 }
+
+
 
 /* ************* NAVBAR **************** */
 .nav{
@@ -223,6 +240,8 @@ ul.pagination li {
     background: #0059ffe1;
     color: white;
     font-weight: 700;
+    
+    
 }
 thead {
     font-size: 20px;
@@ -234,6 +253,7 @@ thead {
 .t_td{
     color: #021724 !important;
     background: transparent;
+    width: 100px;
 }
 
 
