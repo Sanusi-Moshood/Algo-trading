@@ -18,6 +18,7 @@ h2{
 .Container{
     padding: 30px 10px 0 280px;
     width: 100vw;
+    height: max-content;
 }
 
 .form{
