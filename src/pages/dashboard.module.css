@@ -34,7 +34,8 @@ p{
 }
 .main_page{
     background: #f5f5f5c0;
-    height: 300vh;
+    min-height: 100vh;
+    overflow-y: scroll;
 }
 
 .dashPageCont{

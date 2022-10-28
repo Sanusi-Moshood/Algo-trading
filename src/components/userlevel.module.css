@@ -18,6 +18,7 @@ h2{
 .Container{
     padding: 30px 10px 0 280px;
     width: 100vw;
+    overflow-y: scroll;
 }
 
 .form{
@@ -120,7 +121,7 @@ input[type=checkbox].toggle:checked +label::after {
     display: flex;
     gap: 15px;
 }
-.form button, span {
+.form button, .form span {
     width: 150px;
     border: 0.5px solid #0059ffe1;
     text-align: center;
