@@ -9,34 +9,23 @@ import { AccountContext } from './context/Account';
 import { useContext, useState, useEffect } from 'react';
 import { ContextProvider } from './context/ContextProvider';
 import PageNotFound from './pages/PageNotFound';
+import {AccountSettingsContext} from './context/AccountSettings'
 
 
 
 function App() {
   const { status} = useContext(AccountContext)
-  //importing the user status from accountContext
-  // const {getSession,} = useContext(AccountContext)
 
-  // const [status, setStatus] = useState(true);
-
-  // //using useEffect to set the status to true when login is successful
-  // useEffect(() => {
-  //   getSession()
-  //     .then(session => {
-  //       setStatus(true);
-      
-  //     })
-  //     .catch((err) => {
-  //       setStatus(false);
-  //     });
-  // }, [status])
   return (
     <>
          {
           //if status is true display the dashboard
       status ? (
         <ContextProvider>
-        <Dashboard />
+          <AccountSettingsContext>
+          <Dashboard />
+          </AccountSettingsContext>
+
         </ContextProvider>
       ) : //else display the login and signup page
 

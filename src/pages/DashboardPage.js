@@ -24,6 +24,7 @@ const DashboardPage = () => {
   //   Email:''
   // })
     const {userData, status} = useContext(AccountContext)
+
     //==============================================================
 
     const [sort, setSort]=useState('All')
@@ -256,7 +257,12 @@ const DashboardPage = () => {
   return (
 
 
-    <>
+
+    <div className={styles.dashPageCont} >
+        <div className={styles.nav}>
+      <h4 className={styles.nav_username}>Welcome, {userData.userName}</h4>
+    </div>
+
     <div className={styles.dashPage}>
       <h1>Orders Status </h1>
       <div className={styles.sort}>
@@ -316,7 +322,7 @@ const DashboardPage = () => {
 
       <MDBRow>
       <MDBCol size="12">
-        <MDBTable bordered responsive striped>
+        <MDBTable bordered  striped>
           <MDBTableHead className={styles.table_color}>
             <tr>
               <th scope="col">Order Id</th>
@@ -384,7 +390,7 @@ const DashboardPage = () => {
           ))}
         </ul>
       </nav>
-    </>
+    </div>
   )
 }
 

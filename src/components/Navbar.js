@@ -18,7 +18,7 @@ const {activeMenu, toggleSidebar, screenSize} = useStateContext();
         <MdMenu onClick={toggleSidebar} className={styles.open_sidebar}/>
         
       }
-      <h4 className={styles.nav_username}>Welcome, {userData.userName}</h4>
+      
     </div>
   )
 }
