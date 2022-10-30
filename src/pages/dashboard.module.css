@@ -411,7 +411,7 @@ input[type=checkbox].toggle:checked +label::after {
 
 /* ************* USER LEVEL PAGE **************** */
 
-/* .box_container{
+.box_container{
     margin-top: 10px;
     display: flex;
     gap: 20px;
@@ -445,7 +445,7 @@ input[type=checkbox].toggle:checked +label::after {
     font-size: 20px;
     border-radius: 3px;
 
-} */
+}
 
 /* ************* LICENSE PAGE **************** */
 
