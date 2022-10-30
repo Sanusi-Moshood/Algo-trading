@@ -1,8 +1,6 @@
 import styles from '../pages/account.module.css'
 import { Link } from 'react-router-dom'
 import { useState, useContext } from 'react'
-import TimeRange from "react-time-range";
-import moment from 'moment';
 import { AccountSettings } from '../context/AccountSettings';
 
 
