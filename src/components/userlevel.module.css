@@ -1,24 +1,6 @@
-/* @media screen and (max-width: 600px) {
-    .Container{
-        
-        padding: 30px 10px 0 10px !important;
-    }
-} */
-
-@media screen and (max-width: 900px) {
-    .Container{
-        
-        padding: 30px 10px 0 10px !important;
-    }
-}
 h2{
     color: #000000;
     font-weight: bold;
-}
-.Container{
-    padding: 30px 10px 0 280px;
-    width: 100vw;
-    overflow-y: scroll;
 }
 
 .form{

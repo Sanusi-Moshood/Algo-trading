@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
-import styles from './userlevel.module.css'
+import styles from '../pages/dashboard.module.css'
 import { AccountContext } from '../context/Account'
 const Userlevel = () => {
   const {userData, status} = useContext(AccountContext)
@@ -51,8 +51,8 @@ const Userlevel = () => {
   }
 
   return (
-    <div className={styles.Container}>
-      <h2>User Level</h2>
+    <div className={styles.viewWidth}>
+      <h1>User Level</h1>
     {
       loading ? 'Loading........' : 
       (

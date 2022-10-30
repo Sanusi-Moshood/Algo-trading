@@ -2,6 +2,509 @@
     .sidebar{
         position: absolute !important;
         z-index: 99 !important;
+        top: 0;
+        left: 0;
+    }
+}
+p{
+    margin: 0%!important;
+}
+
+.container {
+    display: flex;
+    position: relative;
+    font-family: 'Jura', sans-serif;
+    flex-direction: column;
+    background-color: #f5f5f5c0;
+    min-height: 100vh;
+    width: max-content;
+    min-width: 100vw;
+    gap: 20px;
+}
+
+
+
+@media screen and (max-width: 600px) {
+    .main_page{
+        
+        padding: 20px 10px 0 10px !important;
+    }
+}
+@media screen and (max-width: 900px) {
+    .main_page{
+        margin-left: 0%!important;
+    }
+    .main_page{
+        
+        padding: 20px 10px 0 10px !important;
+    }
+}
+
+.main_page{
+    padding: 20px 10px 0 280px;
+}
+
+.viewWidth{
+    max-width: 100vw;
+}
+
+/* ************* SIDEBAR **************** */
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    height: 100vh;
+    width: 250px;
+    position: fixed !important;
+    z-index: 99 !important;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+}
+
+.sidebar_container{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+}
+.side_logo{
+    padding-left: 10%;
+    letter-spacing: 10px;
+}
+.side_logo h2 {
+    font-weight: 700;
+    color: var(--light-blue);
+    font-size: 30px;
+}
+
+.side_links{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 70%;
+}
+
+.UserSettings{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.UserSettings h4{
+    padding-left: 10%;
+    color: #70a4ff;
+}
+.side_link{
+    font-size: 18px;
+    display: flex;
+    color: var(--light-blue);
+    padding: 5px 0 5px 25%;
+    font-weight: 500;
+ 
+    align-items: center;
+    gap: 5px;
+    border-left: 3px solid var(--light-blue);
+}
+
+.side_link_active{
+    font-size: 18px;
+    display: flex;
+    color: var(--dark-blue);
+    padding: 5px 0 5px 25%;
+    font-weight: 500;
+    align-items: center;
+    gap: 5px;
+}
+.close_sidebar{
+    font-size: 30px;
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    color: var(--light-blue);
+}
+.close_sidebar:hover{
+    scale: 1.1;
+    color: #003ca5;
+}
+.Logout_btn
+{
+    margin: 10px 50px;
+    padding: 8px;
+    border: none;
+    border-radius: .3rem;
+    outline: 0;
+    color: #fff;
+    background: var(--light-blue);
+    width: 150px;
+    text-transform: uppercase;
+    font-family: 'Jura', sans-serif;
+    cursor: pointer;
+    margin-top: 40px;
+    position: absolute;
+    bottom: 20px;
+}
+.Logout_btn:hover
+{
+background: #0576bc;
+color: #fff;
+font-weight: 700;
+
+}
+
+
+
+/* ************* NAVBAR **************** */
+.nav{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.nav_username{
+    color: #4f4f4f;
+}
+.open_sidebar{
+    font-size: 30px;
+    color: var(--light-blue);
+}
+.open_sidebar:hover{
+    scale: 1.1;
+    color: #003ca5;
+}
+
+/* ************* DASHBOARD PAGE **************** */
+.sort{
+    display: flex;
+    gap: 10px;
+    padding: 5px;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+.sort_list{
+    display: flex;
+    gap: 10px;
+    padding: 5px;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+
+}
+.sort_list div{
+    display: flex;
+    gap: 4px;
+}
+.sort p{
+    font-size: 23px;
+}
+.all_btn{
+    border-radius: 3px;
+    border-width: 1px;
+    padding:3px 10px 3px 10px ;
+    background-color: #e8f0ffe4;
+    color: var(--dark-blue);
+    border-color: var(--dark-blue);
+}
+.sort select{
+    height: 30px;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: #e8f0ffe4;
+    font-size: 15px;
+    color: var(--dark-blue);
+    outline: none;
+    border-color: var(--dark-blue);
+    width: 20px;
+}
+.sort option{
+    background-color: #fff;
+    color: #313131;
+    
+}
+ul.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+@media screen and (max-width: 768px) {
+    ul.pagination {
+        display: grid;
+        grid-template-columns: repeat(10, 40px);
+        align-items: center;
+        justify-content: center33333;
+    }
+}
+
+ul.pagination li {
+    border: 1px solid #70a4ff;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.table_color {
+    background: #0059ffe1;
+    color: white;
+    font-weight: 700;
+    
+    
+}
+thead {
+    font-size: 20px;
+}
+.t_row{
+    background: transparent;
+    color: #021724;
+}
+.t_td{
+    color: #021724 !important;
+    background: transparent;
+    width: 100px;
+}
+
+.tablecontainer{
+    width: max-content;
+}
+
+/* ************* ACCOUNT PAGE **************** */
+
+table{
+    color: #4f4f4f;
+    border-color: #e0e0e0;
+    font-size: 1rem;
+}
+thead, tbody, tfoot, tr, td, th {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 1px;
+}
+
+thead{
+    background: #0059ffe1;
+    color: white;
+    font-weight: 700;
+}
+
+
+th, td{
+    padding: 1rem 1.4rem;
+}
+
+.add_account{
+    margin: 10px;
+    padding: 5px 15px 5px 15px;
+    border: 0.5px solid #0059ffe1;
+ 
+}
+.add_account a {
+    color: #000000;
+    font-size: 17px;
+}
+
+
+/* *************Add Account */
+@media screen and (max-width: 600px) {
+    .addContainer{
+        padding: 30px 10px 0 10px !important;
+    }
+}
+
+.addContainer{
+    padding: 30px 10px 0 280px;
+    width: 100vw;
+}
+
+
+
+.addContainer{
+  
+    margin-top: 25px;
+}
+
+.back{
+    position: absolute;
+    right: 20px;
+    top: 30px;
+}
+
+.body{
+    margin-top: 10px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;   
+}
+
+.form .label{
+    font-size: 25px;
+    margin-right: 10px;
+    color: #000000;
+}
+
+.form input[type=text] {
+    width: 75%;
+    border-radius: 5px;
+    border-width: 0.5px;
+    border-color: #0059ffe1;
+    outline: none;
+    padding: 5px 10px;
+}
+.form input[type=time] {
+    border-radius: 5px;
+    border-width: 0.5px;
+    border-color: #0059ffe1;
+    outline: none;
+    padding: 5px 10px;
+}
+
+
+input[type=checkbox].toggle {
+    opacity: 0;
+    position: absolute;
+    left: -9000000000px;
+    top: -90000000000px;
+}
+input[type=checkbox].toggle:focus +label::before{
+    outline: 0.7px solid black;
+}
+input[type=checkbox].toggle + label {
+    display:flex;
+    align-items: center;
+    position: relative;
+    font-size: 25px;
+    width: fit-content;
+}
+input[type=checkbox].toggle + label::before {
+    content: '';
+    width: 2em;
+    height: 1em;
+    background-color: #ffe6e6e1;
+    border: 0.5px solid #0059ffe1;
+    border-radius: 1em;
+    position: absolute;
+    right: -2.5em;
+    transition: background-color 0.3s ease-in-out;
+}
+input[type=checkbox].toggle + label::after {
+    content: '';
+    width: .9em;
+    height: .9em;
+    background-color: #f81313;
+    border-radius: 1em;
+    position: absolute;
+    right: -1.5em;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;;
+
+}
+input[type=checkbox].toggle:checked +label::before {
+    background-color: rgba(169, 255, 169, 0.816);
+}
+input[type=checkbox].toggle:checked +label::after {
+    background-color: rgba(28, 202, 28, 0.931);
+    transform: translateX(100%);
+}
+
+
+/* ************* USER LEVEL PAGE **************** */
+
+.box_container{
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 25px 20px 25px;
+    border: 0.5px solid #0059ffe1;
+    background-color: rgb(250, 250, 250);
+    border-radius: 10px;
+}
+.box h2{
+    text-align: center;
+    margin-bottom: 15px;
+    color: #151515;
+    font-weight: 500;
+}
+.submit {
+    display: flex;
+    gap: 15px;
+}
+.form button, .form span {
+    width: 150px;
+    border: 0.5px solid #0059ffe1;
+    text-align: center;
+    background-color: rgb(252, 252, 252);
+    color: #000000;
+    font-size: 20px;
+    border-radius: 3px;
+
+}
+
+/* ************* LICENSE PAGE **************** */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+
+
+
+
+
+
+
+@media screen and (max-width: 900px) {
+    .sidebar{
+        position: absolute !important;
+        z-index: 99 !important;
     }
 }
 p{
@@ -18,7 +521,7 @@ p{
 }
 
 @media screen and (max-width: 600px) {
-    .dashPageCont{
+    .container{
         
         padding: 30px 10px 0 10px !important;
     }
@@ -27,7 +530,7 @@ p{
     .main_page{
         margin-left: 0%!important;
     }
-    .dashPageCont{
+    .container{
         
         padding: 30px 10px 0 10px !important;
     }
@@ -35,14 +538,13 @@ p{
 .main_page{
     background: #f5f5f5c0;
     min-height: 100vh;
-    overflow-y: scroll;
 }
 
-.dashPageCont{
+.container{
     padding: 30px 10px 0 280px;
 }
 
-/* ************* SIDEBAR **************** */
+
 
 .sidebar{
     display: flex;
@@ -145,7 +647,7 @@ font-weight: 700;
 
 
 
-/* ************* NAVBAR **************** */
+
 .nav{
     width: 100%;
     display: flex;
@@ -164,7 +666,6 @@ font-weight: 700;
     color: #003ca5;
 }
 
-/* ************* DASHBOARD PAGE **************** */
 .dashPage{
 padding-top: 20px;
 }
@@ -263,7 +764,4 @@ thead {
 
 
 
-
-
-/* ************* ACCOUNT PAGE **************** */
-/* ************* LICENSE PAGE **************** */
+ */

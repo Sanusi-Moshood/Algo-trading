@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import 'mdb-react-ui-kit/dist/css/mdb.min.css'
-import styles from './account.module.css'
+import styles from './dashboard.module.css'
 import { Link } from 'react-router-dom'
 import { AccountSettings } from '../context/AccountSettings'
 
@@ -10,7 +10,7 @@ import { AccountSettings } from '../context/AccountSettings'
 const AccountPage = () => {
 const {data, AccountParams, loading} = useContext(AccountSettings)
   return (
-    <div className={styles.container}>
+    <div className={styles.tablecontainer}>
       <h1>Accounts</h1>
     <table>
       <thead>

@@ -258,7 +258,7 @@ const DashboardPage = () => {
 
 
 
-    <div className={styles.dashPageCont} >
+    < >
         <div className={styles.nav}>
       <h4 className={styles.nav_username}>Welcome, {userData.userName}</h4>
     </div>
@@ -320,7 +320,7 @@ const DashboardPage = () => {
       </div>
     </div>
 
-      <MDBRow>
+      <MDBRow className={styles.tablecontainer}>
       <MDBCol size="12">
         <MDBTable bordered  striped>
           <MDBTableHead className={styles.table_color}>
@@ -381,7 +381,8 @@ const DashboardPage = () => {
       </MDBRow>
       <nav>
         <ul className="pagination">
-          {pageNumbers.map(number => (
+          {pageNumbers.map(number => 
+            (
             <li key={number} className="page-item">
               <span href="!#" className='page-link' onClick={() => paginate(number)}>
                 {number}
@@ -390,7 +391,7 @@ const DashboardPage = () => {
           ))}
         </ul>
       </nav>
-    </div>
+    </>
   )
 }
 
