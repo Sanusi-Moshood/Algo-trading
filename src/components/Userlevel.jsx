@@ -6,14 +6,14 @@ import { AccountContext } from '../context/Account'
 const Userlevel = () => {
   const {userData, status} = useContext(AccountContext)
   const [formData, setFormData] = useState()
-  const [reload, setReload] = useState(false)
+  // const [reload, setReload] = useState(false)
   
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     if (status) {
       getUserLevel();
     }
-  }, [reload])
+  }, [])
   
 
   const getUserLevel =  async () => {
@@ -75,7 +75,7 @@ const Userlevel = () => {
           Userid: userData.userId
         }
       }      
-      )
+      ).then(getUserLevel())
 
     } catch(err) {
       console.log(`An error has occured: ${err}`)
@@ -85,8 +85,7 @@ const Userlevel = () => {
     e.preventDefault();
 
     patchUserLevel()
-
-    setReload(prev => !prev)
+    getUserLevel()
   }
 
   return (
