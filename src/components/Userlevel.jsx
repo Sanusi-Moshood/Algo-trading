@@ -252,7 +252,8 @@ const Userlevel = () => {
             </div>
 
             <div className={styles.submit}>
-            <button>Save</button> <span>Reset</span>
+            <button>Save</button> 
+            {/* <span>Reset</span> */}
             </div>
         </form>
         
