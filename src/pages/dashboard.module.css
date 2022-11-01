@@ -46,6 +46,8 @@ p{
 
 .viewWidth{
     max-width: 100vw;
+    overflow: auto;
+    height: max-content;
 }
 
 /* ************* SIDEBAR **************** */

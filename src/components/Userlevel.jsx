@@ -6,13 +6,14 @@ import { AccountContext } from '../context/Account'
 const Userlevel = () => {
   const {userData, status} = useContext(AccountContext)
   const [formData, setFormData] = useState()
+  const [reload, setReload] = useState(false)
   
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     if (status) {
       getUserLevel();
     }
-  }, [])
+  }, [reload])
   
 
   const getUserLevel =  async () => {
@@ -46,12 +47,50 @@ const Userlevel = () => {
     }))
   }
 
+
+  const patchUserLevel =  async () => {
+    setLoading(true)
+    try {
+      const res =  await axios
+      .patch(
+        "https://copytraderapi.fnoalgo.com/accounts/accounts/1383",
+        {
+          "FnoMISEnabled": formData.FnoMISEnabled,
+          "Enabled": formData.Enabled,
+          "FnoEndTime": formData.FnoEndTime,
+          "EquityStartTime": formData.EquityStartTime,
+          "FnoStartTime": formData.FnoStartTime,
+          "FnoCNCEnabled": formData.FnoCNCEnabled,
+          "CommodityEndTime": formData.CommodityEndTime,
+          "CommodityCNCEnabled": formData.CommodityCNCEnabled,
+          "EquityEndTime": formData.EquityEndTime,
+          "EquityMISEnabled": formData.EquityMISEnabled,
+          "CommodityMISEnabled": formData.CommodityMISEnabled,
+          "CommodityStartTime": formData.CommodityStartTime,
+          "EquityCNCEnabled": formData.EquityCNCEnabled
+       },
+       {
+        headers:{
+          AccessToken:userData.accessToken,
+          Userid: userData.userId
+        }
+      }      
+      )
+
+    } catch(err) {
+      console.log(`An error has occured: ${err}`)
+    }
+  }
   const submit = (e) => {
     e.preventDefault();
+
+    patchUserLevel()
+
+    setReload(prev => !prev)
   }
 
   return (
-    <>
+    <div className={styles.viewWidth}>
       <h1>User Level</h1>
     {
       loading ? 'Loading........' : 
@@ -220,58 +259,7 @@ const Userlevel = () => {
         
       )
     }
-
-
-<div>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, ex! <br />
     </div>
-    </>
-
   )
 }
 
