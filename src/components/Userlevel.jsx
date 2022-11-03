@@ -205,7 +205,7 @@ const Userlevel = () => {
   
   
               <div className={styles.box}>
-                <h2>Equity</h2>
+                <h2>Commodity</h2>
   
                 <div>
                  <input 

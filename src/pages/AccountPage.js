@@ -8,7 +8,10 @@ import { AccountSettings } from '../context/AccountSettings'
 
 
 const AccountPage = () => {
-const {data, AccountParams, loading} = useContext(AccountSettings)
+const {data, loading} = useContext(AccountSettings)
+
+console.log(data)
+
   return (
     <div className={styles.tablecontainer}>
       <h1>Accounts</h1>
@@ -17,11 +20,18 @@ const {data, AccountParams, loading} = useContext(AccountSettings)
         <tr>
         <th scope="col">Account Id</th>
         <th scope="col">Enabled</th>
-        <th scope="col">MIS Enabled</th>
-        <th scope="col">CNC Enabled</th>
-        <th scope="col">Fno Enabled</th>
-        <th scope="col">Start time</th>
-        <th scope="col">End time</th>
+        <th scope="col">Equity CNC</th>
+        <th scope="col">Equity MIS</th>
+        <th scope="col">Equity Start time</th>
+        <th scope="col">Equity End time</th>
+        <th scope="col">Fno CNC</th>
+        <th scope="col">Fno MIS</th>
+        <th scope="col">Fno Start time</th>
+        <th scope="col">Fno End time</th>
+        <th scope="col">Commodity CNC</th>
+        <th scope="col">Commodity MIS</th>
+        <th scope="col">Commodity Start time</th>
+        <th scope="col">Commodity End time</th>
         <th scope="col">Login Status</th>
         <th scope="col">Last Login Time</th>
         <th scope="col">Login URL</th>
@@ -34,20 +44,27 @@ const {data, AccountParams, loading} = useContext(AccountSettings)
         loading ?
         (
           <tr>
-            <td>Loading</td>
+            <td>Loading.........</td>
           </tr>
         )
         :
         (
           data.map((item) => (
-            <tr className={styles.t_row} key={item}>
-            <td className={styles.t_td}>{item}</td>
-            <td className={styles.t_td}>{AccountParams.item.Enabled ? 'ON' : 'OFF'}</td>
-            <td className={styles.t_td}>{AccountParams.item.CommodityMISEnabled ? 'ON' : 'OFF'}</td>
-            <td className={styles.t_td}>{AccountParams.item.EquityCNCEnabled ? 'ON' : 'OFF'}</td>
-            <td className={styles.t_td} >{AccountParams.item.FnoCNCEnabled ? 'ON' : 'OFF'}</td>
-            <td className={styles.t_td} >{item.StartTime}</td>
-            <td className={styles.t_td} >{item.EndTime}</td>
+            <tr className={styles.t_row} key={item.AccountID}>
+            <td className={styles.t_td}>{item.AccountID}</td>
+            <td className={styles.t_td}>{item.Enabled ? 'ON' : 'OFF'}</td>
+            <td className={styles.t_td}>{item.EquityCNCEnabled ? 'ON' : 'OFF'}</td>
+            <td className={styles.t_td}>{item.EquityMISEnabled ? 'ON' : 'OFF'}</td>
+            <td className={styles.t_td} >{item.EquityStartTime}</td>
+            <td className={styles.t_td} >{item.EquityEndTime}</td>
+            <td className={styles.t_td}>{item.FnoCNCEnabled ? 'ON' : 'OFF'}</td>
+            <td className={styles.t_td}>{item.FnoMISEnabled ? 'ON' : 'OFF'}</td>
+            <td className={styles.t_td} >{item.FnoStartTime}</td>
+            <td className={styles.t_td} >{item.FnoEndTime}</td>
+            <td className={styles.t_td}>{item.CommodityCNCEnabled ? 'ON' : 'OFF'}</td>
+            <td className={styles.t_td}>{item.CommodityMISEnabled ? 'ON' : 'OFF'}</td>
+            <td className={styles.t_td} >{item.CommodityStartTime}</td>
+            <td className={styles.t_td} >{item.CommodityEndTime}</td>
             <td className={styles.t_td} >{item.LoginStatus}</td>
             <td className={styles.t_td} >{item.LastLoginTime}</td>
             <td className={styles.t_td} ><a href="http://localhost:3000/accounts">{item.LoginUrl}</a></td>

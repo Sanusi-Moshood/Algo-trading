@@ -7,19 +7,18 @@ const AccountSettings= createContext();
  const AccountSettingsContext = ({ children }) => {
   const {userData, status} = useContext(AccountContext)
   const [data, setData] = useState([])
-  const [AccountParams , setAccountParams] =useState({})
  const [loading, setLoading] = useState(false)
   
 
 
 
-// useEffect(() => {
-//   if (status) {
-//     getAccountIds()
-//     getAccountParams()
-//   }
+useEffect(() => {
+  if (status) {
+    // getAccountIds()
+    getAccountParams()
+  }
 
-// }, [])
+}, [])
 
 const getAccountParams =  async () => {
   setLoading(true)
@@ -35,32 +34,34 @@ const getAccountParams =  async () => {
       }
     )
     const params = res.data;
-    setAccountParams([params])
+    setData(params)
+    console.log(data)
+    console.log(params)
     setLoading(false)
   } catch(err) {
     console.log(`An error has occured: ${err}`)
   }
 }
-const getAccountIds =  async () => {
-  setLoading(true)
-  try {
-    const res =  await axios
-    .get(
-      "https://copytraderapi.fnoalgo.com/accounts/accounts/1383/accounts/ids",
-      {
-        headers:{
-          AccessToken:userData.accessToken,
-          Userid: userData.userId
-        }
-      }
-    )
-    const Ids = res.data;
-    setData(Ids.accounts)
-    setLoading(false)
-  } catch(err) {
-    console.log(`An error has occured: ${err}`)
-  }
-}
+// const getAccountIds =  async () => {
+//   setLoading(true)
+//   try {
+//     const res =  await axios
+//     .get(
+//       "https://copytraderapi.fnoalgo.com/accounts/accounts/1383/accounts/ids",
+//       {
+//         headers:{
+//           AccessToken:userData.accessToken,
+//           Userid: userData.userId
+//         }
+//       }
+//     )
+//     const Ids = res.data;
+//     setData(Ids.accounts)
+//     setLoading(false)
+//   } catch(err) {
+//     console.log(`An error has occured: ${err}`)
+//   }
+// }
 
 
 
@@ -91,7 +92,7 @@ const getAccountIds =  async () => {
 
 
     return (
-        <AccountSettings.Provider value={{data, setData, addAccount, AccountParams, loading, }}>
+        <AccountSettings.Provider value={{data, setData, addAccount, loading, }}>
           {children}
         </AccountSettings.Provider>
       );
