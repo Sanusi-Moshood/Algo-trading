@@ -142,9 +142,7 @@ p{
     text-transform: uppercase;
     font-family: 'Jura', sans-serif;
     cursor: pointer;
-    margin-top: 40px;
-    position: absolute;
-    bottom: 20px;
+    
 }
 .Logout_btn:hover
 {
@@ -258,12 +256,11 @@ thead {
 }
 .t_row{
     background: transparent;
-    color: #021724;
+    color: #97a0a6;
 }
 .t_td{
     color: #021724 !important;
     background: transparent;
-    width: 100px;
 }
 
 .tablecontainer{
@@ -292,6 +289,7 @@ thead{
 
 th, td{
     padding: 1rem 1.4rem;
+    text-align: center;
 }
 
 .add_account{
@@ -449,9 +447,39 @@ input[type=checkbox].toggle:checked +label::after {
 
 }
 
-/* ************* LICENSE PAGE **************** */
+/* ************* Account PAGE **************** */
+
+table{
+    color: #4f4f4f;
+    border-color: #e0e0e0;
+    font-size: 1rem;
+}
+.thead, tbody, tfoot, tr, td, th {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.thead{
+    background: #0059ffe1;
+    color: white;
+    font-weight: 700;
+}
+
+.back{
+    position: absolute;
+    right: 40px;
+    top: 30px;
+}
 
 
+th, td{
+    padding: 1rem 1.4rem;
+}
+
+.addID{
+    max-width: 500px;
+}
 
 
 

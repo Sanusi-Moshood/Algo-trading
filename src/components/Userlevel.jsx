@@ -9,6 +9,7 @@ const Userlevel = () => {
   // const [reload, setReload] = useState(false)
   
   const [loading, setLoading] = useState(true)
+  const [saved, setSaved] = useState(false)
   useEffect(() => {
     if (status) {
       getUserLevel();
@@ -49,7 +50,7 @@ const Userlevel = () => {
 
 
   const patchUserLevel =  async () => {
-    setLoading(true)
+    setSaved(false)
     try {
       const res =  await axios
       .patch(
@@ -75,17 +76,21 @@ const Userlevel = () => {
           Userid: userData.userId
         }
       }      
-      ).then(getUserLevel())
+      ).then(setSaved(true),
+      setTimeout(() => {
+        setSaved(false)
+      }, 5000)
+      )
 
     } catch(err) {
       console.log(`An error has occured: ${err}`)
     }
   }
+
   const submit = (e) => {
     e.preventDefault();
 
     patchUserLevel()
-    getUserLevel()
   }
 
   return (
@@ -250,9 +255,10 @@ const Userlevel = () => {
             </div>
               </div>
             </div>
-
+            {saved && <p>Changes successfully saved</p>} 
             <div className={styles.submit}>
             <button>Save</button> 
+            <br />
             {/* <span>Reset</span> */}
             </div>
         </form>

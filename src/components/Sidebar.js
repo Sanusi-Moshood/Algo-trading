@@ -48,9 +48,8 @@ const Sidebar = () => {
         <NavLink to={'/license'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <TbLicense /> License</NavLink>
         </div>
       </div>
-      <div className="logout">
+      <div>
       <button onClick={logout} className={styles.Logout_btn}>Logout</button>
-
       </div>
     </div>
   )

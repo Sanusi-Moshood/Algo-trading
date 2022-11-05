@@ -151,6 +151,43 @@ input[type=checkbox].toggle:checked +label::after {
 
 
 
+.box_container{
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 25px 20px 25px;
+    border: 0.5px solid #0059ffe1;
+    background-color: rgb(250, 250, 250);
+    border-radius: 10px;
+}
+.box h2{
+    text-align: center;
+    margin-bottom: 15px;
+    color: #151515;
+    font-weight: 500;
+}
+.submit {
+    display: flex;
+    gap: 15px;
+}
+.form button, .form span {
+    width: 150px;
+    border: 0.5px solid #0059ffe1;
+    text-align: center;
+    background-color: rgb(252, 252, 252);
+    color: #000000;
+    font-size: 20px;
+    border-radius: 3px;
+
+}
+
+
 
 
 

@@ -71,17 +71,20 @@ const getAccountParams =  async () => {
         setData((prev) => {
           return[
             {
-              Id: formData.Id,
-              AccountId: formData.Id,
-              Enabled: formData.enabled,
-              MisEnabled: formData.misEnabled,
-              CncEnabled: formData.cncEnabled,
-              FnoEnabled: formData.fnoEnabled,
-              StartTime:formData.startTime,
-              EndTime:formData.endTime,
-              LoginStatus:'Active',
-              LastLoginTime:'13-01-2004 3:45:00',
-              LoginUrl:'URL'
+              AccountID: formData.AccountID, 
+              Enabled: formData.Enabled,
+              EquityCNCEnabled: formData.EquityCNCEnabled,
+              EquityMISEnabled: formData.EquityMISEnabled,
+              EquityStartTime: formData.EquityStartTime,
+              EquityEndTime: formData.EquityEndTime,
+              FnoCNCEnabled: formData.FnoCNCEnabled,
+              FnoMISEnabled: formData.FnoMISEnabled,
+              FnoStartTime: formData.FnoStartTime,
+              FnoEndTime: formData.FnoEndTime,
+              CommodityCNCEnabled: formData.CommodityCNCEnabled,
+              CommodityMISEnabled: formData.CommodityMISEnabled,
+              CommodityStartTime: formData.CommodityStartTime,
+              CommodityEndTime: formData.CommodityEndTime,
             } ,
             ...prev
 

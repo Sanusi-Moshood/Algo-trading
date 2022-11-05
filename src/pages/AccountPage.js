@@ -16,8 +16,8 @@ console.log(data)
     <div className={styles.tablecontainer}>
       <h1>Accounts</h1>
     <table>
-      <thead>
-        <tr>
+      <thead className={styles.thead}>
+        <tr >
         <th scope="col">Account Id</th>
         <th scope="col">Enabled</th>
         <th scope="col">Equity CNC</th>
