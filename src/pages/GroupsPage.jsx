@@ -8,9 +8,9 @@ import { AccountContext } from '../context/Account'
 import axios from 'axios'
 
 
-const AccountPage = () => {
+const GroupsPage = () => {
   const {userData, status} = useContext(AccountContext)
-const {data, loading} = useContext(AccountSettings)
+const {GroupsData, loading} = useContext(AccountSettings)
 
 
 
@@ -22,16 +22,15 @@ const deleteAccount = (id) => {
     `https://copytraderapi.fnoalgo.com/accounts/accounts/i383/accounts/${id}`,
   ).then(res => console.log(res))
   .catch(err => console.log(err));
-
 }
 
   return (
     <div className={styles.tablecontainer}>
-      <h1>Accounts</h1>
+      <h1>Groups</h1>
     <table>
       <thead className={styles.thead}>
         <tr >
-        <th scope="col">Account Id</th>
+        <th scope="col">Group Id</th>
         <th scope="col">Enabled</th>
         <th scope="col">Equity CNC</th>
         <th scope="col">Equity MIS</th>
@@ -45,9 +44,6 @@ const deleteAccount = (id) => {
         <th scope="col">Commodity MIS</th>
         <th scope="col">Commodity Start time</th>
         <th scope="col">Commodity End time</th>
-        <th scope="col">Login Status</th>
-        <th scope="col">Last Login Time</th>
-        <th scope="col">Login URL</th>
         <th scope="col">edit</th>
         <th scope="col">delete</th>
         </tr>
@@ -62,9 +58,9 @@ const deleteAccount = (id) => {
         )
         :
         (
-          data.map((item) => (
-            <tr className={styles.t_row} key={item.AccountID}>
-            <td className={styles.t_td}>{item.AccountID}</td>
+            GroupsData.map((item) => (
+            <tr className={styles.t_row} key={item.GroupID}>
+            <td className={styles.t_td}>{item.GroupID}</td>
             <td className={styles.t_td}>{item.Enabled ? 'ON' : 'OFF'}</td>
             <td className={styles.t_td}>{item.EquityCNCEnabled ? 'ON' : 'OFF'}</td>
             <td className={styles.t_td}>{item.EquityMISEnabled ? 'ON' : 'OFF'}</td>
@@ -78,9 +74,6 @@ const deleteAccount = (id) => {
             <td className={styles.t_td}>{item.CommodityMISEnabled ? 'ON' : 'OFF'}</td>
             <td className={styles.t_td} >{item.CommodityStartTime}</td>
             <td className={styles.t_td} >{item.CommodityEndTime}</td>
-            <td className={styles.t_td} >{item.LoginStatus}</td>
-            <td className={styles.t_td} >{item.LastLoginTime}</td>
-            <td className={styles.t_td} ><a href="http://localhost:3000/accounts">{item.LoginUrl}</a></td>
             <td className={styles.t_td} >edit</td>
             <td className={styles.t_td} > <MdDelete className={styles.deleteIcon} onClick={deleteAccount(item.AccountID)}/> </td>
           </tr>
@@ -90,7 +83,7 @@ const deleteAccount = (id) => {
       </tbody>
     </table>
 
-  <button className={styles.add_account}><Link to={'/accounts/add'} >Create new Account</Link></button>
+  <button className={styles.add_account}><Link to={'/accounts/add'} >Create new Group</Link></button>
   
   
   
@@ -100,4 +93,4 @@ const deleteAccount = (id) => {
   )
 }
 
-export default AccountPage
+export default GroupsPage

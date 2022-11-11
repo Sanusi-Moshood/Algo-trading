@@ -75,7 +75,7 @@ const DashboardPage = () => {
     try {
       const res =  await axios
       .get(
-        "https://copytraderapi.fnoalgo.com/accounts/accounts/1434/groups/ids",
+        `https://copytraderapi.fnoalgo.com/accounts/accounts/${userData.userId}/groups/ids`,
         {
           headers:{
             AccessToken:userData.accessToken,
@@ -95,7 +95,7 @@ const DashboardPage = () => {
     try {
       const res =  await axios
       .get(
-        "https://copytraderapi.fnoalgo.com/accounts/accounts/1434/accounts/ids",
+        `https://copytraderapi.fnoalgo.com/accounts/accounts/${userData.userId}/accounts/ids`,
         {
           headers:{
             AccessToken:userData.accessToken,
@@ -117,7 +117,7 @@ const DashboardPage = () => {
       try {
         const res =  await axios
         .get(
-          "https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/all",
+          `https://copytraderapi.fnoalgo.com/orders/tradeorders/${userData.userId}/all`,
           {
             headers:{
               AccessToken:userData.accessToken,
@@ -139,7 +139,7 @@ const DashboardPage = () => {
       try {
         const res =  await axios
         .get(
-          `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/group/${sortOption}`,
+          `https://copytraderapi.fnoalgo.com/orders/tradeorders/${userData.userId}/group/${sortOption}`,
           {
             headers:{
               AccessToken:userData.accessToken,
@@ -161,7 +161,7 @@ const DashboardPage = () => {
       try {
         const res =  await axios
         .get(
-          `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/account/${sortOption}`,
+          `https://copytraderapi.fnoalgo.com/orders/tradeorders/${userData.userId}/account/${sortOption}`,
           {
             headers:{
               AccessToken:userData.accessToken,
@@ -183,7 +183,7 @@ const DashboardPage = () => {
       try {
         const res =  await axios
         .get(
-          `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/${sortOption}/all`,
+          `https://copytraderapi.fnoalgo.com/orders/tradeorders/${userData.userId}/${sortOption}/all`,
           {
             headers:{
               AccessToken:userData.accessToken,
@@ -205,7 +205,7 @@ const DashboardPage = () => {
       try {
         const res =  await axios
         .get(
-          `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/${sortOption}/latest`,
+          `https://copytraderapi.fnoalgo.com/orders/tradeorders/${userData.userId}/${sortOption}/latest`,
           {
             headers:{
               AccessToken:userData.accessToken,
@@ -226,7 +226,7 @@ const DashboardPage = () => {
       try {
         const res =  await axios
         .get(
-          `https://copytraderapi.fnoalgo.com/orders/tradeorders/1383/master/${sortOption}`,
+          `https://copytraderapi.fnoalgo.com/orders/tradeorders/${userData.userId}/master/${sortOption}`,
           {
             headers:{
               AccessToken:userData.accessToken,

@@ -22,7 +22,7 @@ const Userlevel = () => {
     try {
       const res =  await axios
       .get(
-        "https://copytraderapi.fnoalgo.com/accounts/accounts/1383",
+        `https://copytraderapi.fnoalgo.com/accounts/accounts/${userData.userId}`,
         {
           headers:{
             AccessToken:userData.accessToken,
@@ -54,7 +54,7 @@ const Userlevel = () => {
     try {
       const res =  await axios
       .patch(
-        "https://copytraderapi.fnoalgo.com/accounts/accounts/1383",
+        `https://copytraderapi.fnoalgo.com/accounts/accounts/${userData.userId}`,
         {
           "FnoMISEnabled": formData.FnoMISEnabled,
           "Enabled": formData.Enabled,

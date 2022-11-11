@@ -9,6 +9,7 @@ import AccountPage from './AccountPage'
 import PageNotFound from './PageNotFound'
 import AddAccount from '../components/AddAccount'
 import Userlevel from '../components/Userlevel'
+import GroupsPage from './GroupsPage'
 
 const Dashboard  = () => {
    const {activeMenu,} = useStateContext()
@@ -32,6 +33,7 @@ const Dashboard  = () => {
 
             <Route path='/userlevel' element={< Userlevel />}/>
             <Route path='/accounts' element={< AccountPage />}/>
+            <Route path='/groups' element={< GroupsPage />}/>
             <Route path='/accounts/add' element={< AddAccount/>}/>
             <Route path='/groups' element='Groups' />
             <Route path='/license' element='License' />

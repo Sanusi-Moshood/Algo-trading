@@ -481,7 +481,15 @@ th, td{
     max-width: 500px;
 }
 
-
+.deleteIcon{
+    color: rgb(208, 0, 0);
+    font-size: 20px;
+    cursor: pointer;
+}
+.deleteIcon:hover{
+    color: rgb(197, 9, 9);
+    scale: 1.5;
+}
 
 
 
