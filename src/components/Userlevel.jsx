@@ -13,6 +13,7 @@ const Userlevel = () => {
   useEffect(() => {
     if (status) {
       getUserLevel();
+      console.log(userData.userId)
     }
   }, [])
   
@@ -23,6 +24,7 @@ const Userlevel = () => {
       const res =  await axios
       .get(
         `https://copytraderapi.fnoalgo.com/accounts/accounts/${userData.userId}`,
+
         {
           headers:{
             AccessToken:userData.accessToken,

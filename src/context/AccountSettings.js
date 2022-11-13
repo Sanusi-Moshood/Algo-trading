@@ -27,7 +27,7 @@ const getGroupsData =  async () => {
   try {
     const res =  await axios
     .get(
-      `https://copytraderapi.fnoalgo.com/accounts/accounts/1383/groups`,
+      `https://copytraderapi.fnoalgo.com/accounts/accounts/${userData.userId}/groups`,
       {
         headers:{
           AccessToken:userData.accessToken,
@@ -47,7 +47,7 @@ const getAccountParams =  async () => {
   try {
     const res =  await axios
     .get(
-      `https://copytraderapi.fnoalgo.com/accounts/accounts/1383/accounts`,
+      `https://copytraderapi.fnoalgo.com/accounts/accounts/${userData.userId}/accounts`,
       {
         headers:{
           AccessToken:userData.accessToken,
@@ -84,7 +84,13 @@ const getAccountParams =  async () => {
             CommodityMISEnabled: formData.CommodityMISEnabled,
             CommodityStartTime: formData.CommodityStartTime,
             CommodityEndTime: formData.CommodityEndTime,
-          }
+          },
+          {
+           headers:{
+             AccessToken:userData.accessToken,
+             Userid: userData.userId
+           }
+         }
           )
           .then(res => console.log(res))
           .catch(err => console.log(err));

@@ -4,6 +4,7 @@ import styles from './dashboard.module.css'
 import { Link } from 'react-router-dom'
 import { AccountSettings } from '../context/AccountSettings'
 import {MdDelete} from 'react-icons/md'
+import {BiEditAlt} from 'react-icons/bi'
 import { AccountContext } from '../context/Account'
 import axios from 'axios'
 
@@ -74,7 +75,7 @@ const deleteAccount = (id) => {
             <td className={styles.t_td}>{item.CommodityMISEnabled ? 'ON' : 'OFF'}</td>
             <td className={styles.t_td} >{item.CommodityStartTime}</td>
             <td className={styles.t_td} >{item.CommodityEndTime}</td>
-            <td className={styles.t_td} >edit</td>
+            <td className={styles.t_td} ><BiEditAlt className={styles.editIcon} onClick={deleteAccount(item.AccountID)}/></td>
             <td className={styles.t_td} > <MdDelete className={styles.deleteIcon} onClick={deleteAccount(item.AccountID)}/> </td>
           </tr>
           ))

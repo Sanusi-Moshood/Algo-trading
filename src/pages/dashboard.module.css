@@ -457,7 +457,7 @@ table{
 .thead, tbody, tfoot, tr, td, th {
     border-color: inherit;
     border-style: solid;
-    border-width: 1px;
+    border-width: 1px !important;
 }
 
 .thead{
@@ -488,6 +488,15 @@ th, td{
 }
 .deleteIcon:hover{
     color: rgb(197, 9, 9);
+    scale: 1.5;
+}
+.editIcon{
+    color: rgb(0, 208, 0);
+    font-size: 20px;
+    cursor: pointer;
+}
+.editIcon:hover{
+    color: rgb(28, 197, 9);
     scale: 1.5;
 }
 
