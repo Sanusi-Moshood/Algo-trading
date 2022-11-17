@@ -13,7 +13,6 @@ const Userlevel = () => {
   useEffect(() => {
     if (status) {
       getUserLevel();
-      console.log(userData.userId)
     }
   }, [])
   
@@ -24,7 +23,6 @@ const Userlevel = () => {
       const res =  await axios
       .get(
         `https://copytraderapi.fnoalgo.com/accounts/accounts/${userData.userId}`,
-
         {
           headers:{
             AccessToken:userData.accessToken,
@@ -145,7 +143,8 @@ const Userlevel = () => {
                 </div>
                 <div>
               <label className={styles.label} >Start time</label>
-              <input type="time" 
+              <input type="time"
+              step="1"  
               name="EquityStartTime" 
               value={formData.EquityStartTime}
               onChange={handleChange}
@@ -155,6 +154,7 @@ const Userlevel = () => {
             <div>
               <label className={styles.label}>End time</label>
               <input type="time"
+              step="1" 
                id=""
                name="EquityEndTime" 
                value={formData.EquityEndTime}
@@ -192,7 +192,8 @@ const Userlevel = () => {
   
                 <div>
               <label className={styles.label} >Start time</label>
-              <input type="time" 
+              <input type="time"
+              step="1"  
               name="FnoStartTime" 
               value={formData.FnoStartTime}
               onChange={handleChange}
@@ -202,6 +203,7 @@ const Userlevel = () => {
             <div>
               <label className={styles.label}>End time</label>
               <input type="time"
+              step="1" 
                id=""
                name="FnoEndTime" 
                value={formData.FnoEndTime}
@@ -239,7 +241,8 @@ const Userlevel = () => {
   
                 <div>
               <label className={styles.label} >Start time</label>
-              <input type="time" 
+              <input type="time"
+              step="1"  
               name="CommodityStartTime" 
               value={formData.CommodityStartTime}
               onChange={handleChange}
@@ -249,6 +252,7 @@ const Userlevel = () => {
             <div>
               <label className={styles.label}>End time</label>
               <input type="time"
+              step="1" 
                id=""
                name="CommodityEndTime" 
                value={formData.CommodityEndTime}

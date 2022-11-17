@@ -5,37 +5,70 @@ import { AccountSettings } from '../context/AccountSettings';
 
 
 const AddAccount = () => {
-  const {addAccount} = useContext(AccountSettings)
+  const {addAccount, CreatedAcc} = useContext(AccountSettings)
+  const [validate, setValidate] =useState({
+    ID:'',
+    Key:'',
+    secret:''
+  })
+const [saved, setSaved] = useState(false)
 const [formData, setFormData] = useState({
   AccountID:'', 
   Enabled: false,
   EquityCNCEnabled: false,
   EquityMISEnabled: false,
-  EquityStartTime: false,
-  EquityEndTime: false,
+  EquityStartTime: "00:00:00",
+  EquityEndTime: "00:00:00",
   FnoCNCEnabled: false,
   FnoMISEnabled: false,
-  FnoStartTime: false,
-  FnoEndTime: false,
+  FnoStartTime: "00:00:00",
+  FnoEndTime: "00:00:00",
   CommodityCNCEnabled: false,
   CommodityMISEnabled: false,
-  CommodityStartTime: false,
-  CommodityEndTime: false,
-  // startTime: moment(),
-  // endTime: moment()
-
+  CommodityStartTime: "00:00:00",
+  CommodityEndTime: "00:00:00",
+  ApiKey:'',
+  ApiSecret:''
 })
 
 const handleChange = (e) => {
   const {name, value, type, checked} = e.target
   setFormData(prev => ({
     ...prev,
-    [name]: type === 'checkbox' ? checked  : value
+    [name]: type === 'checkbox' ? checked  : value.replaceAll(' ', '_')
   }))
+}
+const validateCheck = () => {
+  if (formData.AccountID === '') {
+    setValidate(p => ({
+      ...p,
+      ID: 'Account ID cannot be blank'
+    }))
+  }
+  if (formData.ApiKey === '') {
+    setValidate(p => ({
+      ...p,
+      Key: 'API KEY cannot be blank'
+    }))
+  }
+  if (formData.ApiSecret === '') {
+    setValidate(p => ({
+      ...p,
+      secret: 'API secret cannot be blank'
+    }))
+  }
 }
 const submit = (e) => {
   e.preventDefault();
-  addAccount(formData)
+  setValidate({
+    ID:'',
+    Key:'',
+    secret:''
+  })
+  validateCheck()
+  if (formData.AccountID  && formData.ApiKey && formData.ApiSecret != '') {
+    addAccount(formData)
+  }
 }
 
 
@@ -58,7 +91,9 @@ const submit = (e) => {
               value={formData.AccountID}
               onChange={handleChange}
               className={styles.addID} /> 
-          </div>
+              <p className={styles.auth}>{validate.ID}</p>
+        </div>
+          
         <div>
               <input 
                 type="checkbox"  
@@ -102,7 +137,8 @@ const submit = (e) => {
                 </div>
                 <div>
               <label className={styles.label} >Start time</label>
-              <input type="time" 
+              <input type="time"
+              step="1" 
               name="EquityStartTime" 
               value={formData.EquityStartTime}
               onChange={handleChange}
@@ -112,6 +148,7 @@ const submit = (e) => {
             <div>
               <label className={styles.label}>End time</label>
               <input type="time"
+              step="1"
                id=""
                name="EquityEndTime" 
                value={formData.EquityEndTime}
@@ -149,7 +186,8 @@ const submit = (e) => {
   
                 <div>
               <label className={styles.label} >Start time</label>
-              <input type="time" 
+              <input type="time"
+              step="1" 
               name="FnoStartTime" 
               value={formData.FnoStartTime}
               onChange={handleChange}
@@ -159,6 +197,7 @@ const submit = (e) => {
             <div>
               <label className={styles.label}>End time</label>
               <input type="time"
+              step="1"
                id=""
                name="FnoEndTime" 
                value={formData.FnoEndTime}
@@ -196,7 +235,8 @@ const submit = (e) => {
   
                 <div>
               <label className={styles.label} >Start time</label>
-              <input type="time" 
+              <input type="time"
+              step="1" 
               name="CommodityStartTime" 
               value={formData.CommodityStartTime}
               onChange={handleChange}
@@ -206,6 +246,7 @@ const submit = (e) => {
             <div>
               <label className={styles.label}>End time</label>
               <input type="time"
+              step="1"
                id=""
                name="CommodityEndTime" 
                value={formData.CommodityEndTime}
@@ -215,6 +256,30 @@ const submit = (e) => {
               </div>
             </div>
 
+            <div>
+            <label className={styles.label}>Api Key</label> <br />
+            <input 
+              type="text" 
+              placeholder='Account 1'
+              name='ApiKey' 
+              value={formData.ApiKey}
+              onChange={handleChange}
+              className={styles.addID} /> 
+              <p className={styles.auth}>{validate.Key}</p>
+          </div>
+
+          <div>
+            <label className={styles.label}>API SECRET</label> <br />
+            <input 
+              type="text" 
+              placeholder='Account 1'
+              name='ApiSecret' 
+              value={formData.ApiSecret}
+              onChange={handleChange}
+              className={styles.addID} /> 
+              <p className={styles.auth}>{validate.secret}</p>
+          </div>
+          {CreatedAcc && <p>Account Created successfully </p>}
             <div className={styles.submit}>
             <button>Save</button> 
             {/* <span>Reset</span> */}

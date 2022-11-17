@@ -6,25 +6,37 @@ import { AccountSettings } from '../context/AccountSettings'
 import {MdDelete} from 'react-icons/md'
 import {BiEditAlt} from 'react-icons/bi'
 import { AccountContext } from '../context/Account'
+import { useState } from 'react'
 import axios from 'axios'
 
 
 const AccountPage = () => {
   const {userData, status} = useContext(AccountContext)
-const {data, loading} = useContext(AccountSettings)
+const {data, loading, editFunc, setData} = useContext(AccountSettings)
 
+const deleteFunc=  async (id) => {
+    const remainingAccount = data.filter((data) => id !== data.AccountID);
+  setData(remainingAccount);
+  try {
+    const res =  await axios
+    .delete(
+      `https://copytraderapi.fnoalgo.com/accounts/accounts/${userData.userId}/accounts/${id}`,
+     {
+      headers:{
+        AccessToken:userData.accessToken,
+        Userid: userData.userId
+      }
+    }      
+    )
 
+  } catch(err) {
+    console.log(`An error has occured: ${err}`)
+  }
 
-const deleteAccount = (id) => {
-  console.log(id)
-
-  axios
-  .delete(
-    `https://copytraderapi.fnoalgo.com/accounts/accounts/i383/accounts/${id}`,
-  ).then(res => console.log(res))
-  .catch(err => console.log(err));
 
 }
+
+
 
   return (
     <div className={styles.tablecontainer}>
@@ -82,8 +94,9 @@ const deleteAccount = (id) => {
             <td className={styles.t_td} >{item.LoginStatus}</td>
             <td className={styles.t_td} >{item.LastLoginTime}</td>
             <td className={styles.t_td} ><a href="http://localhost:3000/accounts">{item.LoginUrl}</a></td>
-            <td className={styles.t_td} ><BiEditAlt className={styles.editIcon} onClick={deleteAccount(item.AccountID)}/></td>
-            <td className={styles.t_td} > <MdDelete className={styles.deleteIcon} onClick={deleteAccount(item.AccountID)}/> </td>
+            <td className={styles.t_td} ><Link to={`/accounts/edit/${item.AccountID}`} >
+              <BiEditAlt className={styles.editIcon} onClick={() => editFunc(item.AccountID)}/></Link></td>
+                        <td className={styles.t_td} > <MdDelete className={styles.deleteIcon} onClick={() => deleteFunc(item.AccountID)}/> </td>
           </tr>
           ))
         )

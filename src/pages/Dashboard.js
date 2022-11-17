@@ -9,9 +9,13 @@ import AccountPage from './AccountPage'
 import PageNotFound from './PageNotFound'
 import AddAccount from '../components/AddAccount'
 import Userlevel from '../components/Userlevel'
+import EditAccount from '../components/EditAccount'
 import GroupsPage from './GroupsPage'
+import { AccountSettings } from '../context/AccountSettings'
+import { useContext } from 'react'
 
 const Dashboard  = () => {
+  const {EditAccountId} = useContext(AccountSettings)
    const {activeMenu,} = useStateContext()
 
   return (
@@ -37,6 +41,7 @@ const Dashboard  = () => {
             <Route path='/accounts/add' element={< AddAccount/>}/>
             <Route path='/groups' element='Groups' />
             <Route path='/license' element='License' />
+            <Route path={`/accounts/edit/${EditAccountId}`} element={< EditAccount />}/>
             <Route path='*' element={<PageNotFound />}/>
           </Routes>
         </div>

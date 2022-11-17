@@ -41,7 +41,7 @@ p{
 }
 
 .main_page{
-    padding: 20px 10px 0 280px;
+    padding: 20px 10px 20px 280px;
 }
 
 .viewWidth{
@@ -480,7 +480,9 @@ th, td{
 .addID{
     max-width: 500px;
 }
-
+.auth{
+    color: rgb(255, 0, 0);
+}
 .deleteIcon{
     color: rgb(208, 0, 0);
     font-size: 20px;
