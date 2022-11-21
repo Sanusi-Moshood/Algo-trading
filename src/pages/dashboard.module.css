@@ -345,7 +345,7 @@ th, td{
     color: #000000;
 }
 
-.form input[type=text] {
+.form .addID {
     width: 75%;
     border-radius: 5px;
     border-width: 0.5px;
@@ -436,7 +436,7 @@ input[type=checkbox].toggle:checked +label::after {
     display: flex;
     gap: 15px;
 }
-.form button, .form span {
+.form button{
     width: 150px;
     border: 0.5px solid #0059ffe1;
     text-align: center;
@@ -502,9 +502,8 @@ th, td{
     scale: 1.5;
 }
 
-
-
-
+/* 
+******************* GROUP PAGE ******************** */
 
 
 

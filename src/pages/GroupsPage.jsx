@@ -11,18 +11,30 @@ import axios from 'axios'
 
 const GroupsPage = () => {
   const {userData, status} = useContext(AccountContext)
-const {GroupsData, loading} = useContext(AccountSettings)
+const {GroupsData, loading, setGroupsData, editGroupFunc} = useContext(AccountSettings)
 
 
 
-const deleteAccount = (id) => {
-  console.log(id)
-
-  axios
+const deleteFunc=  async (id) => {
+  const remainingGroup = GroupsData.filter((GroupsData) => id !== GroupsData.GroupID);
+setGroupsData( remainingGroup);
+try {
+  const res =  await axios
   .delete(
-    `https://copytraderapi.fnoalgo.com/accounts/accounts/i383/accounts/${id}`,
-  ).then(res => console.log(res))
-  .catch(err => console.log(err));
+    `https://copytraderapi.fnoalgo.com/accounts/accounts/${userData.userId}/groups/${id}`,
+   {
+    headers:{
+      AccessToken:userData.accessToken,
+      Userid: userData.userId
+    }
+  }      
+  )
+
+} catch(err) {
+  console.log(`An error has occured: ${err}`)
+}
+
+
 }
 
   return (
@@ -75,8 +87,9 @@ const deleteAccount = (id) => {
             <td className={styles.t_td}>{item.CommodityMISEnabled ? 'ON' : 'OFF'}</td>
             <td className={styles.t_td} >{item.CommodityStartTime}</td>
             <td className={styles.t_td} >{item.CommodityEndTime}</td>
-            <td className={styles.t_td} ><BiEditAlt className={styles.editIcon} onClick={deleteAccount(item.AccountID)}/></td>
-            <td className={styles.t_td} > <MdDelete className={styles.deleteIcon} onClick={deleteAccount(item.AccountID)}/> </td>
+            <td className={styles.t_td} ><Link to={`/groups/edit/${item.GroupID}`} >
+              <BiEditAlt className={styles.editIcon} onClick={() => editGroupFunc(item.GroupID)}/></Link></td>
+            <td className={styles.t_td} > <MdDelete className={styles.deleteIcon} onClick={() => deleteFunc(item.GroupID)}/> </td>
           </tr>
           ))
         )
@@ -84,7 +97,7 @@ const deleteAccount = (id) => {
       </tbody>
     </table>
 
-  <button className={styles.add_account}><Link to={'/accounts/add'} >Create new Group</Link></button>
+  <button className={styles.add_account}><Link to={'/group/add'} >Create new Group</Link></button>
   
   
   

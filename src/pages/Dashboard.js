@@ -8,14 +8,16 @@ import DashboardPage from './DashboardPage'
 import AccountPage from './AccountPage'
 import PageNotFound from './PageNotFound'
 import AddAccount from '../components/AddAccount'
+import AddGroup from '../components/AddGroup'
 import Userlevel from '../components/Userlevel'
 import EditAccount from '../components/EditAccount'
+import EditGroup from '../components/EditGroup'
 import GroupsPage from './GroupsPage'
 import { AccountSettings } from '../context/AccountSettings'
 import { useContext } from 'react'
 
 const Dashboard  = () => {
-  const {EditAccountId} = useContext(AccountSettings)
+  const {EditAccountId, EditGroupId} = useContext(AccountSettings)
    const {activeMenu,} = useStateContext()
 
   return (
@@ -39,9 +41,11 @@ const Dashboard  = () => {
             <Route path='/accounts' element={< AccountPage />}/>
             <Route path='/groups' element={< GroupsPage />}/>
             <Route path='/accounts/add' element={< AddAccount/>}/>
+            <Route path='/group/add' element={< AddGroup/>}/>
             <Route path='/groups' element='Groups' />
             <Route path='/license' element='License' />
             <Route path={`/accounts/edit/${EditAccountId}`} element={< EditAccount />}/>
+            <Route path={`/groups/edit/${EditGroupId}`} element={< EditGroup />}/>
             <Route path='*' element={<PageNotFound />}/>
           </Routes>
         </div>

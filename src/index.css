@@ -46,6 +46,10 @@ ul.pagination {
         align-items: center;
         justify-content: center33333;
     }
+
+    .Multiselect{
+        width: 75% !important;
+    }
 }
 
 ul.pagination li {
@@ -59,4 +63,20 @@ ul.pagination li {
     color: white;
     font-size: x-large;
     font-weight: 700!important;
+}
+
+.Multiselect{
+    border-radius: 5px;
+    border-width: 0.5px;
+    outline: none;
+    padding: 5px 10px;
+}
+@media screen and (min-width: 768px) {
+
+    .Multiselect{
+        width: 500px !important;
+    }
+}
+.searchWrapper{
+    border-color: #0059ffe1 !important;
 }

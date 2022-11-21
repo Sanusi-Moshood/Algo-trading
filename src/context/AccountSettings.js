@@ -10,19 +10,21 @@ const AccountSettings= createContext();
   const [GroupsData, setGroupsData] = useState([])
  const [loading, setLoading] = useState(false)
  const [EditAccountId, setEditAccountId] = useState('')
+ const [EditGroupId, setEditGroupId] = useState('')
  const [CreatedAcc, setCreatedAcc] = useState('')
+ const [CreatedGroup, setCreatedGroup] = useState('')
 
 
 
 useEffect(() => {
   if (status) {
-    // getAccountIds()
     getAccountParams()
     getGroupsData()
   }
 
-}, [CreatedAcc])
+}, [])
 
+///////////////////////////////////////GROUP PAGE APIS//////////////////////////////////////////////////////
 const getGroupsData =  async () => {
   setLoading(true)
   try {
@@ -43,6 +45,50 @@ const getGroupsData =  async () => {
     console.log(`An error has occured: ${err}`)
   }
 }
+
+const addGroup = (formData) => {
+
+  axios.post(`https://copytraderapi.fnoalgo.com/accounts/accounts/${userData.userId}/groups/${formData.GroupID}`, 
+  {
+    GroupID: formData.GroupID, 
+    Enabled: formData.Enabled,
+    EquityCNCEnabled: formData.EquityCNCEnabled,
+    EquityMISEnabled: formData.EquityMISEnabled,
+    EquityStartTime: formData.EquityStartTime,
+    EquityEndTime: formData.EquityEndTime,
+    FnoCNCEnabled: formData.FnoCNCEnabled,
+    FnoMISEnabled: formData.FnoMISEnabled,
+    FnoStartTime: formData.FnoStartTime,
+    FnoEndTime: formData.FnoEndTime,
+    CommodityCNCEnabled: formData.CommodityCNCEnabled,
+    CommodityMISEnabled: formData.CommodityMISEnabled,
+    CommodityStartTime: formData.CommodityStartTime,
+    CommodityEndTime: formData.CommodityEndTime,
+    Members:formData.Members,
+    MasterAccount:formData.MasterAccount
+  },
+  {
+   headers:{
+     AccessToken:userData.accessToken,
+     Userid: userData.userId
+   }
+ }
+  )  
+  .then(setCreatedGroup(true),
+  getGroupsData(),
+  setTimeout(() => {
+    setCreatedGroup(false)
+  }, 5000))
+  .catch(err => console.log(err));
+
+}
+
+const editGroupFunc = (id) => {
+  setEditGroupId(id)
+}
+
+///////////////////////////////////////ACCOUNT PAGE APIS//////////////////////////////////////////////////////
+
 const getAccountParams =  async () => {
   setLoading(true)
   try {
@@ -59,15 +105,13 @@ const getAccountParams =  async () => {
     const params = res.data;
     setData(params)
     setLoading(false)
+    // console.log(params)
   } catch(err) {
     console.log(`An error has occured: ${err}`)
   }
 }
 
-
-
-
-      const addAccount = (formData) => {
+const addAccount = (formData) => {
 
           axios.post(`https://copytraderapi.fnoalgo.com/accounts/accounts/${userData.userId}/accounts/${formData.AccountID}`, 
           {
@@ -96,6 +140,7 @@ const getAccountParams =  async () => {
          }
           )  
           .then(setCreatedAcc(true),
+            getAccountParams(),
           setTimeout(() => {
             setCreatedAcc(false)
           }, 5000))
@@ -103,10 +148,6 @@ const getAccountParams =  async () => {
 
       }
 
-
-      const EditAccountPatch = () => {
-
-      }
 
       const editFunc = (id) => {
         setEditAccountId(id)
@@ -123,7 +164,12 @@ const getAccountParams =  async () => {
           EditAccountId, 
           editFunc,
           getAccountParams,
-          CreatedAcc
+          CreatedAcc,
+          CreatedGroup,
+          addGroup,
+          setGroupsData,
+          EditGroupId,
+          editGroupFunc
           }}>
           {children}
         </AccountSettings.Provider>
