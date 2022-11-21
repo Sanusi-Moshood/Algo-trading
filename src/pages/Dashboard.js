@@ -41,7 +41,7 @@ const Dashboard  = () => {
             <Route path='/accounts' element={< AccountPage />}/>
             <Route path='/groups' element={< GroupsPage />}/>
             <Route path='/accounts/add' element={< AddAccount/>}/>
-            <Route path='/group/add' element={< AddGroup/>}/>
+            <Route path='/groups/add' element={< AddGroup/>}/>
             <Route path='/groups' element='Groups' />
             <Route path='/license' element='License' />
             <Route path={`/accounts/edit/${EditAccountId}`} element={< EditAccount />}/>
