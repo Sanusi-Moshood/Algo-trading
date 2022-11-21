@@ -1,11 +1,13 @@
 import React from 'react'
 import styles from '../pages/dashboard.module.css'
 import { NavLink } from 'react-router-dom'
-import {MdDashboard, MdSwitchAccount, MdCancel} from 'react-icons/md'
+import {MdDashboard, MdAccountCircle, MdCancel} from 'react-icons/md'
 import {TbLicense} from 'react-icons/tb'
 import { useStateContext } from '../context/ContextProvider'
 import { AccountContext } from '../context/Account'
 import { useContext } from 'react'
+import {RiUserSettingsFill} from 'react-icons/ri'
+import {HiUserGroup} from 'react-icons/hi'
 
 
 const Sidebar = () => {
@@ -38,9 +40,9 @@ const Sidebar = () => {
 
           <div className={styles.UserSettings}>
             <h4>Accounts</h4>
-          <NavLink to={'/userlevel'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <MdSwitchAccount /> User Level</NavLink>
-          <NavLink to={'/accounts'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <MdSwitchAccount /> Accounts</NavLink>
-          <NavLink to={'/groups'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <MdSwitchAccount /> Groups</NavLink>
+          <NavLink to={'/userlevel'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <RiUserSettingsFill/> User Level</NavLink>
+          <NavLink to={'/accounts'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <MdAccountCircle /> Accounts</NavLink>
+          <NavLink to={'/groups'} className={({isActive}) => (isActive ? styles.side_link : styles.side_link_active) }  onClick={handleCloseSideBar}> <HiUserGroup /> Groups</NavLink>
           </div>          
 
           <div className={styles.UserSettings}>

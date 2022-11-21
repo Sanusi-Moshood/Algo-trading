@@ -189,7 +189,7 @@ const MasterChange = (e) => {
 
   return (
     <div className={styles.viewWidth}>
-              <h3 className={styles.back}><Link to={'/accounts'}> Back</Link></h3>
+              <h3 className={styles.back}><Link to={'/groups'}> Back</Link></h3>
         
       <div className={styles.header}>
         <h1>Edit {EditGroupId}</h1>
