@@ -2,7 +2,6 @@ import styles from '../pages/dashboard.module.css'
 import { Link } from 'react-router-dom'
 import { useState, useContext } from 'react'
 import { AccountSettings } from '../context/AccountSettings';
-import { Multiselect } from 'multiselect-react-dropdown'
 import { useEffect } from 'react';
 import axios from 'axios'
 import { AccountContext } from '../context/Account';
