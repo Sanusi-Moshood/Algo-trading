@@ -6,12 +6,11 @@ import { AccountSettings } from '../context/AccountSettings'
 import {MdDelete} from 'react-icons/md'
 import {BiEditAlt} from 'react-icons/bi'
 import { AccountContext } from '../context/Account'
-import { useState } from 'react'
 import axios from 'axios'
 
 
 const AccountPage = () => {
-  const {userData, status} = useContext(AccountContext)
+  const {userData} = useContext(AccountContext)
 const {data, loading, editFunc, setData} = useContext(AccountSettings)
 
 const deleteFunc=  async (id) => {

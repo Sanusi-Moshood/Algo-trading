@@ -10,7 +10,7 @@ import axios from 'axios'
 
 
 const GroupsPage = () => {
-  const {userData, status} = useContext(AccountContext)
+  const {userData} = useContext(AccountContext)
 const {GroupsData, loading, setGroupsData, editGroupFunc} = useContext(AccountSettings)
 
 

@@ -9,14 +9,14 @@ import Select from 'react-select'
 
 
 const AddGroup = () => {
-  const {userData, status} = useContext(AccountContext)
+  const {userData} = useContext(AccountContext)
   const {addGroup, CreatedGroup} = useContext(AccountSettings)
   const [validate, setValidate] =useState({
     ID:'',
     Accounts:'',
     Master:''
   })
-const [saved, setSaved] = useState(false)
+
 const [formData, setFormData] = useState({
   GroupID:'', 
   Enabled: false,
@@ -70,15 +70,13 @@ const submit = (e) => {
     Master:''
   })
   validateCheck()
-  if (formData.GroupID && formData.MasterAccount != '' && formData.Members.length != 0) {
+  if (formData.GroupID && formData.MasterAccount !== '' && formData.Members.length !== 0) {
     addGroup(formData)
   }
 }
 
 const [AccountData, setAccountData] = useState([])
-useEffect(() => {
-   getAccountsData()
-}, [])
+
 
 const getAccountsData =  async () => {
   // setLoading(true)
@@ -100,6 +98,10 @@ const getAccountsData =  async () => {
     console.log(`An error has occured: ${err}`)
   }
 }
+
+useEffect(() => {
+  getAccountsData()
+}, [getAccountsData])
 
 const options = AccountData.map(ID => (
   {value: ID, label: ID }

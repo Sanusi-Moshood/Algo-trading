@@ -11,7 +11,7 @@ const AddAccount = () => {
     Key:'',
     secret:''
   })
-const [saved, setSaved] = useState(false)
+
 const [formData, setFormData] = useState({
   AccountID:'', 
   Enabled: false,
@@ -66,7 +66,7 @@ const submit = (e) => {
     secret:''
   })
   validateCheck()
-  if (formData.AccountID  && formData.ApiKey && formData.ApiSecret != '') {
+  if (formData.AccountID  && formData.ApiKey && formData.ApiSecret !== '') {
     addAccount(formData)
   }
 }

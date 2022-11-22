@@ -27,7 +27,8 @@ function Login() {
           switch (code) {
               case 'InvalidParameterException':
                 setEmailCheck('Please enter a valid Username or Email')
-              case 'NotAuthorizedException':
+                break;
+                case 'NotAuthorizedException':
                 setEmailCheck(' Incorrect username or password.')
                 break;
               default:

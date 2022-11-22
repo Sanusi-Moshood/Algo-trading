@@ -6,7 +6,7 @@ import Forgotpass from './pages/Account/Forgotpass';
 import './index.css'
 import Dashboard from './pages/Dashboard'
 import { AccountContext } from './context/Account';
-import { useContext, useState, useEffect } from 'react';
+import { useContext,} from 'react';
 import { ContextProvider } from './context/ContextProvider';
 import PageNotFound from './pages/PageNotFound';
 import {AccountSettingsContext} from './context/AccountSettings'

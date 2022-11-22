@@ -8,8 +8,7 @@ import styles from './dashboard.module.css'
 import { 
   MDBTable, MDBTableHead,
   MDBTableBody,
-  MDBRow, MDBCol, MDBContainer, MDBBtn,
-  MDBPagination, MDBPaginationLink, MDBPaginationItem
+  MDBRow, MDBCol,
  } from 'mdb-react-ui-kit'
 
 
@@ -297,13 +296,13 @@ const DashboardPage = () => {
       <label>By Order Id: </label>
       <input type="text" name="masterOrderId" value={masterOrderId} placeholder='OrderId' onChange={e=>setMasterOrderId(e.target.value)}/>
       <button className={styles.all_btn} onClick={() => {
-        if(masterOrderId != ''){
+        if(masterOrderId !== ''){
           setSortOption(masterOrderId)
           setSort('Master')
         }
         }}>Go</button>
       <select  value={sort} onChange={e=> {
-        if(masterOrderId != ''){
+        if(masterOrderId !== ''){
         setSort(e.target.value)
         setSortOption(masterOrderId)
         }

@@ -7,17 +7,13 @@ import axios from 'axios'
 
 
 const EditAccount = () => {
-  const {userData, status} = useContext(AccountContext)
+  const {userData} = useContext(AccountContext)
   const {EditAccountId, getAccountParams} = useContext(AccountSettings)
   const [saved, setSaved] = useState(false)
   const [loading, setLoading] = useState(false)
   
   const [EditFormData, setEditFormData] = useState({})
-  useEffect(() => {
-    getEditData(EditAccountId)
-  }, [])
 
-  
 
   const getEditData =  async (EditAccountId) => {
     setLoading(true)
@@ -39,6 +35,10 @@ const EditAccount = () => {
     console.log(`An error has occured: ${err}`)
   }
   }
+
+  useEffect(() => {
+    getEditData(EditAccountId)
+  }, [])
 
 const handleChange = (e) => {
   const {name, value, type, checked} = e.target
