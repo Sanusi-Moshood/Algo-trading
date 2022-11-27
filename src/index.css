@@ -80,3 +80,26 @@ ul.pagination li {
 .searchWrapper{
     border-color: #0059ffe1 !important;
 }
+
+
+.license_cont{
+    padding: 10px;
+    margin-top: 10px;
+    border: 0.5px solid #0059ffe1 ;
+    border-radius: 5px;
+    max-width: fit-content;
+}
+.license_btns{
+    display: flex;
+    gap: 15px;
+}
+.license_btns button{
+    border: 0.5px solid #0059ffe1;
+    text-align: center;
+    background-color: rgb(252, 252, 252);
+    color: #000000;
+    font-size: 20px;
+    border-radius: 3px;
+    padding: 5px 20px 5px 20px;
+    margin-top: 15px;
+}

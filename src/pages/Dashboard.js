@@ -15,6 +15,9 @@ import EditGroup from '../components/EditGroup'
 import GroupsPage from './GroupsPage'
 import { AccountSettings } from '../context/AccountSettings'
 import { useContext } from 'react'
+import LicensePage from './LicensePage'
+
+
 
 const Dashboard  = () => {
   const {EditAccountId, EditGroupId} = useContext(AccountSettings)
@@ -40,10 +43,10 @@ const Dashboard  = () => {
             <Route path='/userlevel' element={< Userlevel />}/>
             <Route path='/accounts' element={< AccountPage />}/>
             <Route path='/groups' element={< GroupsPage />}/>
+            <Route path='/license' element={<  LicensePage />}/>
             <Route path='/accounts/add' element={< AddAccount/>}/>
             <Route path='/groups/add' element={< AddGroup/>}/>
             <Route path='/groups' element='Groups' />
-            <Route path='/license' element='License' />
             <Route path={`/accounts/edit/${EditAccountId}`} element={< EditAccount />}/>
             <Route path={`/groups/edit/${EditGroupId}`} element={< EditGroup />}/>
             <Route path='*' element={<PageNotFound />}/>

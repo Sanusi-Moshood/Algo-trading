@@ -8,7 +8,7 @@ import Select from 'react-select'
 
 
 const EditGroup = () => {
-  const {userData, status} = useContext(AccountContext)
+  const {userData} = useContext(AccountContext)
   const {EditGroupId, getAccountParams} = useContext(AccountSettings)
   const [saved, setSaved] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -80,7 +80,7 @@ const submit = (e) => {
   })
   validateCheck()
   
-  if (EditFormData.MasterAccount != '' && Array.isArray(EditFormData.Members)) {
+  if (EditFormData.MasterAccount !== '' && Array.isArray(EditFormData.Members)) {
     EditAccountPatch(EditFormData)
   }
 
