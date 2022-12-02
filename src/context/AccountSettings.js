@@ -9,10 +9,12 @@ const AccountSettings= createContext();
   const [data, setData] = useState([])
   const [GroupsData, setGroupsData] = useState([])
  const [loading, setLoading] = useState(false)
+ const [lloading, setLloading] = useState(false)
  const [EditAccountId, setEditAccountId] = useState('')
  const [EditGroupId, setEditGroupId] = useState('')
  const [CreatedAcc, setCreatedAcc] = useState('')
  const [CreatedGroup, setCreatedGroup] = useState('')
+ const [LicenseData, setLicenseData] = useState()
 
 
 
@@ -20,6 +22,7 @@ useEffect(() => {
   if (status) {
     getAccountParams()
     getGroupsData()
+    getLicenseData()
   }
 
 }, [])
@@ -153,6 +156,31 @@ const addAccount = (formData) => {
         setEditAccountId(id)
       }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+const getLicenseData =  async () => {
+  setLloading(true)
+try {
+  const res =  await axios
+  .get(
+    `https://copytraderapi.fnoalgo.com/licence/licence/${userData.userId}`,
+    {
+      headers:{
+        AccessToken: userData.accessToken,
+        Userid: userData.userId
+      }
+    }
+  )
+  setLicenseData(res.data)
+  // console.log(LicenseData)
+  setLloading(false)
+} catch(err) {
+  console.log(`An error has occured: ${err}`)
+}
+}
+
 
     return (
         <AccountSettings.Provider value={{
@@ -169,7 +197,10 @@ const addAccount = (formData) => {
           addGroup,
           setGroupsData,
           EditGroupId,
-          editGroupFunc
+          editGroupFunc,
+          getLicenseData,
+          LicenseData, setLicenseData,
+          lloading
           }}>
           {children}
         </AccountSettings.Provider>

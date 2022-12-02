@@ -10,6 +10,7 @@
     "amazon-cognito-identity-js": "^5.2.10",
     "axios": "^0.27.2",
     "mdb-react-ui-kit": "^4.2.0",
+    "razorpay": "^2.8.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
@@ -17,6 +18,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.6.1",
+    "uuid4": "^2.0.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

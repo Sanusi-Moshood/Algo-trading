@@ -353,6 +353,14 @@ th, td{
     outline: none;
     padding: 5px 10px;
 }
+.form .addID2 {
+    width: 40%;
+    border-radius: 5px;
+    border-width: 0.5px;
+    border-color: #0059ffe1;
+    outline: none;
+    padding: 5px 10px;
+}
 .form input[type=time] {
     border-radius: 5px;
     border-width: 0.5px;
@@ -480,6 +488,9 @@ th, td{
 .addID{
     max-width: 500px;
 }
+.addID2{
+    max-width: 300px;
+}
 .auth{
     color: rgb(255, 0, 0);
 }
@@ -506,6 +517,15 @@ th, td{
 ******************* GROUP PAGE ******************** */
 
 
+.reset-link-msg {
+    background: rgb(118, 255, 118);
+    padding: 10px;
+    font-size: 17px;
+    color: var(--dark-blue);
+    top: -100%;
+    transition: all 2s ease-in;
+    text-align: center;
+}
 
 
 
