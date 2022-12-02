@@ -105,15 +105,15 @@ const LicensePage = () => {
   }
   }
 
-  const validatePayment =  async () => {
+  const validatePayment =  async (response) => {
   try {
     const res =  await axios
     .post(
       `https://copytraderapi.fnoalgo.com/payment/payment/${userData.userId}/verify`,
       {
-        razorpayPaymentId : RazorData.razorpay_payment_id,
-        razorpayOrderId : RazorData.razorpay_order_id,
-        razorpaySignature : RazorData.razorpay_signature
+        razorpayPaymentId : response.razorpay_payment_id,
+        razorpayOrderId : response.razorpay_order_id,
+        razorpaySignature : response.razorpay_signature
       },
       {
         headers:{
@@ -130,7 +130,7 @@ const LicensePage = () => {
 
       setTimeout(() => {
         setSuccessMsg(false);
-      }, 15000);
+      }, 5000);
     } else if (params === 'Success') {
       setSuccessMsg(true);
       getLicenseData()
@@ -180,9 +180,8 @@ const LicensePage = () => {
         order_id: params.id        , //This is a sample Order ID. Pass the id obtained in the response of Step 1
         handler: function (response){
           setRazorData(response)
-          console.log(RazorData);
-
-          validatePayment()
+          console.log(response);
+          validatePayment(response)
         },
         prefill: {
           name: "Gaurav Kumar",
