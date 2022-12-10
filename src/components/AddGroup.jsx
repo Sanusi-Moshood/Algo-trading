@@ -6,16 +6,27 @@ import { useEffect } from 'react';
 import axios from 'axios'
 import { AccountContext } from '../context/Account';
 import Select from 'react-select'
+import { useNavigate } from "react-router-dom";
 
 
 const AddGroup = () => {
   const {userData} = useContext(AccountContext)
-  const {addGroup, CreatedGroup, GIdCheck} = useContext(AccountSettings)
+  const {addGroup, CreatedGroup, GIdCheck, GRedirect} = useContext(AccountSettings)
   const [validate, setValidate] =useState({
     ID:'',
     Accounts:'',
     Master:''
   })
+
+  const navigate = useNavigate();
+
+useEffect(() => {
+  if (GRedirect) {
+    
+    navigate(-1);
+  }
+}, [GRedirect]);
+
 
 const [formData, setFormData] = useState({
   GroupID:'', 

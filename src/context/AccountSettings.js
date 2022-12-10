@@ -22,6 +22,7 @@ const AccountSettings= createContext();
  const [GIdCheck, setGIdCheck] = useState('')
  const [CommodityCheck, setCommodityCheck] = useState('')
  const [redirect, setRedirect] = useState(false)
+ const [GRedirect, setGRedirect] = useState(false)
 
 
 useEffect(() => {
@@ -89,6 +90,8 @@ const addGroup = (formData) => {
   setTimeout(() => {
     setCreatedGroup(false)
   }, 20000)
+
+  setGRedirect(true)
   })
   .catch(
     (err) => {
@@ -274,7 +277,8 @@ try {
           IdCheck,
           GIdCheck,
           CommodityCheck,
-          redirect
+          redirect,
+          GRedirect
           }}>
           {children}
         </AccountSettings.Provider>
