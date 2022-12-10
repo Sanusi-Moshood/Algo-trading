@@ -18,8 +18,8 @@ const LicensePage = () => {
   const [showBuy, setShowBuy] = useState(false)
 
   const [formData, setFormData] = useState({
-    CreditNo:0,
-    amount:0,
+    CreditNo: 1,
+    amount:1.5,
     receipt: uuid4()
   })
   const handleChange = (e) => {
@@ -241,7 +241,8 @@ const LicensePage = () => {
         <div>
         <p>Number of credits</p>
         <input 
-                type="number" 
+                type="number"
+                min={1} 
                 name='CreditNo' 
                 value={formData.CreditNo}
                 onChange={handleChange}

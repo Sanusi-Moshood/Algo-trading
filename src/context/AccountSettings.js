@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, {createContext, useContext, useState, useEffect} from 'react'
 import { AccountContext } from './Account';
+import { redirect } from "react-router-dom";
 const AccountSettings= createContext();
 
 
@@ -15,7 +16,12 @@ const AccountSettings= createContext();
  const [CreatedAcc, setCreatedAcc] = useState('')
  const [CreatedGroup, setCreatedGroup] = useState('')
  const [LicenseData, setLicenseData] = useState()
-
+ const [EquityCheck, setEquityCheck] = useState('')
+ const [FnoCheck, setFnoCheck] = useState('')
+ const [IdCheck, setIdCheck] = useState('')
+ const [GIdCheck, setGIdCheck] = useState('')
+ const [CommodityCheck, setCommodityCheck] = useState('')
+ const [redirect, setRedirect] = useState(false)
 
 
 useEffect(() => {
@@ -77,12 +83,30 @@ const addGroup = (formData) => {
    }
  }
   )  
-  .then(setCreatedGroup(true),
-  getGroupsData(),
+  .then((response) => {
+    setCreatedGroup(true)
+  getGroupsData()
   setTimeout(() => {
     setCreatedGroup(false)
-  }, 5000))
-  .catch(err => console.log(err));
+  }, 20000)
+  })
+  .catch(
+    (err) => {
+      setCreatedAcc(false)
+      const code = err.response.data;
+      console.log(err);
+      switch (code) {
+            case 'failed: group already exists':
+            setGIdCheck(' Group ID already exist')
+            setTimeout(() => {
+              setGIdCheck('')
+            }, 20000)
+            break;
+          default:
+              return false;
+      }
+    }
+  )
 
 }
 
@@ -115,7 +139,7 @@ const getAccountParams =  async () => {
 }
 
 const addAccount = (formData) => {
-
+            setEquityCheck('')
           axios.post(`https://copytraderapi.fnoalgo.com/accounts/accounts/${userData.userId}/accounts/${formData.AccountID}`, 
           {
             AccountID: formData.AccountID, 
@@ -142,12 +166,56 @@ const addAccount = (formData) => {
            }
          }
           )  
-          .then(setCreatedAcc(true),
-            getAccountParams(),
-          setTimeout(() => {
-            setCreatedAcc(false)
-          }, 5000))
-          .catch(err => console.log(err));
+          .then(
+            (response) => {
+              console.log(response)
+              getAccountParams()
+              getAccountParams()
+              setCreatedAcc(true)
+            
+            setTimeout(() => {
+              setCreatedAcc(false)
+            }, 20000)
+            
+            
+            setRedirect(true)
+            }
+            )
+          .catch(
+            (err) => {
+              setCreatedAcc(false)
+              const code = err.response.data;
+              console.log(err);
+              switch (code) {
+                  case  "Update account failed: Equity starttime cannot be less than endtime":
+                    setEquityCheck('Equity starttime cannot be less than endtime')
+                    setTimeout(() => {
+                      setEquityCheck('')
+                    }, 20000)
+                    break;
+                    case 'NotAuthorizedException':
+                    setCommodityCheck(' Incorrect username or password.')
+                    setTimeout(() => {
+                      setCommodityCheck('')
+                    }, 20000)
+                    break;
+                    case 'NotAuthorizedException':
+                    setFnoCheck(' Incorrect username or password.')
+                    setTimeout(() => {
+                      setFnoCheck('')
+                    }, 20000)
+                    break;
+                    case 'failed: group already exists':
+                    setIdCheck(' Account ID already exist')
+                    setTimeout(() => {
+                      setIdCheck('')
+                    }, 20000)
+                    break;
+                  default:
+                      return false;
+              }
+            }
+          )
 
       }
 
@@ -200,7 +268,13 @@ try {
           editGroupFunc,
           getLicenseData,
           LicenseData, setLicenseData,
-          lloading
+          lloading,
+          EquityCheck,
+          FnoCheck,
+          IdCheck,
+          GIdCheck,
+          CommodityCheck,
+          redirect
           }}>
           {children}
         </AccountSettings.Provider>

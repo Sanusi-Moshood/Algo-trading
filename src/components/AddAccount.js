@@ -1,11 +1,11 @@
 import styles from '../pages/dashboard.module.css'
 import { Link } from 'react-router-dom'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { AccountSettings } from '../context/AccountSettings';
-
+import { useNavigate } from "react-router-dom";
 
 const AddAccount = () => {
-  const {addAccount, CreatedAcc} = useContext(AccountSettings)
+  const {addAccount, CreatedAcc, EquityCheck, FnoCheck, CommodityCheck, redirect, IdCheck} = useContext(AccountSettings)
   const [validate, setValidate] =useState({
     ID:'',
     Key:'',
@@ -72,6 +72,16 @@ const submit = (e) => {
 }
 
 
+const navigate = useNavigate();
+
+useEffect(() => {
+  if (redirect) {
+    
+    navigate(-1);
+  }
+}, [redirect]);
+
+
   return (
     <div className={styles.viewWidth}>
               <h3 className={styles.back}><Link to={'/accounts'}> Back</Link></h3>
@@ -91,6 +101,7 @@ const submit = (e) => {
               value={formData.AccountID}
               onChange={handleChange}
               className={styles.addID} /> 
+              <p className={styles.auth}>{IdCheck}</p>
               <p className={styles.auth}>{validate.ID}</p>
         </div>
           
@@ -143,6 +154,7 @@ const submit = (e) => {
               value={formData.EquityStartTime}
               onChange={handleChange}
                />           
+              
             </div>
   
             <div>
@@ -154,6 +166,7 @@ const submit = (e) => {
                value={formData.EquityEndTime}
                onChange={handleChange}
                />    
+               
             </div>
               </div>
   
@@ -202,11 +215,11 @@ const submit = (e) => {
                name="FnoEndTime" 
                value={formData.FnoEndTime}
                onChange={handleChange}
-               />    
+               />  
+               <p className={styles.auth}>{FnoCheck }</p>  
             </div>
               </div>
-  
-  
+
               <div className={styles.box}>
                 <h2>Commodity</h2>
   
@@ -252,10 +265,11 @@ const submit = (e) => {
                value={formData.CommodityEndTime}
                onChange={handleChange}
                />    
+               <p className={styles.auth}>{CommodityCheck}</p>
             </div>
               </div>
             </div>
-
+            <h4 className={styles.auth}>{EquityCheck }</h4>
             <div>
             <label className={styles.label}>Api Key</label> <br />
             <input 

@@ -10,6 +10,9 @@ const Userlevel = () => {
   
   const [loading, setLoading] = useState(true)
   const [saved, setSaved] = useState(false)
+  const [EquityCheck, setEquityCheck] = useState('')
+  const [FnoCheck, setFnoCheck] = useState('')
+  const [CommodityCheck, setCommodityCheck] = useState('')
   useEffect(() => {
     if (status) {
       getUserLevel();
@@ -17,6 +20,7 @@ const Userlevel = () => {
   }, [])
   
 
+  
   const getUserLevel =  async () => {
     setLoading(true)
     try {
@@ -76,14 +80,41 @@ const Userlevel = () => {
           Userid: userData.userId
         }
       }      
-      ).then(setSaved(true),
+      ).then(
+        (response) => {
+          setSaved(true)
       setTimeout(() => {
         setSaved(false)
       }, 5000)
+        }
       )
 
-    } catch(err) {
-      console.log(`An error has occured: ${err}`)
+    }
+     catch(err) {
+      const code = err.response.data;
+      console.log(err);
+      switch (code) {
+          case  "Update account failed: Equity starttime cannot be greater than endtime":
+            setEquityCheck('Equity starttime cannot be less than endtime')
+            setTimeout(() => {
+              setEquityCheck('')
+            }, 15000)
+            break;
+            case 'NotAuthorizedException':
+            setCommodityCheck(' Incorrect username or password.')
+            setTimeout(() => {
+              setCommodityCheck('')
+            }, 5000)
+            break;
+            case 'NotAuthorizedException':
+            setFnoCheck(' Incorrect username or password.')
+            setTimeout(() => {
+              setFnoCheck('')
+            }, 5000)
+            break;
+          default:
+              return false;
+      }
     }
   }
 
@@ -261,6 +292,7 @@ const Userlevel = () => {
             </div>
               </div>
             </div>
+            <h4 className={styles.auth}>{EquityCheck }</h4>
             {saved && <p>Changes successfully saved</p>} 
             <div className={styles.submit}>
             <button>Save</button> 

@@ -10,7 +10,7 @@ import Select from 'react-select'
 
 const AddGroup = () => {
   const {userData} = useContext(AccountContext)
-  const {addGroup, CreatedGroup} = useContext(AccountSettings)
+  const {addGroup, CreatedGroup, GIdCheck} = useContext(AccountSettings)
   const [validate, setValidate] =useState({
     ID:'',
     Accounts:'',
@@ -157,6 +157,7 @@ const MasterChange = (e) => {
               value={formData.GroupID}
               onChange={handleChange}
               className={styles.addID} /> 
+              <p className={styles.auth}>{GIdCheck}</p>
               <p className={styles.auth}>{validate.ID}</p>
         </div>
 
