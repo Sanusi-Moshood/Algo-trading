@@ -97,7 +97,7 @@ try {
       </tbody>
     </table>
 
-  <button className={styles.add_account}><Link to={'/groups/add'} >Create new Group</Link></button>
+  <Link to={'/groups/add'} ><button className={styles.add_account}>Create new Group</button></Link>
   
   
   
