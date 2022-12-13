@@ -103,7 +103,7 @@ const deleteFunc=  async (id) => {
       </tbody>
     </table>
 
-  <button className={styles.add_account}><Link to={'/accounts/add'} >Create new Account</Link></button>
+  <Link to={'/accounts/add'} ><button className={styles.add_account}>Create new Account</button></Link>
   
   
   

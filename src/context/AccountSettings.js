@@ -278,7 +278,9 @@ try {
           GIdCheck,
           CommodityCheck,
           redirect,
-          GRedirect
+          GRedirect,
+          setRedirect,
+          setGRedirect
           }}>
           {children}
         </AccountSettings.Provider>

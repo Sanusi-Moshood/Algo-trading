@@ -5,7 +5,7 @@ import { AccountSettings } from '../context/AccountSettings';
 import { useNavigate } from "react-router-dom";
 
 const AddAccount = () => {
-  const {addAccount, CreatedAcc, EquityCheck, FnoCheck, CommodityCheck, redirect, IdCheck} = useContext(AccountSettings)
+  const {addAccount, CreatedAcc, EquityCheck, FnoCheck, CommodityCheck, redirect, IdCheck, setRedirect} = useContext(AccountSettings)
   const [validate, setValidate] =useState({
     ID:'',
     Key:'',
@@ -78,6 +78,7 @@ useEffect(() => {
   if (redirect) {
     
     navigate(-1);
+    setRedirect(false)
   }
 }, [redirect]);
 

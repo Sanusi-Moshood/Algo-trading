@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const AddGroup = () => {
   const {userData} = useContext(AccountContext)
-  const {addGroup, CreatedGroup, GIdCheck, GRedirect} = useContext(AccountSettings)
+  const {addGroup, CreatedGroup, GIdCheck, GRedirect, setGRedirect} = useContext(AccountSettings)
   const [validate, setValidate] =useState({
     ID:'',
     Accounts:'',
@@ -24,8 +24,10 @@ useEffect(() => {
   if (GRedirect) {
     
     navigate(-1);
+    setGRedirect(false)
+
   }
-}, [GRedirect]);
+}, );
 
 
 const [formData, setFormData] = useState({
