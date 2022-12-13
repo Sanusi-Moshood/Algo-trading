@@ -5,7 +5,47 @@ import {  useState, createContext, useEffect} from 'react';
 const AccountContext = createContext();
 
 const Account = (props) => {
+  const [userData, setUserData] = useState({
+    accessToken:'',
+    userId:'',
+    userName:'',
+    Email:''
+  }) 
   
+  const [websocket, setWebsocket] =useState()
+  const connect = () => {
+    const ws = new WebSocket(`wss://7k22ipxsrk.execute-api.ap-south-1.amazonaws.com/dev?accesstoken=${userData.accessToken}&userid=${userData.userId}`);
+     ws.onopen = (event) => {
+       console.log('connected')
+       setTimeout(function () {
+        ws.send('Heartbeat')
+       }, 30000);
+     };
+
+       ws.onmessage = evt => {
+       // listen to data sent from the websocket server
+       const message = JSON.parse(evt.data)
+       setWebsocket({dataFromServer: message})
+       console.log(message)
+       }
+
+       ws.onclose = () => {
+       console.log('disconnected')
+      //  setTimeout(function () {
+      //   // websocket function
+      //    connect();
+      //  }, 10000);
+
+       }
+
+       ws.onerror = (err) => {
+         console.error(err.message);
+         ws.close();
+       };
+   }
+
+
+
   const getSession = async () => {
     await new Promise((resolve, reject) => {
       const user = UserPool.getCurrentUser();
@@ -21,6 +61,7 @@ const Account = (props) => {
               userName: session.idToken.payload['cognito:username'],
               Email: session.idToken.payload.email
             }))
+            
           }
         });
       } else {
@@ -30,18 +71,13 @@ const Account = (props) => {
     });
   };
 //-----------------------USER DATA  INFORMATION
-  const [userData, setUserData] = useState({
-    accessToken:'',
-    userid:'',
-    userName:'',
-    Email:''
-  }) 
+
   const [status, setStatus] = useState()
   useEffect(() => {
     getSession()
       .then(session => {
         setStatus(true);
-        // connect();
+        connect();
       })
       .catch((err) => {
         console.log('Session: ', err);
