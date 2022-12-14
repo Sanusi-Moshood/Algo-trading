@@ -12,37 +12,37 @@ const Account = (props) => {
     Email:''
   }) 
   
-  const [websocket, setWebsocket] =useState()
-  const connect = () => {
-    const ws = new WebSocket(`wss://7k22ipxsrk.execute-api.ap-south-1.amazonaws.com/dev?accesstoken=${userData.accessToken}&userid=${userData.userId}`);
-     ws.onopen = (event) => {
-       console.log('connected')
-       setTimeout(function () {
-        ws.send('Heartbeat')
-       }, 30000);
-     };
+  // const [websocket, setWebsocket] =useState()
+  // const connect = () => {
+  //   const ws = new WebSocket(`wss://7k22ipxsrk.execute-api.ap-south-1.amazonaws.com/dev?accesstoken=${userData.accessToken}&userid=${userData.userId}`);
+  //    ws.onopen = (event) => {
+  //      console.log('connected')
+  //      setTimeout(function () {
+  //       ws.send('Heartbeat')
+  //      }, 30000);
+  //    };
 
-       ws.onmessage = evt => {
-       // listen to data sent from the websocket server
-       const message = JSON.parse(evt.data)
-       setWebsocket({dataFromServer: message})
-       console.log(message)
-       }
+  //      ws.onmessage = evt => {
+  //      // listen to data sent from the websocket server
+  //      const message = JSON.parse(evt.data)
+  //      setWebsocket({dataFromServer: message})
+  //      console.log(message)
+  //      }
 
-       ws.onclose = () => {
-       console.log('disconnected')
-      //  setTimeout(function () {
-      //   // websocket function
-      //    connect();
-      //  }, 10000);
+  //      ws.onclose = () => {
+  //      console.log('disconnected')
+  //     //  setTimeout(function () {
+  //     //   // websocket function
+  //     //    connect();
+  //     //  }, 10000);
 
-       }
+  //      }
 
-       ws.onerror = (err) => {
-         console.error(err.message);
-         ws.close();
-       };
-   }
+  //      ws.onerror = (err) => {
+  //        console.error(err.message);
+  //        ws.close();
+  //      };
+  //  }
 
 
 
@@ -77,7 +77,7 @@ const Account = (props) => {
     getSession()
       .then(session => {
         setStatus(true);
-        connect();
+        // connect();
       })
       .catch((err) => {
         console.log('Session: ', err);
